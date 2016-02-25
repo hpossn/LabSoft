@@ -1,0 +1,30 @@
+Funcionais
+
+-Login sistema
+-Gerar relatório de embarque
+-Gerar relatório de entregas
+-Cadastrar nova entrega
+-----------------------------------Hugo
+-Efetuar cotação
+-Acompanhar entrega em tempo real
+-Providenciar recibo online com assinatura do recebedor
+-Cadastro de cliente
+-----------------------------------Zé
+-Cadastro de transporte
+-Providenciar localização geográficas
+
+Não Funcionais
+
+-O sistema deve escolher o meio de transporte a ser utilizado (caminhão/moto/carro etc)
+-Cliente especifica as dimensões do produto a ser entregue
+-----------------------------------Rafel
+-Informar falhas na entrega
+-Utilização de um SGBD moderno e confiável
+-Verificar se é possível entrega rápida no destinatário
+-Fazer validação de CEP
+-Utilizar API do Google MAPS e correios para informações de endereço
+-----------------------------------Casarin
+
+
+
+
