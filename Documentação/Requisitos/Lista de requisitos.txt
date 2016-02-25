@@ -6,7 +6,7 @@ Funcionais
 -Cadastrar nova entrega
 -----------------------------------Hugo
 -Efetuar cotação
--Acompanhar entrega em tempo real
+-Acompanhar status do produto em tempo real
 -Providenciar recibo online com assinatura do recebedor
 -Cadastro de cliente
 -----------------------------------Zé
@@ -24,7 +24,8 @@ Não Funcionais
 -Fazer validação de CEP
 -Utilizar API do Google MAPS e correios para informações de endereço
 -----------------------------------Casarin
-
+-Utilizar Python com Framework Django
+-Utilizar Git, com armazenamento no GitHub, para controle de versão
 
 
 
