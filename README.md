@@ -10,5 +10,5 @@ Administracao django
 usuario: admin
 Senha: admin123
 
-LINK PARA RELATÓRIO : https://drive.google.com/open?id=0B3Rf4NYa6TLEZVBmQUh0aTVCQzQ
+LINK PARA RELATÓRIO : https://drive.google.com/folderview?id=0B3Rf4NYa6TLEYUZ3YVVIV19tRVk&usp=sharing
 
