@@ -70,6 +70,7 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'eres.wsgi.application'
 
+AUTHENTICATION_BACKENDS = ('home.backends.UsuarioAuthBackend', 'django.contrib.auth.backends.ModelBackend')
 
 # Database
 # https://docs.djangoproject.com/en/dev/ref/settings/#databases
