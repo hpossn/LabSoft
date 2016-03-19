@@ -10,3 +10,13 @@ Administracao django
 usuario: admin
 Senha: admin123
 
+sudo service mysqld start #starts the server
+sudo service mysqld status #verify the status
+mysql -uroot -p # logs in as root user
+chkconfig mysqld on #configures to start mysql at boot
+
+conf file: /etc/my.cnf
+
+para fazer o mySQL funcionar no python3 e django, usar pip install PyMySQL e depois em __init__.py, adicionar
+import pymysql
+pymysql.install_as_MySQLdb() 
