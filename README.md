@@ -20,3 +20,7 @@ conf file: /etc/my.cnf
 para fazer o mySQL funcionar no python3 e django, usar pip install PyMySQL e depois em __init__.py, adicionar
 import pymysql
 pymysql.install_as_MySQLdb() 
+
+LINK PARA RELATÓRIO : https://drive.google.com/folderview?id=0B3Rf4NYa6TLEYUZ3YVVIV19tRVk&usp=sharing
+
+
