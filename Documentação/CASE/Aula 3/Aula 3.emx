@@ -88,8 +88,8 @@
     <details xmi:id="_lU195Oa5EeWcRuKGBv-vPQ" key="com.ibm.xtools.activities.umlBBUseCase2" value="1"/>
   </eAnnotations>
   <packagedElement xmi:type="uml:Package" xmi:id="_SRtjQOw9EeW0CfwhVW-JOQ" name="Diagrama de classes">
-    <eAnnotations xmi:id="_SSC6cOw9EeW0CfwhVW-JOQ" source="uml2.diagrams" references="_SSDhgOw9EeW0CfwhVW-JOQ">
-      <contents xmi:type="umlnotation:UMLDiagram" xmi:id="_SSDhgOw9EeW0CfwhVW-JOQ" type="Freeform" name="Main">
+    <eAnnotations xmi:id="_SSC6cOw9EeW0CfwhVW-JOQ" source="uml2.diagrams">
+      <contents xmi:type="umlnotation:UMLDiagram" xmi:id="_5XK70Ow9EeW0CfwhVW-JOQ" type="Class" name="Diagrama de Classes">
         <element xsi:nil="true"/>
       </contents>
     </eAnnotations>
