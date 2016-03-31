@@ -7,16 +7,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
-    <link rel="shortcut icon" href="assets/ico/favicon.png">
+
+    {% load staticfiles %}
+
+    <link rel="shortcut icon" href="{% static "assets/ico/favicon.png" %}">
 
     <title>Eres - Entrega rápida e segura</title>
 
     <!-- Bootstrap core CSS -->
-    <link href="assets/css/bootstrap.css" rel="stylesheet">
-    <link href="assets/css/font-awesome.min.css" rel="stylesheet">
+    <link href="{% static "assets/css/bootstrap.css" %}" rel="stylesheet">
+    <link href="{% static "assets/css/font-awesome.min.css" %}" rel="stylesheet">
 
     <!-- Custom styles for this template -->
-    <link href="assets/css/main.css" rel="stylesheet">
+    <link href="{% static "assets/css/main.css" %}" rel="stylesheet">
 
   </head>
 
@@ -36,9 +39,6 @@
         <div class="navbar-collapse collapse">
           <ul class="nav navbar-nav navbar-right">
             <li class="active"><a href="index.html">HOME</a></li>
-            <li><a href="about.html">Sobre</a></li>
-            <li><a href="services.html">Serviços</a></li>
-            <li><a href="works.html">Trabalhos</a></li>
             <li><a data-toggle="modal" data-target="#myModal" href="#myModal"><i class="fa fa-envelope-o"></i></a></li>
           </ul>
         </div><!--/.nav-collapse -->
@@ -105,6 +105,6 @@
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
-    <script src="assets/js/bootstrap.min.js"></script>
+    <script src="{% static "assets/js/bootstrap.min.js" %}"></script>
   </body>
 </html>

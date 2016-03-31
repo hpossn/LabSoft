@@ -1,0 +1,6 @@
+sudo service mysqld start #starts the server
+sudo service mysqld status #verify the status
+mysql -uroot -p # logs in as root user
+chkconfig mysqld on #configures to start mysql at boot
+
+conf file: /etc/my.cnf
