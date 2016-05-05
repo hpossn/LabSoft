@@ -32,20 +32,17 @@
     <!-- Fixed navbar -->
     <div class="navbar navbar-inverse navbar-fixed-top">
       <div class="container">
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="navbar-brand" href="#">ERES</a>
+        <div class="navbar-header" >
+        	<img src="assets/img/logo.png">
+
         </div>
-        <div class="navbar-collapse collapse">
+       <div class="navbar-collapse collapse">
           <ul class="nav navbar-nav navbar-right">
             <li><a href="index.html">HOME</a></li>
-            <li class="active"><a href="about.html">Sobre</a></li>
-            <li><a href="services.html">Serviços</a></li>
-            <li><a href="works.html">Trabalhos</a></li>
+            <li><a href="about.html">A EMPRESA</a></li>
+            <li><a href="services.html">SERVIÇOS</a></li>
+            <li><a href="works.html">CLIENTES</a></li>
+            <li><a href="works.html">CONTATO</a></li>
             <li><a data-toggle="modal" data-target="#myModal" href="#myModal"><i class="fa fa-envelope-o"></i></a></li>
           </ul>
         </div><!--/.nav-collapse -->
@@ -56,141 +53,28 @@
 		<div class="container">
 			<div class="row centered">
 				<div class="col-lg-8 col-lg-offset-2">
-				<h4>UM POUCO SOBRE NÓS</h4>
-				<p>WE ARE COOL PEOPLE</p>
+				<h4>ERES: ENTREGA RÁPIDA E SEGURA</h4>
 				</div>
 			</div><!-- row -->
 		</div><!-- container -->
 	</div><!--  bluewrap -->
 
 
-	<div class="container w">
-		<div class="row centered">
-			<br><br>
-			<div class="col-lg-3">
-				<img class="img-circle" src="assets/img/pic.jpg" width="110" height="110" alt="">
-				<h4>Hugo Possani</h4>
-				<p>Engenharia Elétrica - ênfase em computação</p>
-				<p><a href="#">@hugopossani</a></p>
-			</div><!-- col-lg-3 -->
-
-			<div class="col-lg-3">
-				<img class="img-circle" src="assets/img/pic2.jpg" width="110" height="110" alt="">
-				<h4>José Suen</h4>
-				<p>Engenharia Elétrica - ênfase em computação</p>
-				<p><a href="#">@josesuen</a></p>
-			</div><!-- col-lg-3 -->
-
-			<div class="col-lg-3">
-				<img class="img-circle" src="assets/img/pic3.jpg" width="110" height="110" alt="">
-				<h4>Gabriel Casarin</h4>
-				<p>Engenharia Elétrica - ênfase em computação</p>
-				<p><a href="#">@gabrielcasarin</a></p>
-			</div><!-- col-lg-3 -->
-
-			<div class="col-lg-3">
-				<img class="img-circle" src="assets/img/pic4.jpg" width="110" height="110" alt="">
-				<h4>Rafael Gomes</h4>
-				<p>Engenharia Elétrica - ênfase em computação</p>
-				<p><a href="#">@rafaelgomes</a></p>
-			</div><!-- col-lg-3 -->
-
-		</div><!-- row -->
-		<br>
-		<br>
-	</div><!-- container -->
-
 
 	<!-- PORTFOLIO SECTION -->
 	<div id="dg">
 		<div class="container">
 			<div class="row centered">
-				<h4>Nossas competências</h4>
+				<h4>Por que ERES ?</h4>
 				<br>
+				<div id= "about-text">
+				<p>O ERES é uma empresa de entregas que oferece aos seus clientes, lojas físicas das mais diversas áreas como móveis, eletrodomésticos etc., serviços de entrega com confiabilidade e segurança. ERES conta com uma grande variedade de tipos de entrega, desde motoboys até caminhões. Toda essa infraestrutura é coordenada por um moderno sistema baseado na WEB onde os clientes poderão ver o custo para determinada localidade, tempo de entregas estimado, acompanhar entregas em tempo real e oferecer ao destinatário código de rastreio, assim como disponibilizar ao cliente a assinatura digital do destinatário, comprovando o recebimento, dentre várias outras funções. ERES tem por objetivo complementar o sistema de E-COMMERCE de lojas oferecendo o serviço de entregas. A interface com o cliente é feita exclusivamente via browser, o que permite uma implantação inócua uma vez que não é realizada modificações no site de compras do nosso cliente.</p>
 
-			<!-- First Chart -->
-			<div class="col-lg-3">
-				<canvas id="canvas" height="130" width="130"></canvas>
-				<br>
-				<script>
-					var doughnutData = [
-							{
-								value: 100,
-								color:"#3498db"
-							},
-							{
-								value : 0,
-								color : "#ecf0f1"
-							}
-						];
-						var myDoughnut = new Chart(document.getElementById("canvas").getContext("2d")).Doughnut(doughnutData);
-				</script>
-				<p><b>Programação</b></p>
-				<p><small>Desenvolvimento de software</small></p>
-			</div><!-- /col-lg-3 -->
+				</div>
+				<div id = "about-pic">7
+				<p>AQUI VAI A FOTO</p>
+				</div>
 
-			<!-- Second Chart -->
-			<div class="col-lg-3">
-				<canvas id="canvas2" height="130" width="130"></canvas>
-				<br>
-				<script>
-					var doughnutData = [
-							{
-								value: 100,
-								color:"#3498db"
-							},
-							{
-								value : 0,
-								color : "#ecf0f1"
-							}
-						];
-						var myDoughnut = new Chart(document.getElementById("canvas2").getContext("2d")).Doughnut(doughnutData);
-				</script>
-				<p><b>Desenvolvimento web</b></p>
-				<p><small>Sites completos</small></p>
-			</div><!-- /col-lg-3 -->
-
-			<!-- Third Chart -->
-			<div class="col-lg-3">
-				<canvas id="canvas3" height="130" width="130"></canvas>
-				<br>
-				<script>
-					var doughnutData = [
-							{
-								value: 100,
-								color:"#3498db"
-							},
-							{
-								value : 0,
-								color : "#ecf0f1"
-							}
-						];
-						var myDoughnut = new Chart(document.getElementById("canvas3").getContext("2d")).Doughnut(doughnutData);
-				</script>
-				<p><b>Serviços</b></p>
-				<p><small>Contate-nos</small></p>
-			</div><!-- /col-lg-3 -->
-
-			<!-- Fourth Chart -->
-			<div class="col-lg-3">
-				<canvas id="canvas4" height="130" width="130"></canvas>
-				<br>
-				<script>
-					var doughnutData = [
-							{
-								value: 100,
-								color:"#3498db"
-							},
-							{
-								value : 0,
-								color : "#ecf0f1"
-							}
-						];
-						var myDoughnut = new Chart(document.getElementById("canvas4").getContext("2d")).Doughnut(doughnutData);
-				</script>
-				<p><b>Disponibilidade</b></p>
-				<p><small>A todo o momento</small></p>
-			</div><!-- /col-lg-3 -->
 
 
 			</div><!-- row -->

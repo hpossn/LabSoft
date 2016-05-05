@@ -1,23 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
-
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
-    {% load staticfiles %}
-    <link rel="shortcut icon" href="{% static "assets/ico/favicon.png" %}">
+    <link rel="shortcut icon" href="assets/ico/favicon.png">
 
     <title>Eres - Entrega rápida e segura</title>
 
     <!-- Bootstrap core CSS -->
-    <link href="{% static "assets/css/bootstrap.css" %}" rel="stylesheet">
-    <link href="{% static "assets/css/font-awesome.min.css" %}" rel="stylesheet">
+    <link href="assets/css/bootstrap.css" rel="stylesheet">
+    <link href="assets/css/font-awesome.min.css" rel="stylesheet">
 
     <!-- Custom styles for this template -->
-    <link href="{% static "assets/css/main.css" %}" rel="stylesheet">
+    <link href="assets/css/main.css" rel="stylesheet">
+
+	<script src="assets/js/Chart.js"></script>
+
 
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -31,132 +32,132 @@
     <!-- Fixed navbar -->
     <div class="navbar navbar-inverse navbar-fixed-top">
       <div class="container">
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="navbar-brand" href="#">ERES</a>
+        <div class="navbar-header" >
+        	<img src="assets/img/logo.png">
+
         </div>
-        <div class="navbar-collapse collapse">
+       <div class="navbar-collapse collapse">
           <ul class="nav navbar-nav navbar-right">
-            <li class="active"><a href="index.html">HOME</a></li>
-            <li><a href="about.html">Sobre</a></li>
-            <li><a href="services.html">Serviços</a></li>
-            <li><a href="works.html">Trabalhos</a></li>
-            <li><a data-toggle="modal" data-target="#myLogin" href="#myLogin">Login</a></li>
+            <li><a href="index.html">HOME</a></li>
+            <li><a href="about.html">A EMPRESA</a></li>
+            <li><a href="services.html">SERVIÇOS</a></li>
+            <li><a href="works.html">CLIENTES</a></li>
+            <li><a href="works.html">CONTATO</a></li>
             <li><a data-toggle="modal" data-target="#myModal" href="#myModal"><i class="fa fa-envelope-o"></i></a></li>
           </ul>
         </div><!--/.nav-collapse -->
       </div>
     </div>
 
-	<div id="headerwrap">
+	<div id="blue">
 		<div class="container">
 			<div class="row centered">
 				<div class="col-lg-8 col-lg-offset-2">
-				<h1>Entrega <b>rápida</b> e <b>segura</b></h1>
-				<h2>Hoje e sempre</h2>
+				<h4>ERES: ENTREGA RÁPIDA E SEGURA</h4>
 				</div>
 			</div><!-- row -->
 		</div><!-- container -->
-	</div><!-- headerwrap -->
+	</div><!--  bluewrap -->
 
-
-	<div class="container w">
-		<div class="row centered">
-			<br><br>
-			<div class="col-lg-4">
-				<i class="fa fa-check"></i>
-				<h4>Rapidez</h4>
-				<p>Entregamos num piscar de olhos.</p>
-			</div><!-- col-lg-4 -->
-
-			<div class="col-lg-4">
-				<i class="fa fa-laptop"></i>
-				<h4>Segurança</h4>
-				<p>Sua mercadoria estará sempre segura conosco.</p>
-			</div><!-- col-lg-4 -->
-
-			<div class="col-lg-4">
-				<i class="fa fa-trophy"></i>
-				<h4>Facilidade</h4>
-				<p>Somos totalmente informatizados.</p>
-			</div><!-- col-lg-4 -->
-		</div><!-- row -->
-		<br>
-		<br>
-	</div><!-- container -->
 
 
 	<!-- PORTFOLIO SECTION -->
 	<div id="dg">
 		<div class="container">
 			<div class="row centered">
-				<h4>ÚLTIMOS TRABALHOS</h4>
+				<h4>Nossas competências</h4>
 				<br>
-				<div class="col-lg-4">
-					<div class="tilt">
-					<a href="#"><img src="{% static "assets/img/p01.png" %}" alt=""></a>
-					</div>
-				</div>
 
-				<div class="col-lg-4">
-					<div class="tilt">
-					<a href="#"><img src="{% static "assets/img/p03.png" %}" alt=""></a>
-					</div>
-				</div>
+			<!-- First Chart -->
+			<div class="col-lg-3">
+				<canvas id="canvas" height="130" width="130"></canvas>
+				<br>
+				<script>
+					var doughnutData = [
+							{
+								value: 100,
+								color:"#3498db"
+							},
+							{
+								value : 0,
+								color : "#ecf0f1"
+							}
+						];
+						var myDoughnut = new Chart(document.getElementById("canvas").getContext("2d")).Doughnut(doughnutData);
+				</script>
+				<p><b>Programação</b></p>
+				<p><small>Desenvolvimento de software</small></p>
+			</div><!-- /col-lg-3 -->
 
-				<div class="col-lg-4">
-					<div class="tilt">
-					<a href="#"><img src="{% static "assets/img/p02.png" %}" alt=""></a>
-					</div>
-				</div>
+			<!-- Second Chart -->
+			<div class="col-lg-3">
+				<canvas id="canvas2" height="130" width="130"></canvas>
+				<br>
+				<script>
+					var doughnutData = [
+							{
+								value: 100,
+								color:"#3498db"
+							},
+							{
+								value : 0,
+								color : "#ecf0f1"
+							}
+						];
+						var myDoughnut = new Chart(document.getElementById("canvas2").getContext("2d")).Doughnut(doughnutData);
+				</script>
+				<p><b>Desenvolvimento web</b></p>
+				<p><small>Sites completos</small></p>
+			</div><!-- /col-lg-3 -->
+
+			<!-- Third Chart -->
+			<div class="col-lg-3">
+				<canvas id="canvas3" height="130" width="130"></canvas>
+				<br>
+				<script>
+					var doughnutData = [
+							{
+								value: 100,
+								color:"#3498db"
+							},
+							{
+								value : 0,
+								color : "#ecf0f1"
+							}
+						];
+						var myDoughnut = new Chart(document.getElementById("canvas3").getContext("2d")).Doughnut(doughnutData);
+				</script>
+				<p><b>Serviços</b></p>
+				<p><small>Contate-nos</small></p>
+			</div><!-- /col-lg-3 -->
+
+			<!-- Fourth Chart -->
+			<div class="col-lg-3">
+				<canvas id="canvas4" height="130" width="130"></canvas>
+				<br>
+				<script>
+					var doughnutData = [
+							{
+								value: 100,
+								color:"#3498db"
+							},
+							{
+								value : 0,
+								color : "#ecf0f1"
+							}
+						];
+						var myDoughnut = new Chart(document.getElementById("canvas4").getContext("2d")).Doughnut(doughnutData);
+				</script>
+				<p><b>Disponibilidade</b></p>
+				<p><small>A todo o momento</small></p>
+			</div><!-- /col-lg-3 -->
+
+
 			</div><!-- row -->
 		</div><!-- container -->
 	</div><!-- DG -->
 
 
-	<!-- FEATURE SECTION -->
-	<div class="container wb">
-		<div class="row centered">
-			<br><br>
-			<div class="col-lg-8 col-lg-offset-2">
-				<h4>VOCÊ É NOSSA PRIORIDADE</h4>
-				<p>Todo o nosso esforço é concentrado em te surpreender</p>
-			<p><br/><br/></p>
-			</div>
-			<div class="col-lg-2"></div>
-			<div class="col-lg-10 col-lg-offset-1">
-				<img class="img-responsive" src="{% static "assets/img/munter.png" %}" alt="">
-			</div>
-		</div><!-- row -->
-	</div><!-- container -->
-
-
-	<div id="lg">
-		<div class="container">
-			<div class="row centered">
-				<h4>Nossos clientes</h4>
-				<div class="col-lg-2 col-lg-offset-1">
-					<img src="{% static "assets/img/c01.gif" %}" alt="">
-				</div>
-				<div class="col-lg-2">
-					<img src="{% static "assets/img/c02.gif" %}" alt="">
-				</div>
-				<div class="col-lg-2">
-					<img src="{% static "assets/img/c03.gif" %}" alt="">
-				</div>
-				<div class="col-lg-2">
-					<img src="{% static "assets/img/c04.gif" %}" alt="">
-				</div>
-				<div class="col-lg-2">
-					<img src="{% static "assets/img/c05.gif" %}" alt="">
-				</div>
-			</div><!-- row -->
-		</div><!-- container -->
-	</div><!-- dg -->
 
 
 	<div id="r">
@@ -189,16 +190,16 @@
 	    <div class="modal-content">
 	      <div class="modal-header">
 	        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-	        <h4 class="modal-title" id="myModalLabel">Contate-nos</h4>
+	        <h4 class="modal-title" id="myModalLabel">contact us</h4>
 	      </div>
 	      <div class="modal-body">
 		        <div class="row centered">
-		        	<p>Estamos disponíveis 24/7, contate-nos.</p>
+		        	<p>We are available 24/7, so don't hesitate to contact us.</p>
 		        	<p>
-		        		Av. Prof. Luciano Gualberto, 380<br/>
-						São Paulo, Brasil<br/>
-						+55 11 3091-9656<br/>
-						sem@email.com
+		        		Somestreet Ave, 987<br/>
+						London, UK.<br/>
+						+44 8948-4343<br/>
+						hi@blacktie.co
 		        	</p>
 		        	<div id="mapwrap">
 		<iframe height="300" width="100%" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://www.google.es/maps?t=m&amp;ie=UTF8&amp;ll=52.752693,22.791016&amp;spn=67.34552,156.972656&amp;z=2&amp;output=embed"></iframe>
@@ -212,43 +213,11 @@
 	  </div><!-- /.modal-dialog -->
 	</div><!-- /.modal -->
 
-  <div class="modal fade" id="myLogin" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-	  <div class="modal-dialog">
-	    <div class="modal-content">
-	      <div class="modal-header">
-	        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-	        <h4 class="modal-title" id="myModalLabel">Login</h4>
-	      </div>
-	      <div class="modal-body">
-          <div class="formLogin">
-            <form method="POST" action="/home/login/">
-              {% csrf_token %}
-              <p><input type="text" name="login" value="" placeholder="Seu username"></p>
-              <p><input type="password" name="password" value="" placeholder="Sua senha"></p>
-              <p class="remember_me">
-                <label>
-                  <input type="checkbox" name="remember_me" id="remember_me">
-                  Lembrar neste computador
-                </label>
-              </p>
-              <p class="submit"><input type="submit" name="commit" value="Login"></p>
-              <div class="modal-footer">
-      	        <button type="submit" class="btn btn-danger" data-dismiss="modal">Login</button>
-      	      </div>
-            </form>
-          </div>
-
-	      </div>
-
-	    </div><!-- /.modal-content -->
-	  </div><!-- /.modal-dialog -->
-	</div><!-- /.modal -->
-
 
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
-    <script src="{% static "assets/js/bootstrap.min.js" %}"></script>
+    <script src="assets/js/bootstrap.min.js"></script>
   </body>
 </html>

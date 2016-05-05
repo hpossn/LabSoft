@@ -85,31 +85,19 @@ a:after {
 .navbar {
 	font-weight: 800;
 	font-size: 14px;
-	padding-top: 15px;
-	padding-bottom: 15px;
+	padding-top: 30px;
+	padding-bottom: 0px;
 }
 
 .navbar-inverse {
-	background: #2d2d2d;
-	border-color: #2d2d2d;
+	background: #ffffff;
+	border-color: #364B5F;
 }
 
 .navbar-inverse .navbar-nav > .active > a {
-	background: #ff7878
+	background: #364B5F
 }
 
-.navbar-inverse .navbar-brand {
-	color: #999999;
-	font-weight: bolder;
-	font-size: 22px;
-	letter-spacing: 1px;
-}
-
-.navbar-inverse .navbar-brand i {
-	color: #ff7878;
-	font-size: 22px;
-	letter-spacing: 1px;
-}
 
 /*TILT*/
 .tilt {
@@ -131,6 +119,36 @@ a:after {
 /* ==========================================================================
    Wrap Sections
    ========================================================================== */
+
+#about-text{
+    width: 800px;
+    margin-left: 10px;
+    float: left;
+    text-align: left;
+}
+
+#about-pic{
+    width: 300px;
+    float:right;
+
+}
+
+
+#navbar-header{
+float: left;
+ text-decoration:none;
+ border:0;
+ width : 162px;
+ height : 100px;
+ margin : 0;
+ padding-top:  : 0px;
+ padding-bottom:  : 50px;
+ background : url(assets/img/logo.png) no-repeat 0 0;
+}
+
+
+
+}
 
 #headerwrap {
 	background: url(../img/header-bg.jpg) no-repeat center top;
@@ -178,6 +196,9 @@ a:after {
 }
 
 #dg h4 {
+    margin-left: 100px;
+    font-size: 32pt;
+    text-align: left;
 	font-weight: 700;
 }
 
@@ -213,14 +234,15 @@ a:after {
 /* Blue Wrap */
 
 #blue {
-	background: #3498db;
-	padding-top: 35px;
+	background: #364B5D;
+	padding-top: 100px;
 	padding-bottom: 35px;
 }
 
 #blue h4 {
 	color: white;
 	font-weight: 700;
+    font-size: 24px;
 }
 
 #blue p {
