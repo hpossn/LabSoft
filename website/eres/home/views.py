@@ -13,3 +13,6 @@ def base(request):
 
 def login(request):
    return render(request, 'home/base_templateLogin.html', {})
+
+def about(request):
+    return render(request, 'home/about.html', {})
