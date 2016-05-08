@@ -4390,6 +4390,8 @@ textarea.input-group-sm > .input-group-btn > .btn {
   }
   .navbar-collapse .navbar-nav.navbar-right:last-child {
     margin-right: -15px;
+    margin-bottom: 0px;
+    margin-top: 50px;
   }
   .navbar-collapse .navbar-text:last-child {
     margin-right: 0;
@@ -4405,6 +4407,7 @@ textarea.input-group-sm > .input-group-btn > .btn {
 @media (min-width: 768px) {
   .container > .navbar-header,
   .container > .navbar-collapse {
+    content :url ('assets/img/logo.png');
     margin-right: 0;
     margin-left: 0;
   }
@@ -4782,7 +4785,7 @@ textarea.input-group-sm > .input-group-btn > .btn {
 .navbar-inverse .navbar-nav > li > a:hover,
 .navbar-inverse .navbar-nav > li > a:focus {
   color: #ffffff;
-  background-color: transparent;
+  background-color: #364B5F;
 }
 
 .navbar-inverse .navbar-nav > .active > a,
