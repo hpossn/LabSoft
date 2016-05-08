@@ -6,15 +6,15 @@ class UsuarioAuthBackend(object):
         try:
             usuario = Usuario.objects.get(username=username)
 
-            if usuario.password == password:
-
+            if password == usuario.password:
+                # Authentication success by returning the user
                 return usuario
             else:
+                # Authentication fails if None is returned
                 return None
 
         except User.DoesNotExist:
             return None
-
 
     def get_user(self, user_id):
         try:

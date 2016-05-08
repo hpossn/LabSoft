@@ -8,5 +8,7 @@ urlpatterns = [
     url(r'^base$', views.base, name='base'),
     url(r'^login', views.login, name='login'),
     url(r'^about', views.about, name='about'),
-    url(r'^services', views.services, name='services'),
+    url(r'^works', views.services, name='services'),
+    # Contact form
+    url(r'^contact', views.contact, name='contact'),
 ]
