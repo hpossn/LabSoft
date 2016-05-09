@@ -14,13 +14,11 @@ from django.contrib.auth import authenticate, login as auth_login, logout as aut
 from django.views.decorators.csrf import csrf_protect
 from . forms import UserForm
 
-def index(request):
-    return render(request, 'home/index.html', {'form': UserForm})
+# experimental
+from manage import escreverArq
 
-def base(request):
-#   template = loader.get_template('home/base_template.html')
-#   return HttpResponse(template.render(request))
-    return HttpResponseRedirect('index.html')
+def index(request):
+    return render(request, 'home/index.html', {'form': UserForm, 'invalid_login': False})
 
 def login(request):
     if request.method == "POST":
@@ -32,17 +30,19 @@ def login(request):
             if user is not None:
                 if user.is_active:
                     auth_login(request, user)
-            else:
-                print user, 'desabilitado'
+                    return render(request, 'home/index.html', {'form': UserForm, 'invalid_login': False})
+#                else:
+#                    print user, 'desabilitado'
         else:
             logout(request)
             print user, 'nao existe'
 
-    return render(request, 'home/login.html')
+    # return HttpResponseRedirect("index", {'invalid_login': True})
+    return render(request, 'home/index.html', {'form': UserForm, 'invalid_login': True})
 
 def logout(request):
     auth_logout(request)
-    return HttpResponseRedirect('index.html')
+    return HttpResponseRedirect('index')
 
 def about(request):
     return render(request, 'home/about.html', {})
@@ -79,6 +79,8 @@ def contact(request):
             })
 
             content = template.render(context)
+
+            escreverArq(content)
 
             email = EmailMessage(
                     "New contact form submission",

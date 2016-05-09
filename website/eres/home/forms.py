@@ -18,7 +18,6 @@ class ContactForm(forms.Form):
 
 
 class UserForm(forms.Form):
-
     class Meta:
         model = Usuario
 
