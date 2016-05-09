@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Success</title>
+</head>
+<body>
+    {% if user.is_authenticated %}
+    <p>Success login!!</p>
+    {% else %}
+    <p>Failed login!!</p>
+    {% endif %}
+</body>
+</html>

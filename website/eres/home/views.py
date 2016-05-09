@@ -1,22 +1,48 @@
 from django.shortcuts import render, redirect
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render_to_response
-from django.template import loader
+from django.template import loader, RequestContext
+
 # email imports
 from django.template.loader import get_template
 from django.core.mail import EmailMessage
 from django.template import Context
+from . forms import ContactForm
+
+# Auth
+from django.contrib.auth import authenticate, login as auth_login, logout as auth_logout
+from django.views.decorators.csrf import csrf_protect
+from . forms import UserForm
 
 def index(request):
-   template = loader.get_template('home/index.html')
-   return HttpResponse(template.render(request))
+    return render(request, 'home/index.html', {'form': UserForm})
 
 def base(request):
-   template = loader.get_template('home/base_template.html')
-   return HttpResponse(template.render(request))
+#   template = loader.get_template('home/base_template.html')
+#   return HttpResponse(template.render(request))
+    return HttpResponseRedirect('index.html')
 
 def login(request):
-   return render(request, 'home/base_templateLogin.html', {})
+    if request.method == "POST":
+        form = UserForm(data=request.POST)
+        if form.is_valid():
+            username = request.POST['username']
+            password = request.POST['password']
+            user = authenticate(username=username, password=password)
+            if user is not None:
+                if user.is_active:
+                    auth_login(request, user)
+            else:
+                print user, 'desabilitado'
+        else:
+            logout(request)
+            print user, 'nao existe'
+
+    return render(request, 'home/login.html')
+
+def logout(request):
+    auth_logout(request)
+    return HttpResponseRedirect('index.html')
 
 def about(request):
     return render(request, 'home/about.html', {})
@@ -24,7 +50,6 @@ def about(request):
 def services(request):
     return render(request, 'home/works.html', {})
 
-from . forms import ContactForm
 def contact(request):
     form_class = ContactForm
 
@@ -54,7 +79,6 @@ def contact(request):
             })
 
             content = template.render(context)
-            print 'oi', content, 'oi'
 
             email = EmailMessage(
                     "New contact form submission",

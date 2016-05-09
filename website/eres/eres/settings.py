@@ -37,6 +37,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    # third party apps
+    'crispy_forms',
+    # my apps
     'home.apps.HomeConfig',
 ]
 
@@ -71,6 +74,7 @@ TEMPLATES = [
 WSGI_APPLICATION = 'eres.wsgi.application'
 
 AUTHENTICATION_BACKENDS = ('home.backends.UsuarioAuthBackend', 'django.contrib.auth.backends.ModelBackend')
+LOGIN_URL = '/auth/'
 
 # Database
 # https://docs.djangoproject.com/en/dev/ref/settings/#databases
@@ -133,3 +137,6 @@ EMAIL_HOST_USER = ''
 EMAIL_HOST_PASSWORD = ''
 EMAIL_USE_TLS = False
 EMAIL_PORT = 1025
+
+# Crispy
+CRISPY_TEMPLATE_PACK = 'bootstrap3'

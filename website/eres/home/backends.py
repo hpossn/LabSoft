@@ -1,4 +1,4 @@
-from .models import Usuario
+from . models import Usuario
 
 class UsuarioAuthBackend(object):
 
@@ -13,7 +13,7 @@ class UsuarioAuthBackend(object):
                 # Authentication fails if None is returned
                 return None
 
-        except User.DoesNotExist:
+        except Usuario.DoesNotExist:
             return None
 
     def get_user(self, user_id):
