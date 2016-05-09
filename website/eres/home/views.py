@@ -11,6 +11,7 @@ from . forms import ContactForm
 
 # Auth
 from django.contrib.auth import authenticate, login as auth_login, logout as auth_logout
+from django.contrib import messages
 from django.views.decorators.csrf import csrf_protect
 from . forms import UserForm
 
@@ -18,7 +19,7 @@ from . forms import UserForm
 from manage import escreverArq
 
 def index(request):
-    return render(request, 'home/index.html', {'form': UserForm, 'invalid_login': False})
+    return render(request, 'home/index.html', {'form': UserForm,})
 
 def login(request):
     if request.method == "POST":
@@ -30,7 +31,7 @@ def login(request):
             if user is not None:
                 if user.is_active:
                     auth_login(request, user)
-                    return render(request, 'home/index.html', {'form': UserForm, 'invalid_login': False})
+                    return render(request, 'home/base_template.html', {'form': UserForm, })
 #                else:
 #                    print user, 'desabilitado'
         else:
@@ -38,7 +39,8 @@ def login(request):
             print user, 'nao existe'
 
     # return HttpResponseRedirect("index", {'invalid_login': True})
-    return render(request, 'home/index.html', {'form': UserForm, 'invalid_login': True})
+    messages.error(request, 'Log Invalido')
+    return render(request, 'home/index.html', {'form': UserForm,})
 
 def logout(request):
     auth_logout(request)
