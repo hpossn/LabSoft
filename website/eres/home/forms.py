@@ -17,9 +17,9 @@ class ContactForm(forms.Form):
             self.fields['content'].label = "What do you want to say?"
 
 
-class UserForm(forms.Form):
-    class Meta:
-        model = Usuario
+#class UserForm(forms.Form):
+#    class Meta:
+#        model = Usuario
 
 #    username = forms.CharField(required=True)
 #    password = forms.CharField(required=True, widget=forms.PasswordInput)

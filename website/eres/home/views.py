@@ -13,17 +13,17 @@ from . forms import ContactForm
 from django.contrib.auth import authenticate, login as auth_login, logout as auth_logout
 from django.contrib import messages
 from django.views.decorators.csrf import csrf_protect
-from . forms import UserForm
+from django.contrib.auth.forms import AuthenticationForm
 
 # experimental
 from manage import escreverArq
 
 def index(request):
-    return render(request, 'home/index.html', {'form': UserForm,})
+    return render(request, 'home/index.html', {'form': AuthenticationForm,})
 
 def login(request):
     if request.method == "POST":
-        form = UserForm(data=request.POST)
+        form = AuthenticationForm(data=request.POST)
         if form.is_valid():
             username = request.POST['username']
             password = request.POST['password']
@@ -31,7 +31,7 @@ def login(request):
             if user is not None:
                 if user.is_active:
                     auth_login(request, user)
-                    return render(request, 'home/base_template.html', {'form': UserForm, })
+                    return render(request, 'home/base_template.html', {'form': AuthenticationForm, })
 #                else:
 #                    print user, 'desabilitado'
         else:
@@ -40,7 +40,7 @@ def login(request):
 
     # return HttpResponseRedirect("index", {'invalid_login': True})
     messages.error(request, 'Log Invalido')
-    return render(request, 'home/index.html', {'form': UserForm,})
+    return render(request, 'home/index.html', {'form': AuthenticationForm,})
 
 def logout(request):
     auth_logout(request)

@@ -73,7 +73,7 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'eres.wsgi.application'
 
-AUTHENTICATION_BACKENDS = ('home.backends.UsuarioAuthBackend', 'django.contrib.auth.backends.ModelBackend')
+AUTHENTICATION_BACKENDS = ('django.contrib.auth.backends.ModelBackend')
 
 # Database
 # https://docs.djangoproject.com/en/dev/ref/settings/#databases
@@ -83,7 +83,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'eres',
         'USER': 'admin',
-        'PASSWORD': '123',
+        'PASSWORD': 'admin123',
         'HOST': 'localhost',
         'PORT': '',
     }
