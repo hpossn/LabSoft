@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pedidos>
+    <head>
+        <cliente>eLAR</cliente>
+    </head>
+    <body>
+        <entrega>
+            
+        	<entregador>Flavio</entregador>
+        	<destinatario>Lulio</destinatario>
+        	<recibo>OK</recibo>
+        	<regiao>Lapa</regiao>
+        	<dataPedido>12/05/2016</dataPedido>
+        	<preco>500,00</preco>
+        	<prioridade>Alta</prioridade>
+        	<status>Aprovado</status>
+        	<qtd_tentativas>0</qtd_tentativas>
+
+        </entrega>
+    </body>
+</pedidos>

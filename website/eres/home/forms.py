@@ -1,6 +1,6 @@
 from django import forms
+from . import models
 
-from . models import Usuario
 
 class ContactForm(forms.Form):
     error_css_class = 'error'
@@ -17,13 +17,26 @@ class ContactForm(forms.Form):
             self.fields['content'].label = "What do you want to say?"
 
 
-#class UserForm(forms.Form):
-#    class Meta:
-#        model = Usuario
+class ClienteForm(forms.ModelForm):
+    class Meta:
+        model = models.Cliente
+        fields = ('nome', 'email', 'endereco', 'telefone', 'CNPJ', )
 
-#    username = forms.CharField(required=True)
-#    password = forms.CharField(required=True, widget=forms.PasswordInput)
-#    def __init__(self, *args, **kwargs):
-#            super(UserForm, self).__init__(*args, **kwargs)
-#            self.fields['username'].label = "Username:"
-#            self.fields['password'].label = "Password:"
+
+class VeiculoForm(forms.ModelForm):
+    class Meta:
+        model = models.Veiculo
+        fields = ('entregador', 'nome', )
+
+
+class FuncionarioForm(forms.ModelForm):
+    class Meta:
+        model = models.Funcionario
+        fields = ('nome', 'dataNascimento', 'CPF', 'salario', )
+        widgets = {
+            'dataNascimento': forms.SelectDateWidget(years=range(1901,2016)),
+        }
+
+class ArquivoPedidosForm(forms.Form):
+    # title = forms.CharField(max_length=256)
+    file = forms.FileField()

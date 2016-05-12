@@ -37,8 +37,6 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    # third party apps
-    'crispy_forms',
     # my apps
     'home.apps.HomeConfig',
 ]
@@ -73,7 +71,8 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'eres.wsgi.application'
 
-AUTHENTICATION_BACKENDS = ('django.contrib.auth.backends.ModelBackend')
+# Authentication
+AUTHENTICATION_BACKENDS = ['django.contrib.auth.backends.ModelBackend']
 
 # Database
 # https://docs.djangoproject.com/en/dev/ref/settings/#databases
@@ -82,8 +81,8 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'eres',
-        'USER': 'admin',
-        'PASSWORD': 'admin123',
+        'USER': 'gabriel',
+        'PASSWORD': '123',
         'HOST': 'localhost',
         'PORT': '',
     }
@@ -136,6 +135,3 @@ EMAIL_HOST_USER = ''
 EMAIL_HOST_PASSWORD = ''
 EMAIL_USE_TLS = False
 EMAIL_PORT = 1025
-
-# Crispy
-CRISPY_TEMPLATE_PACK = 'bootstrap3'

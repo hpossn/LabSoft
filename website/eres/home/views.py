@@ -7,19 +7,21 @@ from django.template import loader, RequestContext
 from django.template.loader import get_template
 from django.core.mail import EmailMessage
 from django.template import Context
-from . forms import ContactForm
-
+from . import forms
 # Auth
-from django.contrib.auth import authenticate, login as auth_login, logout as auth_logout
+import django.contrib.auth as auth
 from django.contrib import messages
-from django.views.decorators.csrf import csrf_protect
-from django.contrib.auth.forms import AuthenticationForm
+#from django.views.decorators.csrf import csrf_protect
+from django.template.context_processors import csrf
+#from django.contrib.auth.forms import AuthenticationForm
 
 # experimental
 from manage import escreverArq
 
 def index(request):
-    return render(request, 'home/index.html', {'form': AuthenticationForm,})
+    c = {}
+    c.update(csrf(request))
+    return render(request, 'home/index.html', c)
 
 def login(request):
     if request.method == "POST":
@@ -27,15 +29,14 @@ def login(request):
         if form.is_valid():
             username = request.POST['username']
             password = request.POST['password']
-            user = authenticate(username=username, password=password)
+            user = auth.authenticate(username=username, password=password)
             if user is not None:
                 if user.is_active:
-                    auth_login(request, user)
-                    return render(request, 'home/base_template.html', {'form': AuthenticationForm, })
+                    auth.login(request, user)
+                    return render(request, 'home/base_template.html')
 #                else:
 #                    print user, 'desabilitado'
         else:
-            logout(request)
             print user, 'nao existe'
 
     # return HttpResponseRedirect("index", {'invalid_login': True})
@@ -43,7 +44,7 @@ def login(request):
     return render(request, 'home/index.html', {'form': AuthenticationForm,})
 
 def logout(request):
-    auth_logout(request)
+    auth.logout(request)
     return HttpResponseRedirect('index')
 
 def about(request):
@@ -53,7 +54,7 @@ def services(request):
     return render(request, 'home/works.html', {})
 
 def contact(request):
-    form_class = ContactForm
+    form_class = forms.ContactForm
 
     if request.method == 'POST':
         form = form_class(data=request.POST)
@@ -94,3 +95,21 @@ def contact(request):
             return redirect('contact')
 
     return render(request, 'home/contact.html', {'form': form_class,})
+
+def signup(request):
+    if request.method == 'POST':
+        form = forms.FuncionarioForm(data=request.POST)
+    else:
+        form = forms.FuncionarioForm()
+
+    return render(request, 'home/cadastro/funcionario.html', {'form': form})
+
+def upload_pedidos(request):
+    if request.method == 'POST':
+        form = forms.ArquivoPedidosForm(request.POST, request.FILES)
+        if form.is_valid():
+            print(request.FILES['file'].read())
+    else:
+        form = forms.ArquivoPedidosForm()
+
+    return render(request, 'home/upload.html', {'form': form})

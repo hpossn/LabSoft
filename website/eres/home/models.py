@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import AbstractUser
 
 class Usuario(models.Model):
 	username = models.CharField(max_length=15, primary_key=True)
@@ -36,7 +37,7 @@ class Entregador(Funcionario):
 class Cliente(models.Model):
 #	id_cliente = models.IntegerField(primary_key=True)
 	nome = models.CharField(max_length=45)
-	email = models.CharField(max_length=45)
+	email = models.EmailField(max_length=45)
 	endereco = models.CharField(max_length=45)
 	telefone = models.CharField(max_length=20)
 	CNPJ = models.CharField(max_length=45)
