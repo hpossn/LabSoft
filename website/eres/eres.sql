@@ -116,7 +116,7 @@ CREATE TABLE `auth_user` (
   `date_joined` datetime(6) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `username` (`username`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -125,7 +125,7 @@ CREATE TABLE `auth_user` (
 
 LOCK TABLES `auth_user` WRITE;
 /*!40000 ALTER TABLE `auth_user` DISABLE KEYS */;
-INSERT INTO `auth_user` VALUES (1,'pbkdf2_sha256$24000$0Zxjo7VkiPLx$bx9zhxpCgk01C9ru/mnAniVH+pp3BVJracHTiKsweSE=','2016-05-12 13:20:01.099759',1,'gabriel','','','gabriel@localhost',1,1,'2016-05-11 00:37:28.696158');
+INSERT INTO `auth_user` VALUES (1,'pbkdf2_sha256$24000$0Zxjo7VkiPLx$bx9zhxpCgk01C9ru/mnAniVH+pp3BVJracHTiKsweSE=','2016-05-12 13:20:01.099759',1,'gabriel','','','gabriel@localhost',1,1,'2016-05-11 00:37:28.696158'),(2,'pbkdf2_sha256$24000$nx8u2rIFAjdf$rxmBrSWE7ED9CMo+rVzWGM1Pm1sS6JekXSjE0bH2JUQ=',NULL,1,'admin','','','admin@llocalhost.com',1,1,'2016-05-13 16:11:39.857396');
 /*!40000 ALTER TABLE `auth_user` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -413,6 +413,7 @@ CREATE TABLE `home_entregador` (
 
 LOCK TABLES `home_entregador` WRITE;
 /*!40000 ALTER TABLE `home_entregador` DISABLE KEYS */;
+INSERT INTO `home_entregador` VALUES (2,1);
 /*!40000 ALTER TABLE `home_entregador` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -430,7 +431,7 @@ CREATE TABLE `home_funcionario` (
   `CPF` varchar(45) NOT NULL,
   `salario` double NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -439,7 +440,7 @@ CREATE TABLE `home_funcionario` (
 
 LOCK TABLES `home_funcionario` WRITE;
 /*!40000 ALTER TABLE `home_funcionario` DISABLE KEYS */;
-INSERT INTO `home_funcionario` VALUES (1,'Gabriel Casarin da Silva','1993-10-16','123456789',100);
+INSERT INTO `home_funcionario` VALUES (1,'Gabriel Casarin da Silva','1993-10-16','123456789',100),(2,'Gabriel Casarin da Silva','1993-10-16','1234567890',1000);
 /*!40000 ALTER TABLE `home_funcionario` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -575,4 +576,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-05-13 12:21:51
+-- Dump completed on 2016-05-13 13:12:15
