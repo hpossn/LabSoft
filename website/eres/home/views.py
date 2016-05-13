@@ -13,6 +13,7 @@ import django.contrib.auth as auth
 from django.contrib import messages
 #from django.views.decorators.csrf import csrf_protect
 from django.template.context_processors import csrf
+from . models import Usuario
 #from django.contrib.auth.forms import AuthenticationForm
 
 # experimental
@@ -33,7 +34,7 @@ def login(request):
             if user is not None:
                 if user.is_active:
                     auth.login(request, user)
-                    return render(request, 'home/base_template.html')
+                    return render(request, 'home/base_template.html', {'funcao_usuario': getTipoUsuario(user.username)})
 #                else:
 #                    print user, 'desabilitado'
         else:
@@ -42,6 +43,10 @@ def login(request):
     # return HttpResponseRedirect("index", {'invalid_login': True})
     messages.error(request, 'Log Invalido')
     return render(request, 'home/index.html', {'form': forms.CustomLoginForm,})
+
+def getTipoUsuario(username):
+    usuario = Usuario.objects.get(username=username)
+    return usuario.tipoUsuario
 
 def logout(request):
     auth.logout(request)

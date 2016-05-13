@@ -42,6 +42,7 @@
         {% if user.is_authenticated %}
         <form  role="form" class="navbar-form navbar-right" method="POST" action="logout">{% csrf_token %}
             <button type="submit" class="btn btn-primary">Log Out</button>
+            <h5>Código da função: {{ funcao_usuario }}</h5>
         </form>
         {% else %}
         <form  role="form" class="navbar-form navbar-right" method="POST" action="login">{% csrf_token %}
