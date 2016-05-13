@@ -72,7 +72,11 @@ TEMPLATES = [
 WSGI_APPLICATION = 'eres.wsgi.application'
 
 # Authentication
-AUTHENTICATION_BACKENDS = ['django.contrib.auth.backends.ModelBackend']
+#AUTHENTICATION_BACKENDS = ['django.contrib.auth.backends.ModelBackend']
+###################### AUTH #####################
+#AUTH_USER_MODEL = 'home.CustomUser'
+AUTHENTICATION_BACKENDS = ['home.backends.CustomUserAuth']
+#################################################
 
 # Database
 # https://docs.djangoproject.com/en/dev/ref/settings/#databases

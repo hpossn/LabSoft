@@ -25,8 +25,8 @@ def index(request):
 
 def login(request):
     if request.method == "POST":
-        form = AuthenticationForm(data=request.POST)
-        if form.is_valid():
+        form = forms.CustomLoginForm(data=request.POST)
+        if True:
             username = request.POST['username']
             password = request.POST['password']
             user = auth.authenticate(username=username, password=password)
@@ -37,11 +37,11 @@ def login(request):
 #                else:
 #                    print user, 'desabilitado'
         else:
-            print user, 'nao existe'
+            print('nao existe')
 
     # return HttpResponseRedirect("index", {'invalid_login': True})
     messages.error(request, 'Log Invalido')
-    return render(request, 'home/index.html', {'form': AuthenticationForm,})
+    return render(request, 'home/index.html', {'form': forms.CustomLoginForm,})
 
 def logout(request):
     auth.logout(request)

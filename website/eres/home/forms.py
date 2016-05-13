@@ -2,6 +2,11 @@ from django import forms
 from . import models
 
 
+class CustomLoginForm(forms.ModelForm):
+    class Meta:
+        model = models.Usuario
+        fields = ('username', 'password', )
+
 class ContactForm(forms.Form):
     error_css_class = 'error'
     required_css_class = 'required'

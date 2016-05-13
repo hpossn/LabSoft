@@ -1,6 +1,7 @@
 from . models import Usuario
+from django.contrib.auth.models import User
 
-class UsuarioAuthBackend(object):
+class CustomUserAuth(object):
 
     def authenticate(self, username=None, password=None):
         try:
@@ -8,7 +9,20 @@ class UsuarioAuthBackend(object):
 
             if password == usuario.password:
                 # Authentication success by returning the user
-                return usuario
+                try:
+                    user = User.objects.get(username=username)
+                    return user
+                except User.DoesNotExist:
+                    user = User(username=username, password=password)
+                    if usuario.tipoUsuario == 0:
+                        user.is_staff = True
+                        user.is_superuser = True
+                    else:
+                        user.is_staff = False
+                        user.is_superuser = False
+                    user.is_active = True
+                    user.save()
+                    return user
             else:
                 # Authentication fails if None is returned
                 return None
@@ -18,6 +32,6 @@ class UsuarioAuthBackend(object):
 
     def get_user(self, user_id):
         try:
-            return Usuario.objects.get(pk=user_id)
+            return User.objects.get(pk=user_id)
         except Usuario.DoesNotExist:
             return None
