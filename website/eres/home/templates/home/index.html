@@ -1,127 +1,33 @@
 {% extends 'home/base_template.html' %}
-
+    {% load staticfiles %}
 {% block content %}
 
+    <!-- Custom styles for this template -->
+    <link href="{% static 'assets/css/index.css' %}" rel="stylesheet">
+
+
 	<div id="blue">
-		<div class="container">
-			<div class="row centered">
-				<div class="col-lg-8 col-lg-offset-2">
-				<h4>ERES: ENTREGA RÁPIDA E SEGURA</h4>
-				</div>
-			</div><!-- row -->
-		</div><!-- container -->
 	</div><!--  bluewrap -->
 
-
-
 	<!-- PORTFOLIO SECTION -->
-	<div id="dg">
-		<div class="container">
-			<div class="row centered">
-				<h4>Nossas competências</h4>
-				<br>
-
-			<!-- First Chart -->
-			<div class="col-lg-3">
-				<canvas id="canvas" height="130" width="130"></canvas>
-				<br>
-				<script>
-					var doughnutData = [
-							{
-								value: 100,
-								color:"#3498db"
-							},
-							{
-								value : 0,
-								color : "#ecf0f1"
-							}
-						];
-						var myDoughnut = new Chart(document.getElementById("canvas").getContext("2d")).Doughnut(doughnutData);
-				</script>
-				<p><b>Programação</b></p>
-				<p><small>Desenvolvimento de software</small></p>
-			</div><!-- /col-lg-3 -->
-
-			<!-- Second Chart -->
-			<div class="col-lg-3">
-				<canvas id="canvas2" height="130" width="130"></canvas>
-				<br>
-				<script>
-					var doughnutData = [
-							{
-								value: 100,
-								color:"#3498db"
-							},
-							{
-								value : 0,
-								color : "#ecf0f1"
-							}
-						];
-						var myDoughnut = new Chart(document.getElementById("canvas2").getContext("2d")).Doughnut(doughnutData);
-				</script>
-				<p><b>Desenvolvimento web</b></p>
-				<p><small>Sites completos</small></p>
-			</div><!-- /col-lg-3 -->
-
-			<!-- Third Chart -->
-			<div class="col-lg-3">
-				<canvas id="canvas3" height="130" width="130"></canvas>
-				<br>
-				<script>
-					var doughnutData = [
-							{
-								value: 100,
-								color:"#3498db"
-							},
-							{
-								value : 0,
-								color : "#ecf0f1"
-							}
-						];
-						var myDoughnut = new Chart(document.getElementById("canvas3").getContext("2d")).Doughnut(doughnutData);
-				</script>
-				<p><b>Serviços</b></p>
-				<p><small>Contate-nos</small></p>
-			</div><!-- /col-lg-3 -->
-
-			<!-- Fourth Chart -->
-			<div class="col-lg-3">
-				<canvas id="canvas4" height="130" width="130"></canvas>
-				<br>
-				<script>
-					var doughnutData = [
-							{
-								value: 100,
-								color:"#3498db"
-							},
-							{
-								value : 0,
-								color : "#ecf0f1"
-							}
-						];
-						var myDoughnut = new Chart(document.getElementById("canvas4").getContext("2d")).Doughnut(doughnutData);
-				</script>
-				<p><b>Disponibilidade</b></p>
-				<p><small>A todo o momento</small></p>
-			</div><!-- /col-lg-3 -->
+	<div id="bg">
+		<div id= "bg_text">
+			<h1>VELOCIDADE, SEGURANÇA, CONFIABILIDADE.</h1>
+			<h2>Nós temos a solução perfeita de transporte para sua empresa</h2>
+		</div>
+		<div id="bg_buttons">
+			<a href="about" class="button">SAIBA MAIS</a>
 
 
-			</div><!-- row -->
-		</div><!-- container -->
+
+		</div>
 	</div><!-- DG -->
 
 
 
 
-	<div id="r">
-		<div class="container">
-			<div class="row centered">
-				<div class="col-lg-8 col-lg-offset-2">
-					<h4>TEMOS PAIXÃO PELO QUE FAZEMOS</h4>
-					<p>Dessa forma conseguimos sempre a aprovação dos nossos clientes</p>
-				</div>
-			</div><!-- row -->
-		</div><!-- container -->
-	</div><! -- r wrap -->
+	<div id="track_block">
+		<h1>RASTREIE AQUI A SUA ENCOMENDA</h1>
+	</div>
 
 {% endblock content %}

@@ -1,0 +1,79 @@
+@import url(http://fonts.googleapis.com/css?family=Lato:300,400,700,900);
+@import url(http://fonts.googleapis.com/css?family=Raleway:400,300,700,900);
+
+
+
+
+
+#blue {
+    display: block;
+    height: 5px;
+
+}
+
+/* MAIN DIV WITH BACKGROUD*/
+#bg {
+    background: url(../img/caminhaobonito.png) no-repeat center top;
+    display: block;
+    width: 100%;
+    height: 600px;
+    padding-top: 0;
+}
+#bg h1{
+    font-size: 50px;
+    font-weight: bold;
+    color: white;
+    text-align: center;
+    margin-top:0;
+    padding-top: 60px;
+    position: relative;
+}
+
+#bg h2{
+    font-size: 30px;
+    color: white;
+    text-align: center;
+    margin-top:0;
+    padding-top: 10px;
+    position: relative;
+
+
+}
+
+
+.button {
+    background-color: #D6B404; 
+    border: none;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 5px;
+    display: block;
+    font-size: 20px;
+    line-height: 50px;
+    text-align: center;
+    font-weight: bold;
+    cursor: pointer;
+    width: 200px;
+    height: 50px;
+    margin: 60px auto 0px auto;
+}
+
+
+#track_block{
+    display:block;
+    height: 200px;
+    background-color: #364B5D;
+
+}
+
+#track_block h1{
+    font-size: 50px;
+    font-weight: bold;
+    color: white;
+    text-align: center;
+    margin-top:0;
+    padding-top: 60px;
+    position: relative;
+
+}

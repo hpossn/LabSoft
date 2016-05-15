@@ -39,7 +39,24 @@
         	<img src="{% static 'assets/img/logo.png' %}">
         </div>
        <div class="navbar-collapse collapse">
-        {% if user.is_authenticated %}
+         <ul class="nav navbar-nav navbar-right" method>
+            <li><a href="index">HOME</a></li>
+            <li><a href="about">A EMPRESA</a></li>
+            <li><a href="works">SERVIÇOS</a></li>
+            <li><a href="costumers">CLIENTES</a></li>
+            <li><a href="contact">CONTATO</a></li>
+            <li><a data-toggle="modal" data-target="#myModal" href="#myModal"><i class="fa fa-envelope-o"></i></a></li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </div>
+
+    {% block content %}
+    {% endblock %}
+
+    <!-- FOOTER -->
+    <div id="f">
+            {% if user.is_authenticated %}
         <form  role="form" class="navbar-form navbar-right" method="POST" action="logout">{% csrf_token %}
             <button type="submit" class="btn btn-primary">Log Out</button>
             <h5>Código da função: {{ funcao_usuario }}</h5>
@@ -59,25 +76,9 @@
                 {% endfor%}
             {% endif %}
         </form>
+        
 
         {% endif %}
-         <ul class="nav navbar-nav navbar-right" method>
-            <li><a href="index">HOME</a></li>
-            <li><a href="about">A EMPRESA</a></li>
-            <li><a href="works">SERVIÇOS</a></li>
-            <li><a href="costumers">CLIENTES</a></li>
-            <li><a href="contact">CONTATO</a></li>
-            <li><a data-toggle="modal" data-target="#myModal" href="#myModal"><i class="fa fa-envelope-o"></i></a></li>
-          </ul>
-        </div><!--/.nav-collapse -->
-      </div>
-    </div>
-
-    {% block content %}
-    {% endblock %}
-
-    <!-- FOOTER -->
-    <div id="f">
         <div class="container">
             <div class="row centered">
                 <a href="#"><i class="fa fa-twitter"></i></a><a href="#"><i class="fa fa-facebook"></i></a><a href="#"><i class="fa fa-dribbble"></i></a>
@@ -111,7 +112,9 @@
                 </div>
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-danger" data-dismiss="modal">Save & Go</button>
+
+            <button type="button" class="btn btn-danger" data-dismiss="modal">Save</button>
+
           </div>
         </div><!-- /.modal-content -->
       </div><!-- /.modal-dialog -->
