@@ -1,21 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<pedidos>
-    <head>
-        <cliente>eLAR</cliente>
-    </head>
-    <body>
-        <entrega>
-            
-        	<entregador>Flavio</entregador>
-        	<destinatario>Lulio</destinatario>
-        	<recibo>OK</recibo>
-        	<regiao>Lapa</regiao>
-        	<dataPedido>12/05/2016</dataPedido>
-        	<preco>500,00</preco>
-        	<prioridade>Alta</prioridade>
-        	<status>Aprovado</status>
-        	<qtd_tentativas>0</qtd_tentativas>
+<root>
 
+    <cliente>LAR</cliente>
+
+    <pedidos>
+
+        <entrega>
+        	<destinatario>
+                <nome>Lúlio</nome>
+            	<logradouro>rua Baker</logradouro>
+            	<numero>221B</numero>
+            	<municipio>São Paulo</municipio>
+            	<estado>SP</estado>
+        	</destinatario>
+        	<regiao>Lapa</regiao>
+        	<dataPedido>
+                <day>12</day>
+                <month>05</month>
+                <year>2016</year>
+            </dataPedido>
+            <pacote>
+                <volume>53.0</volume>
+                <peso>5.3</peso>
+            </pacote>
+        	<prioridade>Normal</prioridade>
         </entrega>
-    </body>
-</pedidos>
+
+    </pedidos>
+</root>
