@@ -1,8 +1,13 @@
 from __future__ import print_function
+import heapq as hp
 from datetime import datetime
 from xmltodict import parse
 import home.models as models
 
+codigoPrioridade = {
+        'Alta': 0,
+        'Normal': 1,
+}
 
 def adicionarListaPedidos(xml_input):
     """
@@ -24,10 +29,10 @@ def adicionarListaPedidos(xml_input):
         destinatarioOrderedDict = pedidoOrderedDict['destinatario']
         dest_kwargs = { key: destinatarioOrderedDict[key] for key in destinatarioOrderedDict.keys() }
         # faz-se um query para ver se o destinatário já se encontra no banco de dados
-        query_destinatario = models.Destinatario.objects.get(**dest_kwargs)
+        query_destinatario = models.Destinatario.objects.filter(**dest_kwargs)
         # dã
-        if query_destinatario is not None:
-            destinatario = query_destinatario
+        if len(query_destinatario) > 0:
+            destinatario = query_destinatario[0]
         else:
             destinatario = models.Destinatario(**dest_kwargs)
             destinatario.save()
@@ -36,6 +41,7 @@ def adicionarListaPedidos(xml_input):
         # a fim de que não tenha que deletar tal campo e passar nominalmente por meio de kwargs
         # o referido objeto para o construtor de pedido
         pedido_kwargs['destinatario'] = destinatario
+        print(destinatario.nome)
 
 
         ## Resolve CLIENTE
@@ -49,15 +55,15 @@ def adicionarListaPedidos(xml_input):
 
 
         # REGIÃO
-        query_regiao = models.Regiao.objects.get(nome=pedidoOrderedDict['regiao'])
-        if query_regiao is not None:
+        query_regiao = models.Regiao.objects.filter(nome=pedidoOrderedDict['regiao'])
+        if len(query_regiao) > 0:
             # pelo mesmo motivo resolvi sobrescrever o conteúdo do dicionário
-            pedido_kwargs['regiao'] = query_regiao
+            pedido_kwargs['regiao'] = query_regiao[0]
 
             # cálculo do frete
             volume = float(pedidoOrderedDict['pacote']['volume'])
             peso = float(pedidoOrderedDict['pacote']['peso'])
-            precoBase = query_regiao.precoBase
+            precoBase = query_regiao[0].precoBase
             #TODO: inserir fórmula de cálculo de frete
             preco = 0.00
 
@@ -74,8 +80,20 @@ def adicionarListaPedidos(xml_input):
         ## cria o PEDIDO, se for possível
         if pedidoValido:
             entrega = models.Entrega(**pedido_kwargs, preco=preco, qtd_tentativas=0, status='pendente')
+            print('oi')
             entrega.save()
 
 
 def alocarEntregaParaEntregador(entrega, entregador):
-    pass
+    entrega.entregador = entregador
+
+def listarPedidosPendentes():
+    raw_query = models.Entrega.objects.filter(status='pendente')
+    lista_temp = []
+    for entrega in raw_query:
+        hp.heappush(lista_temp, (entrega.dataPedido, codigoPrioridade[entrega.prioridade], entrega))
+    lista_ret = []
+    while len(lista_temp) > 0:
+        _, _, entrega = hp.heappop(lista_temp)
+        lista_ret.append(entrega)
+    return lista_ret

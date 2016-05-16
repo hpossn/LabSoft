@@ -14,10 +14,10 @@ from . import forms
 import django.contrib.auth as auth
 from django.contrib import messages
 from django.template.context_processors import csrf
-from . models import Usuario
+from . models import *
 
 # experimental
-from GerenciadorPedidos  import adicionarListaPedidos
+from GerenciadorPedidos  import adicionarListaPedidos, listarPedidosPendentes
 
 def index(request):
     c = {}
@@ -137,3 +137,7 @@ def veiculo(request):
         form = forms.VeiculoForm()
 
     return render(request, 'home/cadastro/funcionario.html', {'form': form})
+
+def displayEntregas(request):
+    result = listarPedidosPendentes()
+    return render(request, 'home/displayEntregas.html', {'result': result})

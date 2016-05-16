@@ -7,23 +7,23 @@
 
         <entrega>
         	<destinatario>
-                <nome>Lúlio</nome>
-            	<logradouro>rua Baker</logradouro>
-            	<numero>221B</numero>
+                <nome>Hugo</nome>
+            	<logradouro>rua do Hugo</logradouro>
+            	<numero>10</numero>
             	<municipio>São Paulo</municipio>
             	<estado>SP</estado>
         	</destinatario>
-        	<regiao>Lapa</regiao>
+        	<regiao>oeste</regiao>
         	<dataPedido>
-                <day>12</day>
+                <day>16</day>
                 <month>05</month>
                 <year>2016</year>
             </dataPedido>
             <pacote>
-                <volume>53.0</volume>
-                <peso>5.3</peso>
+                <volume>33.0</volume>
+                <peso>3.3</peso>
             </pacote>
-        	<prioridade>Normal</prioridade>
+        	<prioridade>Alta</prioridade>
         </entrega>
 
     </pedidos>

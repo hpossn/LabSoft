@@ -1,5 +1,5 @@
 from django.db import models
-
+__all__ = ['Usuario', 'Entrega', 'Destinatario']
 
 class Usuario(models.Model):
     username = models.CharField(max_length=15, primary_key=True)
