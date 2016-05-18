@@ -1,4 +1,6 @@
-from django.shortcuts import render, redirect
+from __future__ import print_function
+
+from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render_to_response
 from django.template import loader, RequestContext
@@ -11,13 +13,11 @@ from . import forms
 # Auth
 import django.contrib.auth as auth
 from django.contrib import messages
-#from django.views.decorators.csrf import csrf_protect
 from django.template.context_processors import csrf
-from . models import Usuario
-#from django.contrib.auth.forms import AuthenticationForm
+from . models import *
 
 # experimental
-from manage import escreverArq
+from GerenciadorPedidos  import adicionarListaPedidos, listarPedidosPendentes
 
 def index(request):
     c = {}
@@ -106,18 +106,41 @@ def contact(request):
 
 def signup(request):
     if request.method == 'POST':
-        form = forms.FuncionarioForm(data=request.POST)
-    else:
-        form = forms.FuncionarioForm()
+        form = forms.ClienteForm(data=request.POST)
+        if form.is_valid():
+            cli = form.save()
 
-    return render(request, 'home/cadastro/funcionario.html', {'form': form})
+    return render(request, 'home/cadastro/cliente.html', {'form':  forms.ClienteForm()})
+
+def funcionario(request):
+    if request.method == 'POST':
+        form = forms.EntregadorForm(data=request.POST)
+        if form.is_valid():
+            func = form.save()
+
+    return render(request, 'home/cadastro/entregador.html', {'form':  forms.EntregadorForm()})
 
 def upload_pedidos(request):
     if request.method == 'POST':
         form = forms.ArquivoPedidosForm(request.POST, request.FILES)
         if form.is_valid():
-            print(request.FILES['file'].read())
+            adicionarListaPedidos(request.FILES['file'].read())
     else:
         form = forms.ArquivoPedidosForm()
 
     return render(request, 'home/upload.html', {'form': form})
+
+def veiculo(request):
+    if request.method == 'POST':
+        form = forms.VeiculoForm(data=request.POST)
+        if form.is_valid():
+            vei = form.save(commit=False)
+            print(type(vei))
+    else:
+        form = forms.VeiculoForm()
+
+    return render(request, 'home/cadastro/funcionario.html', {'form': form})
+
+def displayEntregas(request):
+    result = listarPedidosPendentes()
+    return render(request, 'home/displayEntregas.html', {'result': result})

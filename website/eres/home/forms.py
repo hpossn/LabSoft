@@ -7,6 +7,7 @@ class CustomLoginForm(forms.ModelForm):
         model = models.Usuario
         fields = ('username', 'password', )
 
+
 class ContactForm(forms.Form):
     error_css_class = 'error'
     required_css_class = 'required'
@@ -31,16 +32,26 @@ class ClienteForm(forms.ModelForm):
 class VeiculoForm(forms.ModelForm):
     class Meta:
         model = models.Veiculo
-        fields = ('entregador', 'nome', )
+        fields = ('marca', 'modelo', 'ano', 'placa')
 
 
-class FuncionarioForm(forms.ModelForm):
+#class FuncionarioForm(forms.ModelForm):
+#    class Meta:
+#        model = models.Funcionario
+#        fields = ('nome', 'dataNascimento', 'CPF', 'salario', )
+#        widgets = {
+#            'dataNascimento': forms.SelectDateWidget(years=range(1901,2016)),
+#        }
+
+
+class EntregadorForm(forms.ModelForm):
     class Meta:
-        model = models.Funcionario
-        fields = ('nome', 'dataNascimento', 'CPF', 'salario', )
+        model = models.Entregador
+        fields = ('nome', 'dataNascimento', 'CPF', 'salario',)
         widgets = {
             'dataNascimento': forms.SelectDateWidget(years=range(1901,2016)),
         }
+
 
 class ArquivoPedidosForm(forms.Form):
     # title = forms.CharField(max_length=256)
