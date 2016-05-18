@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 from __future__ import print_function
 import heapq as hp
 from datetime import datetime
@@ -79,7 +81,7 @@ def adicionarListaPedidos(xml_input):
 
         ## cria o PEDIDO, se for possível
         if pedidoValido:
-            entrega = models.Entrega(**pedido_kwargs, preco=preco, qtd_tentativas=0, status='pendente')
+            entrega = models.Entrega(preco=preco, qtd_tentativas=0, status='pendente', **pedido_kwargs)
             print('oi')
             entrega.save()
 
