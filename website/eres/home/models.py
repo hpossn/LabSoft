@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
+import hashlib
 from django.db import models
-__all__ = ['Usuario', 'Entrega', 'Destinatario']
+__all__ = ['Usuario', 'Regiao', 'Destinatario', 'Entrega', 'Funcionario', 'Cliente']
 
 class Usuario(models.Model):
     username = models.CharField(max_length=15, primary_key=True)
@@ -20,13 +21,13 @@ class Regiao(models.Model):
 
 class Destinatario(models.Model):
     # identificacao
-    nome = models.CharField(max_length=256)
+    nome = models.CharField(max_length=256, default='')
     # endereco
-    logradouro = models.CharField(max_length=45)
-    numero = models.CharField(max_length=4)
+    logradouro = models.CharField(max_length=45, default='')
+    numero = models.CharField(max_length=4, default='')
     complemento = models.CharField(max_length=45, blank=True, null=True)
-    municipio = models.CharField(max_length=45)
-    estado = models.CharField(max_length=2)
+    municipio = models.CharField(max_length=45, default='')
+    estado = models.CharField(max_length=2, default='')
     class Meta:
         ordering = ['nome']
 
@@ -62,11 +63,11 @@ class Entregador(Funcionario):
 
 
 class Cliente(models.Model):
-    nome = models.CharField(max_length=45)
-    email = models.EmailField(max_length=45)
-    endereco = models.CharField(max_length=45)
-    telefone = models.CharField(max_length=20)
-    CNPJ = models.CharField(max_length=45)
+    nome = models.CharField(max_length=45, default='')
+    email = models.EmailField(max_length=45, default='')
+    endereco = models.CharField(max_length=45, default='')
+    telefone = models.CharField(max_length=20, default='')
+    CNPJ = models.CharField(max_length=45, default='')
     def __str__(self):
         return self.nome
 
@@ -78,20 +79,26 @@ class Entrega(models.Model):
     dataPedido = models.DateField()
     prioridade = models.CharField(max_length=10)
     # Fields a serem preenchidos conforme evolucaoo do pedido de entrega
-    status = models.CharField(max_length=45)
+    status = models.CharField(max_length=45, default='pendente')
     dataEntrega = models.DateField(blank=True, null=True)
     qtd_tentativas = models.IntegerField()
     recibo = models.ForeignKey(Recibo, on_delete=models.CASCADE, blank=True, null=True)
     entregador = models.ForeignKey(Entregador, on_delete=models.CASCADE, blank=True, null=True)
+    codigoRastreamento = models.CharField(max_length=8, default='')
     # Field preenchido automaticamente
     preco = models.FloatField()
 
+    def gerarCodigoRastreamento(self):
+        stringCode = self.cliente.nome + self.cliente.CNPJ  + str(self.preco) + str(self.dataPedido) + self.destinatario.nome
+        stringCode = stringCode.encode()
+        md5 = hashlib.md5(stringCode)
+        self.codigoRastreamento = md5.hexdigest()[:8]
 
 class Veiculo(models.Model):
     # entregador = models.ForeignKey(Funcionario, on_delete=models.CASCADE)
-    marca = models.CharField(max_length=45)
-    modelo = models.CharField(max_length=45)
-    ano = models.CharField(max_length=4)
-    placa = models.CharField(max_length=8)
+    marca = models.CharField(max_length=45, default='')
+    modelo = models.CharField(max_length=45, default='')
+    ano = models.CharField(max_length=4, default='0000')
+    placa = models.CharField(max_length=8, default='AAAA-000')
     def __str__(self):
         return '{marca} {modelo} {placa}'.format(marca=self.marca, modelo=self.modelo, placa=self.placa)
