@@ -17,7 +17,7 @@ from django.template.context_processors import csrf
 from . models import *
 
 # experimental
-from GerenciadorPedidos  import adicionarListaPedidos, listarPedidosPendentes
+#from GerenciadorPedidos  import adicionarListaPedidos, listarPedidosPendentes
 
 def index(request):
     c = {}

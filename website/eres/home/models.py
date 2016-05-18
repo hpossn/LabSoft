@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from django.db import models
 __all__ = ['Usuario', 'Entrega', 'Destinatario']
 
@@ -18,9 +19,9 @@ class Regiao(models.Model):
 
 
 class Destinatario(models.Model):
-    # identificação
+    # identificacao
     nome = models.CharField(max_length=256)
-    # endereço
+    # endereco
     logradouro = models.CharField(max_length=45)
     numero = models.CharField(max_length=4)
     complemento = models.CharField(max_length=45, blank=True, null=True)
@@ -71,13 +72,12 @@ class Cliente(models.Model):
 
 
 class Entrega(models.Model):
-    # Fields necessários
     cliente = models.ForeignKey(Cliente, on_delete=models.CASCADE)
     destinatario = models.ForeignKey(Destinatario, on_delete=models.CASCADE)
     regiao = models.ForeignKey(Regiao, on_delete=models.CASCADE)
     dataPedido = models.DateField()
     prioridade = models.CharField(max_length=10)
-    # Fields a serem preenchidos conforme evolução do pedido de entrega
+    # Fields a serem preenchidos conforme evolucaoo do pedido de entrega
     status = models.CharField(max_length=45)
     dataEntrega = models.DateField(blank=True, null=True)
     qtd_tentativas = models.IntegerField()
