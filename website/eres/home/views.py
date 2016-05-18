@@ -58,6 +58,9 @@ def about(request):
 def services(request):
     return render(request, 'home/works.html', {})
 
+def customers (request):
+    return render(request, 'home/customers.html', {})
+
 def contact(request):
     form_class = forms.ContactForm
 

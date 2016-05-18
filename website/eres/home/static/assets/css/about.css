@@ -1,0 +1,35 @@
+@import url(http://fonts.googleapis.com/css?family=Lato:300,400,700,900);
+@import url(http://fonts.googleapis.com/css?family=Raleway:400,300,700,900);
+
+
+
+
+
+#blue {
+    display: block;
+    height: 5px;
+
+}
+
+#about-pic {
+    float: right;
+    background: url(../img/workers.jpg) no-repeat center top;
+    height: 500px;
+    width: 400px;
+    margin-left: 30px;
+    border-radius: 5px;
+    box-shadow: 2px 2px 2px 2px #C8C8C8;
+
+
+
+}
+
+#about-content p {
+
+    text-align: left;
+    font-size: 12pt;
+
+
+
+
+}

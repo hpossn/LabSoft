@@ -1,6 +1,13 @@
 {% extends 'home/base_template.html' %}
-
+    {% load staticfiles %}
 {% block content %}
+
+    <!-- Custom styles for this template -->
+    <link href="{% static 'assets/css/index.css' %}" rel="stylesheet">
+
+
+	<div id="blue">
+	</div><!--  bluewrap -->
 
 <h1>Contact</h1>
 <div class="row">
@@ -11,5 +18,4 @@
         </form>
     </div>
 </div>
-
-{% endblock %}
+{% endblock content %}

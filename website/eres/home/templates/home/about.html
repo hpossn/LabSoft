@@ -1,51 +1,27 @@
 {% extends 'home/base_template.html' %}
-
+    {% load staticfiles %}
 {% block content %}
 
+    <!-- Custom styles for this template -->
+    <link href="{% static 'assets/css/index.css' %}" rel="stylesheet">
+    <link href="{% static 'assets/css/about.css' %}" rel="stylesheet">
+
+
 	<div id="blue">
-		<div class="container">
-			<div class="row centered">
-				<div class="col-lg-8 col-lg-offset-2">
-				<h4>ERES: ENTREGA RÁPIDA E SEGURA</h4>
-				</div>
-			</div><!-- row -->
-		</div><!-- container -->
 	</div><!--  bluewrap -->
 
-
-
-	<!-- PORTFOLIO SECTION -->
+<!-- PORTFOLIO SECTION -->
 	<div id="dg">
 		<div class="container">
 			<div class="row centered">
-				<h4>Por que ERES ?</h4>
-				<br>
-				<div id= "about-text">
-				<p>O ERES é uma empresa de entregas que oferece aos seus clientes, lojas físicas das mais diversas áreas como móveis, eletrodomésticos etc., serviços de entrega com confiabilidade e segurança. ERES conta com uma grande variedade de tipos de entrega, desde motoboys até caminhões. Toda essa infraestrutura é coordenada por um moderno sistema baseado na WEB onde os clientes poderão ver o custo para determinada localidade, tempo de entregas estimado, acompanhar entregas em tempo real e oferecer ao destinatário código de rastreio, assim como disponibilizar ao cliente a assinatura digital do destinatário, comprovando o recebimento, dentre várias outras funções. ERES tem por objetivo complementar o sistema de E-COMMERCE de lojas oferecendo o serviço de entregas. A interface com o cliente é feita exclusivamente via browser, o que permite uma implantação inócua uma vez que não é realizada modificações no site de compras do nosso cliente.</p>
-
+				<div id = "about-content">
+					<h4>Sobre a ERES</h4>
+					<br>
+					<div id = "about-pic">
+					</div>
+					<p>O ERES é uma empresa de entregas que oferece aos seus clientes, lojas físicas das mais diversas áreas como móveis, eletrodomésticos etc., serviços de entrega com confiabilidade e segurança. ERES conta com uma grande variedade de tipos de entrega, desde motoboys até caminhões. Toda essa infraestrutura é coordenada por um moderno sistema baseado na WEB onde os clientes poderão ver o custo para determinada localidade, tempo de entregas estimado, acompanhar entregas em tempo real e oferecer ao destinatário código de rastreio, assim como disponibilizar ao cliente a assinatura digital do destinatário, comprovando o recebimento, dentre várias outras funções. ERES tem por objetivo complementar o sistema de E-COMMERCE de lojas oferecendo o serviço de entregas. A interface com o cliente é feita exclusivamente via browser, o que permite uma implantação inócua uma vez que não é realizada modificações no site de compras do nosso cliente.</p>
 				</div>
-				<div id = "about-pic">7
-				<p>AQUI VAI A FOTO</p>
-				</div>
-
-
-
 			</div><!-- row -->
 		</div><!-- container -->
 	</div><!-- DG -->
-
-
-
-
-	<div id="r">
-		<div class="container">
-			<div class="row centered">
-				<div class="col-lg-8 col-lg-offset-2">
-					<h4>TEMOS PAIXÃO PELO QUE FAZEMOS</h4>
-					<p>Dessa forma conseguimos sempre a aprovação dos nossos clientes</p>
-				</div>
-			</div><!-- row -->
-		</div><!-- container -->
-	</div><! -- r wrap -->
-
 {% endblock content %}

@@ -13,6 +13,7 @@ urlpatterns = [
     # nav bar
     url(r'^about$', views.about, name='about'),
     url(r'^works$', views.services, name='services'),
+    url(r'^customers$', views.customers, name='customers'),
 
     # Contact form
     url(r'^contact$', views.contact, name='contact'),
