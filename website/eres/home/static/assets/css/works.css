@@ -33,3 +33,53 @@
 
 
 }
+
+#serv1{
+
+}
+#serv1-content{
+
+    background: url(../img/img-7.jpg) no-repeat center top;
+    width: 500px;
+    height: 300px;
+    background-size:100% 100%;
+    display: block;
+    align:center;
+}
+
+
+
+#serv2{
+
+}
+#serv2-content{
+
+    background: url(../img/img-3.jpg) no-repeat center top;
+    width: 500px;
+    height: 300px;
+    background-size:100% 100%;
+    display: block;
+    align:center;
+}#serv3{
+
+}
+#serv3-content{
+
+    background: url(../img/img-9.jpg) no-repeat center top;
+    width: 500px;
+    height: 300px;
+    background-size:100% 100%;
+    display: block;
+    align:center;
+}#serv4{
+
+}
+#serv4-content{
+
+    background: url(../img/img-1.jpg) no-repeat center top;
+    width: 500px;
+    height: 300px;
+    background-size:100% 100%;
+    display: block;
+    align:center;
+}
