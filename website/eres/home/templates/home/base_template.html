@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
+
+
     {% load staticfiles %}
 
     <link rel="shortcut icon" href="{% static 'assets/ico/favicon.png' %}">
@@ -97,10 +99,13 @@
     <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
       <div class="modal-dialog">
         <div class="modal-content">
+
           <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
             <h4 class="modal-title" id="myModalLabel">Faça seu Login</h4>
           </div>
+
+
           <div class="modal-body">
                 <div class="row centered">
                         {% if user.is_authenticated %}
@@ -126,10 +131,11 @@
                     {% endif %}
                 </div>
           </div>
+
           <div class="modal-footer">
-
-
           </div>
+
+
         </div><!-- /.modal-content -->
       </div><!-- /.modal-dialog -->
     </div><!-- /.modal -->
