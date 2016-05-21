@@ -25,18 +25,18 @@ def index(request):
         if request.method == 'POST':
             formRastr = forms.Rastreamento(data=request.POST)
             if formRastr.is_valid():
-                #print('eh valido')
                 try:
-#                   entrega = rastrearEntrega(cod= request.POST['codigo'])
                     cod = formRastr.cleaned_data['codRastr']
-                    #print('cod', cod)
                     entrega = rastrearEntrega(cod=cod)
-                    #print(entrega.destinatario.nome)
-                    response_data =  {'endereco': str(entrega.destinatario.logradouro + ', ' + entrega.destinatario.numero + ' - ' + entrega.destinatario.municipio + '/' + entrega.destinatario.estado)}
+                    response_data = {}
+                    response_data['valido'] = 'true'
+                    response_data['endereco'] = str(entrega.destinatario.logradouro + ', ' + entrega.destinatario.numero + ' - ' + entrega.destinatario.municipio + '/' + entrega.destinatario.estado)
                     response_data['status']  = entrega.status
                     response_data['dataPedido'] = entrega.dataPedido.strftime('%d/%m/%Y')
                 except Exception as e:
-                    return JsonResponse({})
+                    response_data = {}
+                    response_data['valido'] = 'false'
+                    return JsonResponse(response_data)
                 return JsonResponse(response_data)
 
     c = {}

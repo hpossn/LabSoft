@@ -54,12 +54,20 @@ $(function() {
 });
 
 
-function compoePopupComDadosEntrega(codigoRatreamento) {
+function compoePopupComDadosEntrega(codigoRastreamento) {
     $.post('index', $('#formRastr').serialize(), function (result) {
-        $('#entregaDiv').html('<br>');
-        $('#entregaDiv').append('Endereço: ' + result.endereco + '<br>');
-        $('#entregaDiv').append('Data do Pedido: ' + result.dataPedido + '<br>');
-        $('#entregaDiv').append('Status: ' + result.status + '<br>');
+
+        str1 = result.valido
+
+        if(str1.localeCompare("false") == 0) {
+          $('#entregaDiv').html('<br>');
+          $('#entregaDiv').append('Número de rastreio inválido<br>');
+        } else {
+          $('#entregaDiv').html('<br>');
+          $('#entregaDiv').append('Endereço: ' + result.endereco + '<br>');
+          $('#entregaDiv').append('Data do Pedido: ' + result.dataPedido + '<br>');
+          $('#entregaDiv').append('Status: ' + result.status + '<br>');
+        }
     });
 //    $.ajax({
 //        url: "index",
