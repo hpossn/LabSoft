@@ -1,10 +1,12 @@
 from django.conf.urls import url
+from django.http import HttpResponseRedirect
+
 
 from . import views
 
 urlpatterns = [
     # View inicial
-    url(r'^$', views.index, name='index'),
+    url(r'^$', lambda request: HttpResponseRedirect('index'), name='index'), # xD
     url(r'^index$', views.index, name='index'),
 
     # Authentication

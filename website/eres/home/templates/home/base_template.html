@@ -1,3 +1,5 @@
+{% load staticfiles %}
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -7,12 +9,11 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-
-    {% load staticfiles %}
-
-    <link rel="shortcut icon" href="{% static 'assets/ico/favicon.png' %}">
-
-    <title>Eres - Entrega rápida e segura</title>
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="{% static 'assets/js/jquery-2.2.4.js' %}"></script>
+    <script src="{% static 'assets/js/bootstrap.min.js' %}"></script>
 
     <!-- Bootstrap core CSS -->
     <link href="{% static 'assets/css/bootstrap.css' %}" rel="stylesheet">
@@ -24,6 +25,9 @@
 	<script src="{% static 'assets/js/Chart.js' %}"></script>
 
 
+    <!-- <link rel="shortcut icon" href="{% static 'assets/ico/favicofn.png' %}"> -->
+    <title>Eres - Entrega rápida e segura</title>
+
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
@@ -32,7 +36,7 @@
   </head>
 
   <body>
-  
+
     <!-- Fixed navbar -->
     <!-- <div class="navbar navbar-inverse navbar-fixed-top"> -->
     <div class="navbar navbar-inverse ">
@@ -139,15 +143,10 @@
         </div><!-- /.modal-content -->
       </div><!-- /.modal-dialog -->
     </div><!-- /.modal -->
-    <!-- Bootstrap core JavaScript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-    <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
-    <script src="{% static "assets/js/bootstrap.min.js" %}"></script>
         <!-- FOOTER -->
     <footer >
         <div class="container">
-          <h1>©ERES 2016</h1> 
+          <h1>©ERES 2016</h1>
         </div><!-- container -->
     </footer<!-- Footer -->
     </body>

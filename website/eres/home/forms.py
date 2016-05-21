@@ -35,15 +35,6 @@ class VeiculoForm(forms.ModelForm):
         fields = ('marca', 'modelo', 'ano', 'placa')
 
 
-#class FuncionarioForm(forms.ModelForm):
-#    class Meta:
-#        model = models.Funcionario
-#        fields = ('nome', 'dataNascimento', 'CPF', 'salario', )
-#        widgets = {
-#            'dataNascimento': forms.SelectDateWidget(years=range(1901,2016)),
-#        }
-
-
 class EntregadorForm(forms.ModelForm):
     class Meta:
         model = models.Entregador
@@ -56,3 +47,11 @@ class EntregadorForm(forms.ModelForm):
 class ArquivoPedidosForm(forms.Form):
     # title = forms.CharField(max_length=256)
     file = forms.FileField()
+
+
+class Rastreamento(forms.Form):
+        codRastr = forms.CharField(required=True,
+            widget= forms.TextInput(
+                attrs={'class': 'form-control', 'id': 'codigoRatreamento', 'required': True}
+            )
+        )

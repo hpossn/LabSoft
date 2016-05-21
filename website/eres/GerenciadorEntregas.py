@@ -4,6 +4,7 @@ import heapq as hp
 from datetime import datetime
 from xmltodict import parse
 import home.models as models
+__all__ = ['adicionarListaPedidos', 'listarPedidosPendentes', 'rastrearEntrega']
 
 codigoPrioridade = {
         'Alta': 0,
@@ -98,3 +99,10 @@ def listarPedidosPendentes():
         _, _, entrega = hp.heappop(lista_temp)
         lista_ret.append(entrega)
     return lista_ret
+
+def rastrearEntrega(cod):
+    try:
+        e = models.Entrega.objects.get(codigoRastreamento=cod)
+        return e
+    except models.Entrega.DoesNotExist as ex:
+        raise ex

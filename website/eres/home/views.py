@@ -1,8 +1,8 @@
 from __future__ import print_function
 
-from django.shortcuts import render, redirect, get_object_or_404
-from django.http import HttpResponse, HttpResponseRedirect
-from django.shortcuts import render_to_response
+# general imports
+from django.shortcuts import render, redirect, render_to_response, get_object_or_404
+from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
 from django.template import loader, RequestContext
 
 # email imports
@@ -10,18 +10,34 @@ from django.template.loader import get_template
 from django.core.mail import EmailMessage
 from django.template import Context
 from . import forms
-# Auth
+
+# Authentication
 import django.contrib.auth as auth
 from django.contrib import messages
 from django.template.context_processors import csrf
 from . models import *
 
 # experimental
-from GerenciadorEntregas  import adicionarListaPedidos, listarPedidosPendentes
+from GerenciadorEntregas  import *
 
 def index(request):
+    if request.is_ajax():
+        if request.method == 'POST':
+            try:
+                entrega = rastrearEntrega(cod= request.POST['codigo'])
+                response_data =  {'endereco': str(entrega.destinatario.logradouro + ', ' + entrega.destinatario.numero + ' - ' + entrega.destinatario.municipio + '/' + entrega.destinatario.estado)}
+                response_data['status']  = entrega.status
+                response_data['dataPedido'] = entrega.dataPedido.strftime('%d/%m/%Y')
+            except Exception as e:
+                return JsonResponse({})
+            return JsonResponse(response_data)
+            #return HttpResponse(json.dumps(response_data), content_type='application/json')
+
     c = {}
     c.update(csrf(request))
+
+    c['formRastr'] = forms.Rastreamento()
+
     return render(request, 'home/index.html', c)
 
 def login(request):

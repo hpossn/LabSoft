@@ -1,6 +1,7 @@
 {% extends 'home/base_template.html' %}
-    {% load staticfiles %}
 {% block content %}
+
+{% load staticfiles %}
 
 
     <!-- Custom styles for this template -->
@@ -8,11 +9,11 @@
 	<div id="blue">
 
 
-<dialog id="window">  
-    <h3>Sample Dialog!</h3>  
-    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Earum, inventore!</p>  
-    <button id="exit">Close Dialog  
-</dialog>  
+<dialog id="window">
+    <h3>Sample Dialog!</h3>
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Earum, inventore!</p>
+    <button id="exit">Close Dialog
+</dialog>
 
 
 	</div><!--  bluewrap -->
@@ -35,10 +36,13 @@
 	<div id="track_block" class="row-centered">
 		<h1>Rastreador de Encomendas</h1>
 		<div id="form-cont">
-			<form id="track" data-popup-open="popup-1" >
+			<form id="formRastr" data-popup-open="popup-1" >{% csrf_token %}
 			  <div >
 			    <label for="codigo">Código de Rastreio</label>
-			    <input class="form-control" id="email" required>
+			    <!-- <input class="form-control" id="email" required> -->
+                {% for field in formRastr %}
+                {{ field }}
+                {% endfor %}
 			  </div>
 			  <button id="show" type="submit" class="submit">Submit</button>
 			</form>
@@ -46,19 +50,20 @@
 
 	</div>
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
-<script src="jquery-1.12.2.min.js"></script>
+<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script> -->
+<!-- <script src="jquery-1.12.2.min.js"></script> -->
 <script src="{% static 'assets/js/popup.js' %}"></script>
  <script type='text/javascript'>
-$("#track").submit(function(e) {
+$("#formRastr").submit(function(e) {
     e.preventDefault();
+    compoePopupComDadosEntrega($('#codigoRatreamento').val());
 });
 </script>
 
 <div class="popup" data-popup="popup-1">
     <div class="popup-inner">
-        <h2>QUE POPUP FOFO</h2>
-        <p>QUE POPUP FOFOQUE POPUP FOFOQUE POPUP FOFOQUE POPUP FOFOQUE POPUP FOFOQUE POPUP FOFO
+        <h2>Rastreamento</h2>
+        <p id='entregaDiv'>QUE POPUP FOFOQUE POPUP FOFOQUE POPUP FOFOQUE POPUP FOFOQUE POPUP FOFOQUE POPUP FOFO
         QUE POPUP FOFOQUE POPUP FOFOQUE POPUP FOFOQUE POPUP FOFOvQUE POPUP FOFOQUE POPUP FOFO
         QUE POPUP FOFOQUE POPUP FOFOQUE POPUP FOFOQUE POPUP FOFOQUE POPUP FOFOQUE POPUP FOFO
         QUE POPUP FOFOQUE POPUP FOFOQUE POPUP FOFOQUE POPUP FOFOQUE POPUP FOFO.</p>
@@ -66,4 +71,6 @@ $("#track").submit(function(e) {
         <a class="popup-close" data-popup-close="popup-1" href="#">x</a>
     </div>
 </div>
-{% endblock content %}
+
+<script src="{% static 'assets/js/main.js' %}"></script>
+{% endblock %}
