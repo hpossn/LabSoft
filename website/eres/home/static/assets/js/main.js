@@ -55,7 +55,7 @@ $(function() {
 
 
 function compoePopupComDadosEntrega(codigoRatreamento) {
-    $.post('index',{codigo: codigoRatreamento}, function (result) {
+    $.post('index', $('#formRastr').serialize(), function (result) {
         $('#entregaDiv').html('<br>');
         $('#entregaDiv').append('Endereço: ' + result.endereco + '<br>');
         $('#entregaDiv').append('Data do Pedido: ' + result.dataPedido + '<br>');
