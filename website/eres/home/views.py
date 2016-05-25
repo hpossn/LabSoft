@@ -56,7 +56,14 @@ def login(request):
             if user is not None:
                 if user.is_active:
                     auth.login(request, user)
-                    return render(request, 'home/base_template.html', {'funcao_usuario': getTipoUsuario(user.username)})
+                    tipo=getTipoUsuario(username)
+                    if tipo == 0:
+                        return HttpResponseRedirect('home0')
+                    if tipo == 1:
+                        return HttpResponseRedirect('home1')
+                    if tipo == 2:
+                        return HttpResponseRedirect('home2')
+
 #                else:
 #                    print user, 'desabilitado'
         else:
@@ -65,6 +72,37 @@ def login(request):
     # return HttpResponseRedirect("index", {'invalid_login': True})
     messages.error(request, 'Log Invalido')
     return render(request, 'home/index.html', {'form': forms.CustomLoginForm,})
+
+
+def home0(request):
+    username = None
+    if request.user.is_authenticated():
+        username = request.user.username
+        tipo = getTipoUsuario(username)
+        if tipo == 0:
+            return render(request, 'home/user0.html')
+        else:
+            return HttpResponseRedirect('index')
+
+def home1(request):
+    username = None
+    if request.user.is_authenticated():
+        username = request.user.username
+        tipo = getTipoUsuario(username)
+        if tipo == 1:
+            return render(request, 'home/user1.html')
+        
+    return HttpResponseRedirect('index')
+
+def home2(request):
+    username = None
+    if request.user.is_authenticated():
+        username = request.user.username
+        tipo = getTipoUsuario(username)
+        if tipo == 2:
+            return render(request, 'home/user2.html')
+    return HttpResponseRedirect('index')
+
 
 def getTipoUsuario(username):
     usuario = Usuario.objects.get(username=username)

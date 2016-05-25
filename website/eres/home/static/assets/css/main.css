@@ -418,12 +418,13 @@ float: left;
 
 footer {
     border-top: 1pt;
-    background-color: #373737;
+    background-color: #070707;
     position: absolute;
     left: 0;
     bottom: 0;
     height: 100px;
     width: 100%;
+    z-index: 1000;
 }
 
 footer h1 {

@@ -12,6 +12,7 @@ urlpatterns = [
     # Authentication
     url(r'^login$', views.login, name='login'),
     url(r'^logout$', views.logout, name='logout'),
+
     # nav bar
     url(r'^about$', views.about, name='about'),
     url(r'^works$', views.services, name='services'),
@@ -32,4 +33,11 @@ urlpatterns = [
     url(r'^displayEntregas$', views.displayEntregas, name='displayEntregas'),
 
     url(r'^veiculo$', views.veiculo, name='veiculo'),
+
+
+    #Homes Usuarios
+
+    url(r'^home0$', views.home0, name='home0'),
+    url(r'^home1$', views.home1, name='home1'),
+    url(r'^home2$', views.home2, name='home2'),
 ]
