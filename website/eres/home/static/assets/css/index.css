@@ -85,15 +85,16 @@
     color: white;
     text-align: center;
     margin-top:0;
-    padding-top: 60px;
+    padding-top: 50px;
     position: relative;
+    border-top: 1px solid #919191;
 
 }
 
 #form-cont{
-    display:block;
-    width: 400px;
-    margin-left: 35%;
+    margin: 0 auto; 
+    width:400px;
+    text-align: center;
 }
 
 

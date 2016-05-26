@@ -39,7 +39,6 @@
                 {% if user.is_authenticated %}
                     <form  role="form" class="navbar-form navbar-right" method="POST" action="logout">{% csrf_token %}
                         <button type="submit">Log Out</button>
-                        <h5>Código da função: {{ funcao_usuario }}</h5>
                     </form>
                  {% endif %}
                 </li>

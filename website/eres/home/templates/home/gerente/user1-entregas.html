@@ -39,7 +39,6 @@
                 {% if user.is_authenticated %}
                     <form  role="form" class="navbar-form navbar-right" method="POST" action="logout">{% csrf_token %}
                         <button type="submit">Log Out</button>
-                        <h5>Código da função: {{ funcao_usuario }}</h5>
                     </form>
                  {% endif %}
                 </li>
@@ -54,7 +53,7 @@
                     <div class="col-lg-12">
                         <a href="#menu-toggle" id="menu-toggle"><i class="fa fa-reorder" style="font-size:12px" ></i></a>
                         <h1>Gerenciamento de Entregas</h1>
-                        <p>Página de gerenciamento de entregas e alocação de entregas a entregadores</p>
+                        <p>Gerenciamento de entregas e alocação a entregadores</p>
                     </div>
                 </div>
             </div>

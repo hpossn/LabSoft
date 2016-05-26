@@ -31,15 +31,13 @@
 
 	<div id="track_block" class="row-centered">
 		<h1>Rastreador de Encomendas</h1>
-		<div id="form-cont">
+
+		<div id="form-cont" class= "row-centered">
 			<form id="formRastr" data-popup-open="popup-1" >{% csrf_token %}
-			  <div >
-			    <label for="codigo">Código de Rastreio</label>
 			    <!-- <input class="form-control" id="email" required> -->
                 {% for field in formRastr %}
                 {{ field }}
                 {% endfor %}
-			  </div>
 			  <button id="show" type="submit" class="submit">Submit</button>
 			</form>
 		</div>
