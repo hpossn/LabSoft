@@ -1,5 +1,6 @@
 from django import forms
 from . import models
+import GerenciadorEntregas
 
 
 class CustomLoginForm(forms.ModelForm):
@@ -7,7 +8,7 @@ class CustomLoginForm(forms.ModelForm):
         model = models.Usuario
         fields = ('username', 'password', )
 
-        
+
 class RegiaoForm(forms.ModelForm):
     class Meta:
         model = models.Regiao
@@ -60,3 +61,13 @@ class Rastreamento(forms.Form):
                 attrs={'class': 'form-control', 'id': 'codigoRatreamento', 'required': True}
             )
         )
+
+
+class EntregaEntregadorForm(forms.Form):
+    entrega_select = forms.ModelChoiceField(queryset=None)
+    entregador_select = forms.ModelChoiceField(queryset=None)
+
+    def __init__(self, *args, **kwargs):
+        super(EntregaEntregadorForm, self).__init__(*args, **kwargs)
+        self.fields['entrega_select'].queryset = GerenciadorEntregas.listarPedidosPendentes()
+        self.fields['entregador_select'].queryset = GerenciadorEntregas.listarPedidosPendentes()

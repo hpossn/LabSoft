@@ -68,7 +68,7 @@ class Cliente(models.Model):
     endereco = models.CharField(max_length=45, default='')
     telefone = models.CharField(max_length=20, default='')
     CNPJ = models.CharField(max_length=45, default='')
-    
+
     def __str__(self):
         return self.nome
 
@@ -94,6 +94,9 @@ class Entrega(models.Model):
         stringCode = stringCode.encode()
         md5 = hashlib.md5(stringCode)
         self.codigoRastreamento = md5.hexdigest()[:8]
+
+    def __str__(self):
+        return 'cod: %s'%self.codigoRastreamento
 
 class Veiculo(models.Model):
     # entregador = models.ForeignKey(Funcionario, on_delete=models.CASCADE)

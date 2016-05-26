@@ -273,6 +273,4 @@ def displayEntregas(request):
 
 
 def alocar(request):
-    entregas = listarPedidosPendentes()
-    entregadores = listarEntregadoresDisponiveis()
-    return render(request, 'home/alocarEntregaParaEntregador.html', {'entregas': entregas, 'entregadores': entregadores, })
+    return render(request, 'home/alocarEntregaParaEntregador.html', {'form': forms.EntregaEntregadorForm()})
