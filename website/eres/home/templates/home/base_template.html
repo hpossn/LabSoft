@@ -74,24 +74,25 @@
             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
             <h4 class="modal-title" id="myModalLabel">Faça seu Login</h4>
           </div>
-
+  
 
           <div class="modal-body">
                 <div class="row centered">
+                <p> Usuário já cadastrado, entre com suas credenciais para fazer autenticação no ERES.</p>
                         {% if user.is_authenticated %}
                     <form  role="form" class="navbar-form navbar-right" method="POST" action="logout">{% csrf_token %}
                         <button type="submit" class="btn btn-primary">Log Out</button>
                         <h5>Código da função: {{ funcao_usuario }}</h5>
                     </form>
                     {% else %}
-                    <form  role="form" class="navbar-form navbar-right" method="POST" action="login">{% csrf_token %}
+                    <form  role="form" class="form-group" method="POST" action="login">{% csrf_token %}
                         <div class="form-group">
                             <input type="text" class="form-control" name="username" placeholder="Username">
                         </div>
                         <div class="form-group">
                             <input type="password" class="form-control" name="password" placeholder="Password">
                         </div>
-                        <button type="submit" class="btn btn-primary">Log In</button>
+                        <button type="submit" class="submit">Log In</button>
                         {% if messages %}
                             {% for message in messages %}
                                 <script>window.alert({{ message }})</script>
@@ -121,11 +122,20 @@
             <h4 class="modal-title" id="myModalLabel">Cadastre-se</h4>
           </div>
           <div class="modal-body">
-                <div class="row centered">
-                    <form  role="form" class="navbar-form navbar-right" method="POST" action="login">{% csrf_token %}
-                    	{{ formSignup.as_p }}
-                    </form>
-                </div>
+            <p> Utilize o formulário abaixo para iniciar seu processo de cadastro no ERES. Lembrando que suas informações serão inicialmente analisadas pelo nosso gerente que posteriormente entrará em contato convosco para o prosseguimento do processo de cadastro abordando o contrato de prestação de serviçoes.</p>
+              <div class="row centered">
+                  <form  role="form" class="form-group" method="POST" action="login">{% csrf_token %}
+                    {% load widget_tweaks %}
+                    {% for field in formSignup %}
+                      <div class="form-group">
+                        <label> {{ field.label_tag }} </label>
+                         {{ field | add_class:"form-control" }}
+                      </div>
+                    {% endfor %}
+
+                    <button type="submit" class="submit">Enviar</button>
+                  </form>
+              </div>
           </div>
           <div class="modal-footer">
           </div>
