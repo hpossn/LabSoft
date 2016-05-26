@@ -256,6 +256,22 @@ def veiculo(request):
 
     return render(request, 'home/cadastro/funcionario.html', {'form': form})
 
+def regiao(request):
+    if request.method == 'POST':
+        form = forms.RegiaoForm(data=request.POST)
+        if form.is_valid():
+            vei = form.save()
+    form = forms.RegiaoForm()
+
+    return render(request, 'home/cadastro/regiao.html', {'form': form})
+
+
 def displayEntregas(request):
-    result = listarPedidosPendentes()
+    result = models.Entregas.objects.all()
     return render(request, 'home/displayEntregas.html', {'result': result})
+
+
+def alocar(request):
+    entregas = listarPedidosPendentes()
+    entregadores = listarEntregadoresDisponiveis()
+    return render(request, 'home/alocarEntregaParaEntregador.html', {'entregas': entregas, 'entregadores': entregadores, })

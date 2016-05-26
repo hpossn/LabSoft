@@ -51,52 +51,17 @@
             <li><a href="works">SERVIÇOS</a></li>
             <li><a href="customers">CLIENTES</a></li>
             <li><a href="contact">CONTATO</a></li>
-            <li><a data-toggle="modal" data-target="#loginModal" href="#loginModal">LOGIN</a></li>
-            <li><a data-toggle="modal" data-target="#myModal" href="#myModal"><i class="fa fa-envelope-o"></i></a></li>
-
           </ul>
         </div><!--/.nav-collapse -->
+        <div id ="auth">
+          <a data-toggle="modal" data-target="#loginModal" href="#loginModal">LOGIN</a>
+          <a data-toggle="modal" data-target="#signupModal" href="#signupModal">CADASTRE-SE</a>
+        </div>
       </div>
     </div>
 
     {% block content %}
     {% endblock %}
-
-
-
-
-    <!-- MODAL FOR CONTACT -->
-    <!-- Modal -->
-    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-            <h4 class="modal-title" id="myModalLabel">contact us</h4>
-          </div>
-          <div class="modal-body">
-                <div class="row centered">
-                    <p>We are available 24/7, so don't hesitate to contact us.</p>
-                    <p>
-                        Somestreet Ave, 987<br/>
-                        London, UK.<br/>
-                        +44 8948-4343<br/>
-                        hi@blacktie.co
-                    </p>
-                    <div id="mapwrap">
-        <iframe height="300" width="100%" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://www.google.es/maps?t=m&amp;ie=UTF8&amp;ll=52.752693,22.791016&amp;spn=67.34552,156.972656&amp;z=2&amp;output=embed"></iframe>
-                    </div>
-                </div>
-          </div>
-          <div class="modal-footer">
-
-            <button type="button" class="btn btn-danger" data-dismiss="modal">Save</button>
-
-          </div>
-        </div><!-- /.modal-content -->
-      </div><!-- /.modal-dialog -->
-    </div><!-- /.modal -->
-
 
 
     <!-- MODAL FOR LOGIN -->
@@ -141,6 +106,27 @@
           </div>
 
 
+        </div><!-- /.modal-content -->
+      </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+
+
+    <!-- MODAL FOR SIGNUP -->
+    <!-- Modal -->
+    <div class="modal fade" id="signupModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h4 class="modal-title" id="myModalLabel">Cadastre-se</h4>
+          </div>
+          <div class="modal-body">
+                <div class="row centered">
+                    FORM DE CADASTRO
+                </div>
+          </div>
+          <div class="modal-footer">
+          </div>
         </div><!-- /.modal-content -->
       </div><!-- /.modal-dialog -->
     </div><!-- /.modal -->

@@ -30,6 +30,12 @@
                     <a href="gerfuncionarios">Funcionários</a>
                 </li>
                 <li>
+                    <a href="gerregioes">Regioes</a>
+                </li>
+                <li>
+                    <a href="gerveiculos">Veículos</a>
+                </li>
+                <li>
                 {% if user.is_authenticated %}
                     <form  role="form" class="navbar-form navbar-right" method="POST" action="logout">{% csrf_token %}
                         <button type="submit">Log Out</button>
