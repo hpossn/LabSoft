@@ -92,7 +92,7 @@ def home1(request):
         tipo = getTipoUsuario(username)
         if tipo == 1:
             return render(request, 'home/gerente/user1.html')
-        
+
     return HttpResponseRedirect('index')
 
 def home2(request):
@@ -169,13 +169,13 @@ def logout(request):
     return HttpResponseRedirect('index')
 
 def about(request):
-    return render(request, 'home/about.html', {})
+    return render(request, 'home/about.html', {'formSignup': forms.ClienteForm()})
 
 def services(request):
-    return render(request, 'home/works.html', {})
+    return render(request, 'home/works.html', {'formSignup': forms.ClienteForm()})
 
 def customers (request):
-    return render(request, 'home/customers.html', {})
+    return render(request, 'home/customers.html', {'formSignup': forms.ClienteForm()})
 
 def contact(request):
     form_class = forms.ContactForm
@@ -218,7 +218,7 @@ def contact(request):
             email.send()
             return redirect('contact')
 
-    return render(request, 'home/contact.html', {'form': form_class,})
+    return render(request, 'home/contact.html', {'form': form_class, 'formSignup': forms.ClienteForm()})
 
 def signup(request):
     if request.method == 'POST':
