@@ -73,7 +73,7 @@ def login(request):
     messages.error(request, 'Log Invalido')
     return render(request, 'home/index.html', {'form': forms.CustomLoginForm,})
 
-
+#TODA A PARTE DO LOGIN
 def home0(request):
     username = None
     if request.user.is_authenticated():
@@ -90,7 +90,7 @@ def home1(request):
         username = request.user.username
         tipo = getTipoUsuario(username)
         if tipo == 1:
-            return render(request, 'home/user1.html')
+            return render(request, 'home/gerente/user1.html')
         
     return HttpResponseRedirect('index')
 
@@ -102,6 +102,61 @@ def home2(request):
         if tipo == 2:
             return render(request, 'home/user2.html')
     return HttpResponseRedirect('index')
+
+#GERENTE
+def gerclientes(request):
+    username = None
+    if request.user.is_authenticated():
+        username = request.user.username
+        tipo = getTipoUsuario(username)
+        if tipo == 1:
+            return render(request, 'home/gerente/user1-clientes.html')
+    return HttpResponseRedirect('index')
+
+
+def gerfuncionarios(request):
+    username = None
+    if request.user.is_authenticated():
+        username = request.user.username
+        tipo = getTipoUsuario(username)
+        if tipo == 1:
+            return render(request, 'home/gerente/user1-funcionarios.html')
+    return HttpResponseRedirect('index')
+
+
+def gerentregas(request):
+    username = None
+    if request.user.is_authenticated():
+        username = request.user.username
+        tipo = getTipoUsuario(username)
+        if tipo == 1:
+            return render(request, 'home/gerente/user1-entregas.html')
+    return HttpResponseRedirect('index')
+
+
+
+def gerregioes(request):
+    username = None
+    if request.user.is_authenticated():
+        username = request.user.username
+        tipo = getTipoUsuario(username)
+        if tipo == 1:
+            form = forms.RegiaoForm()
+            if request.method == 'POST':
+                form = forms.RegiaoForm(data=request.POST)
+            return render(request, 'home/gerente/user1-regiao.html', {'form':form})
+    return HttpResponseRedirect('index')
+
+
+
+
+
+
+
+
+
+
+
 
 
 def getTipoUsuario(username):

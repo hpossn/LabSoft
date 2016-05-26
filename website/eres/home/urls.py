@@ -36,8 +36,13 @@ urlpatterns = [
 
 
     #Homes Usuarios
-
     url(r'^home0$', views.home0, name='home0'),
     url(r'^home1$', views.home1, name='home1'),
     url(r'^home2$', views.home2, name='home2'),
+
+    #Gerente
+    url(r'^gerclientes$', views.gerclientes, name='gerclientes'),
+    url(r'^gerfuncionarios$', views.gerfuncionarios, name='gerfuncionarios'),
+    url(r'^gerentregas$', views.gerentregas, name='gerentregas'),   
+    url(r'^gerregioes$', views.gerregioes, name='gerregioes'),   
 ]

@@ -1,0 +1,81 @@
+{% extends 'home/base_template_aut.html' %}
+    {% load staticfiles %}
+{% block content %}
+
+    <!-- Custom styles for this template -->
+    <link href="{% static 'assets/css/index.css' %}" rel="stylesheet">
+    <link href="{% static 'assets/css/user.css' %}" rel="stylesheet">
+
+
+	<div id="blue">
+	</div><!--  bluewrap -->
+
+	 <div id="wrapper">
+
+        <!-- Sidebar -->
+        <div id="sidebar-wrapper">
+            <ul class="sidebar-nav">
+                <li class="sidebar-brand">
+                    <a href="home1">
+                        Menu Gerente
+                    </a>
+                </li>
+                <li>
+                    <a href="gerclientes">Clientes</a>
+                </li>
+                <li>
+                    <a href="gerentregas">Entregas Pendentes</a>
+                </li>
+                <li>
+                    <a href="gerfuncionarios">Funcionários</a>
+                </li>
+                <li>
+                {% if user.is_authenticated %}
+                    <form  role="form" class="navbar-form navbar-right" method="POST" action="logout">{% csrf_token %}
+                        <button type="submit">Log Out</button>
+                        <h5>Código da função: {{ funcao_usuario }}</h5>
+                    </form>
+                 {% endif %}
+                </li>
+            </ul>
+        </div>
+        <!-- /#sidebar-wrapper -->
+
+        <!-- Page Content -->
+        <div id="page-content-wrapper">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <a href="#menu-toggle" id="menu-toggle"><i class="fa fa-reorder" style="font-size:12px" ></i></a>
+                        <h1>Gerenciamento de Entregas</h1>
+                        <p>Página de gerenciamento de entregas e alocação de entregas a entregadores</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /#page-content-wrapper -->
+
+    </div>
+
+
+    <!-- /#wrapper -->
+        <!-- jQuery -->
+    <script src="js/jquery.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="js/bootstrap.min.js"></script>
+
+    <!-- Menu Toggle Script -->
+    <script>
+    $("#menu-toggle").click(function(e) {
+        e.preventDefault();
+        $("#wrapper").toggleClass("toggled");
+    });
+    </script>
+
+
+
+
+
+
+{% endblock content %}

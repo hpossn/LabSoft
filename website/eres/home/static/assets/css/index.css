@@ -3,12 +3,13 @@
 
 
 
-
-
 #blue {
     display: block;
     height: 5px;
-
+    -webkit-box-shadow: 0px 5px 9px -1px rgba(0,0,0,1);
+    -moz-box-shadow: 0px 5px 9px -1px rgba(0,0,0,1);
+    box-shadow: 0px 5px 9px -1px rgba(0,0,0,1);
+    z-index: 1000;
 }
 
 /* MAIN DIV WITH BACKGROUD*/
@@ -16,7 +17,7 @@
     background: url(../img/caminhaobonito.png) no-repeat center top;
     display: block;
     width: 100%;
-    height: 600px;
+    height: 580px;
     padding-top: 0;
 }
 #bg h1{
@@ -64,6 +65,9 @@
     display:block;
     height: 200px;
     background-color: #364B5D;
+    -webkit-box-shadow: 0px -5px 9px -1px rgba(0,0,0,1);
+    -moz-box-shadow: 0px -5px 9px -1px rgba(0,0,0,1);
+    box-shadow: 0px -5px 9px -1px rgba(0,0,0,1);
 
 }
 
@@ -199,4 +203,19 @@ dialog {
     transform:translate(50%, -50%) rotate(180deg);
     background:rgba(0,0,0,1);
     text-decoration:none;
+}
+
+
+/* PARALLAX */
+
+.bgParallax {
+    margin: 0 auto;
+    width: 100%;
+    max-width: 1920px;
+    position: relative;
+    min-height: 100%;
+    text-shadow:0 0 10px rgba(0,0,0,0.7);
+    background-position: 50%, 50px;
+    background-repeat: repeat;
+    background-attachment: fixed;
 }

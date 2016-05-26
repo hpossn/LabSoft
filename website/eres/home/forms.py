@@ -7,6 +7,11 @@ class CustomLoginForm(forms.ModelForm):
         model = models.Usuario
         fields = ('username', 'password', )
 
+        
+class RegiaoForm(forms.ModelForm):
+    class Meta:
+        model = models.Regiao
+        fields = ('nome', 'precoBase')
 
 class ContactForm(forms.Form):
     error_css_class = 'error'

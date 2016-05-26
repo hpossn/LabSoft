@@ -19,19 +19,15 @@
 	</div><!--  bluewrap -->
 
 	<!-- PORTFOLIO SECTION -->
-	<div id="bg">
+	<div id="bg" class="bgParallax" data-speed="5" >
 		<div id= "bg_text">
 			<h1>VELOCIDADE, SEGURANÇA, CONFIABILIDADE.</h1>
 			<h2>Nós temos a solução perfeita de transporte para sua empresa</h2>
 		</div>
 		<div id="bg_buttons">
 			<a href="about" class="button">SAIBA MAIS</a>
-
-
-
 		</div>
 	</div><!-- DG -->
-
 
 	<div id="track_block" class="row-centered">
 		<h1>Rastreador de Encomendas</h1>
@@ -53,6 +49,11 @@
 <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script> -->
 <!-- <script src="jquery-1.12.2.min.js"></script> -->
 <script src="{% static 'assets/js/popup.js' %}"></script>
+<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script> -->
+<script src="{% static 'assets/js/parallax.js' %}"></script>
+
+
+
  <script type='text/javascript'>
 $("#formRastr").submit(function(e) {
     e.preventDefault();
@@ -68,6 +69,8 @@ $("#formRastr").submit(function(e) {
         <a class="popup-close" data-popup-close="popup-1" href="#">x</a>
     </div>
 </div>
-
+<script src="{% static 'assets/js/imagesloaded.js' %}"></script>
+<script src="{% static 'assets/js/skrollr.js' %}"></script>
 <script src="{% static 'assets/js/main.js' %}"></script>
+
 {% endblock %}
