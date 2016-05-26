@@ -43,6 +43,7 @@ def index(request):
     c.update(csrf(request))
 
     c['formRastr'] = forms.Rastreamento()
+    c['formSignup'] = forms.ClienteForm()
 
     return render(request, 'home/index.html', c)
 
