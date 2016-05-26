@@ -16,21 +16,15 @@
         <div id="sidebar-wrapper">
             <ul class="sidebar-nav">
                 <li class="sidebar-brand">
-                    <a href="#">
-                        Menu Gerente
+                    <a href="home1">
+                        Menu Cliente
                     </a>
-                </li>
                 <li>
-                    <a href="#">Clientes</a>
-                </li>
-                <li>
-                    <a href="#">Entregas Pendentes</a>
-                </li>
-                <li>
-                    <a href="#">Funcionários</a>
-                </li>
-                <li>
-                    <a href="#">Logout</a>
+                {% if user.is_authenticated %}
+                    <form  role="form" class="navbar-form navbar-right" method="POST" action="logout">{% csrf_token %}
+                        <button type="submit">Log Out</button>
+                    </form>
+                 {% endif %}
                 </li>
             </ul>
         </div>
@@ -41,8 +35,8 @@
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-lg-12">
-                        <h1>Seja bem vindo, Gerente</h1>
-                        <p>Essa é a página inicial do gerente. Navegue, utilizando o menu ao lado para acessar as suans funcionalidades.</p>
+                        <h1>Seja bem vindo, Cliente</h1>
+                        <p>Essa é sua página inicial. Use o formulário abaixo para cadastrar entregas novas enviando arquivo XLM.</p>
                         <a href="#menu-toggle" class="btn btn-default" id="menu-toggle">Toggle Menu</a>
                     </div>
                 </div>

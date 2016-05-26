@@ -81,7 +81,7 @@ def home0(request):
         username = request.user.username
         tipo = getTipoUsuario(username)
         if tipo == 0:
-            return render(request, 'home/user0.html')
+            return render(request, 'home/clientes/user0.html')
         else:
             return HttpResponseRedirect('index')
 
@@ -101,7 +101,7 @@ def home2(request):
         username = request.user.username
         tipo = getTipoUsuario(username)
         if tipo == 2:
-            return render(request, 'home/user2.html')
+            return render(request, 'home/funcionarios/user2.html')
     return HttpResponseRedirect('index')
 
 #GERENTE
