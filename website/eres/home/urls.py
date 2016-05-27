@@ -33,6 +33,7 @@ urlpatterns = [
     url(r'^displayEntregas$', views.displayEntregas, name='displayEntregas'),
 
     url(r'^veiculo$', views.veiculo, name='veiculo'),
+    url(r'^alocar$', views.alocar, name='alocar'),
 
 
     #Homes Usuarios
@@ -45,5 +46,5 @@ urlpatterns = [
     url(r'^gerfuncionarios$', views.gerfuncionarios, name='gerfuncionarios'),
     url(r'^gerentregas$', views.gerentregas, name='gerentregas'),
     url(r'^gerregioes$', views.gerregioes, name='gerregioes'),
-    url(r'^gerveiculos$', views.gerveiculos, name='gerveiculos'),   
+    url(r'^gerveiculos$', views.gerveiculos, name='gerveiculos'),
 ]

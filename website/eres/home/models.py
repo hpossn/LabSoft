@@ -56,7 +56,7 @@ class Gerente(Funcionario):
 
 
 class Entregador(Funcionario):
-    status = models.IntegerField(blank=True, null=True)
+    status = models.IntegerField(default=0)
     veiculos = models.ManyToManyField('Veiculo', verbose_name='Veiculos que esta autorizado a usar', related_name='entregadores')
     class Meta:
         verbose_name_plural = 'Entregadores'
@@ -94,6 +94,9 @@ class Entrega(models.Model):
         stringCode = stringCode.encode()
         md5 = hashlib.md5(stringCode)
         self.codigoRastreamento = md5.hexdigest()[:8]
+
+    def __str__(self):
+        return 'cod: %s'%self.codigoRastreamento
 
 class Veiculo(models.Model):
     # entregador = models.ForeignKey(Funcionario, on_delete=models.CASCADE)

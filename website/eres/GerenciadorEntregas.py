@@ -86,18 +86,16 @@ def adicionarListaPedidos(xml_input):
             entrega.save()
 
 
-def alocarEntregaParaEntregador(entrega, entregador):
-    entrega.entregador = entregador
-
 def listarPedidosPendentes():
     raw_query = models.Entrega.objects.filter(status='pendente')
-    lista_temp = []
-    for entrega in raw_query:
-        hp.heappush(lista_temp, (entrega.dataPedido, codigoPrioridade[entrega.prioridade], entrega))
-    lista_ret = []
-    while len(lista_temp) > 0:
-        _, _, entrega = hp.heappop(lista_temp)
-        lista_ret.append(entrega)
+    # lista_temp = []
+    # for entrega in raw_query:
+    #     hp.heappush(lista_temp, (entrega.dataPedido, codigoPrioridade[entrega.prioridade], entrega))
+    # lista_ret = []
+    # while len(lista_temp) > 0:
+    #     _, _, entrega = hp.heappop(lista_temp)
+    #     lista_ret.append(entrega)
+    lista_ret = raw_query.order_by('dataPedido', 'prioridade')
     return lista_ret
 
 def rastrearEntrega(cod):
