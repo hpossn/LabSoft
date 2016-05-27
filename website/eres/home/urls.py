@@ -43,6 +43,7 @@ urlpatterns = [
     #Gerente
     url(r'^gerclientes$', views.gerclientes, name='gerclientes'),
     url(r'^gerfuncionarios$', views.gerfuncionarios, name='gerfuncionarios'),
-    url(r'^gerentregas$', views.gerentregas, name='gerentregas'),   
-    url(r'^gerregioes$', views.gerregioes, name='gerregioes'),   
+    url(r'^gerentregas$', views.gerentregas, name='gerentregas'),
+    url(r'^gerregioes$', views.gerregioes, name='gerregioes'),
+    url(r'^gerveiculos$', views.gerveiculos, name='gerveiculos'),   
 ]

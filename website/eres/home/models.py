@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 import hashlib
 from django.db import models
-__all__ = ['Usuario', 'Regiao', 'Destinatario', 'Entrega', 'Funcionario', 'Cliente']
+__all__ = ['Usuario', 'Regiao', 'Destinatario', 'Entrega', 'Funcionario', 'Cliente', 'Veiculo']
 
 class Usuario(models.Model):
     username = models.CharField(max_length=15, primary_key=True)
@@ -68,7 +68,7 @@ class Cliente(models.Model):
     endereco = models.CharField(max_length=45, default='')
     telefone = models.CharField(max_length=20, default='')
     CNPJ = models.CharField(max_length=45, default='')
-    
+
     def __str__(self):
         return self.nome
 
@@ -100,6 +100,6 @@ class Veiculo(models.Model):
     marca = models.CharField(max_length=45, default='')
     modelo = models.CharField(max_length=45, default='')
     ano = models.CharField(max_length=4, default='0000')
-    placa = models.CharField(max_length=8, default='AAAA-000')
+    placa = models.CharField(max_length=8, default='AAA-0000')
     def __str__(self):
         return '{marca} {modelo} {placa}'.format(marca=self.marca, modelo=self.modelo, placa=self.placa)

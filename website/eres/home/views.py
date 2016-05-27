@@ -137,6 +137,33 @@ def gerentregas(request):
 
 
 def gerregioes(request):
+    if request.is_ajax():
+        if request.method == 'POST':
+            formRegiao = forms.RegiaoForm(data=request.POST)
+            if formRegiao.is_valid():
+                try:
+                    nomeRegiao = formRegiao.cleaned_data['nome']
+                    valorPrecoBase = formRegiao.cleaned_data['precoBase']
+                    antigo = None
+
+                    try:
+                        antigo = Regiao.objects.get(nome=nomeRegiao)
+                    except Exception as e:
+                        antigo = None
+
+                    if antigo != None:
+                        response_data = {'msg':"A região " + nomeRegiao + ' já existe'}
+                    else:
+                        regiao = Regiao(nome=nomeRegiao, precoBase=valorPrecoBase)
+                        regiao.save()
+                        response_data = {}
+                        response_data['msg'] = 'A região ' + nomeRegiao + ' foi cadastrada com sucesso.'
+                except Exception as e:
+                    response_data = {}
+                    response_data['msg'] = 'Problema no cadastro da regiao'
+                    return JsonResponse(response_data)
+                return JsonResponse(response_data)
+
     username = None
     if request.user.is_authenticated():
         username = request.user.username
@@ -146,11 +173,54 @@ def gerregioes(request):
             if request.method == 'POST':
                 form = forms.RegiaoForm(data=request.POST)
             return render(request, 'home/gerente/user1-regiao.html', {'form':form})
-    return HttpResponseRedirect('index')
+        return HttpResponseRedirect('index')
 
+def gerveiculos(request):
+    if request.is_ajax():
+        if request.method == 'POST':
+            formVeiculo = forms.VeiculoForm(data=request.POST)
+            if formVeiculo.is_valid():
+                try:
+                    marcaVeiculo = formVeiculo.cleaned_data['marca']
+                    modeloVeiculo = formVeiculo.cleaned_data['modelo']
+                    anoVeiculo = formVeiculo.cleaned_data['ano']
+                    placaVeiculo = formVeiculo.cleaned_data['placa']
+                    antigo = None
 
+                    #print('%s %s %s %s' %(marcaVeiculo, modeloVeiculo, anoVeiculo, placaVeiculo))
 
+                    try:
+                        antigo = Veiculo.objects.get(placa=placaVeiculo)
+                    except Exception as e:
+                        antigo = None
+                        print(type(e))
+                        print(e.args)
+                        print(e)
 
+                    if antigo != None:
+                        response_data = {'msg':"Veículo com placa " + placaVeiculo + ' já existe'}
+                    else:
+                        veiculo = Veiculo(marca=marcaVeiculo, modelo=modeloVeiculo, ano=anoVeiculo, placa=placaVeiculo)
+                        print(veiculo.marca)
+                        veiculo.save()
+                        response_data = {}
+                        response_data['msg'] = marcaVeiculo + ' ' + modeloVeiculo + ' foi cadastrada com sucesso.'
+                except Exception as e:
+                    response_data = {}
+                    response_data['msg'] = 'Problema no cadastro do veiculo'
+                    return JsonResponse(response_data)
+                return JsonResponse(response_data)
+
+    username = None
+    if request.user.is_authenticated():
+        username = request.user.username
+        tipo = getTipoUsuario(username)
+        if tipo == 1:
+            form = forms.VeiculoForm()
+            if request.method == 'POST':
+                form = forms.RegiaoForm(data=request.POST)
+            return render(request, 'home/gerente/user1-veiculos.html', {'form':form})
+        return HttpResponseRedirect('index')
 
 
 

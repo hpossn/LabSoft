@@ -2,6 +2,7 @@
 {% load staticfiles %}
 {% block content %}
 
+
     <!-- Custom styles for this template -->
     <link href="{% static 'assets/css/index.css' %}" rel="stylesheet">
     <link href="{% static 'assets/css/user.css' %}" rel="stylesheet">
@@ -9,6 +10,12 @@
 
 	<div id="blue">
 	</div><!--  bluewrap -->
+
+  <dialog id="window">
+      <h3>Sample Dialog!</h3>
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Earum, inventore!</p>
+      <button id="exit">Close Dialog</button>
+  </dialog>
 
 	 <div id="wrapper">
 
@@ -56,7 +63,7 @@
                             <p>Cadastre uma nova região e a base de cálculo de preço</p>
                             <div class="row">
                                 <div class="col-md-4 col-md-offset-4">
-                                    <form id="form-veiculo" role="form" action="" method="POST">{% csrf_token %}
+                                    <form id="formRastr" data-popup-open="popup-1" method="POST">{% csrf_token %}
                                         {% load widget_tweaks %}
                                         {% for field in form %}
                                         <div class="form-group">
@@ -64,7 +71,7 @@
                                             {{ field | add_class:"form-control" }}
                                         </div>
                                         {% endfor %}
-                                        <button type="submit" class="submit">Submit</button>
+                                        <button type="submit" class="submit">Cadastrar</button>
                                     </form>
                                 </div>
                             </div>
@@ -92,7 +99,27 @@
     });
     </script>
 
+    <script src="{% static 'assets/js/popup.js' %}"></script>
 
+  <script type='text/javascript'>
+   $("#formRastr").submit(function(e) {
+       e.preventDefault();
+       cadastraRegiaoPopup($('#id_nome', '#id_precoBase').val());
+   });
+   </script>
+
+   <div class="popup" data-popup="popup-1">
+       <div class="popup-inner">
+           <h2>Cadastro de região</h2>
+           <p id='regiaoDiv'></p>
+           <p><a data-popup-close="popup-1" href="#">Close</a></p>
+           <a class="popup-close" data-popup-close="popup-1" href="#">x</a>
+       </div>
+   </div>
+
+   <script src="{% static 'assets/js/imagesloaded.js' %}"></script>
+   <script src="{% static 'assets/js/skrollr.js' %}"></script>
+   <script src="{% static 'assets/js/main.js' %}"></script>
 
 
 

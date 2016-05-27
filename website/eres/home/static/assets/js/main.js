@@ -84,17 +84,31 @@ function compoePopupComDadosEntrega(codigoRastreamento) {
 //    });
 }
 
+function cadastraRegiaoPopup(nomeRegiao, PrecoBase) {
+    $.post('gerregioes', $('#formRastr').serialize(), function (result) {
+
+          $('#regiaoDiv').html('<br>');
+          $('#regiaoDiv').append(result.msg);
+    });
+}
+
+function cadastraVeiculoPopup(marca, modelo, ano, placa) {
+    $.post('gerveiculos', $('#formRastr').serialize(), function (result) {
+          $('#veiculoDiv').html('<br>');
+          $('#veiculoDiv').append(result.msg);
+    });
+}
+
 //PARALLAX
 $('div.bgParallax').each(function(){
     var $obj = $(this);
- 
-    $(window).scroll(function() {
-        var yPos = -($(window).scrollTop() / $obj.data('speed')); 
- 
-        var bgpos = '50% '+ yPos + 'px';
- 
-        $obj.css('background-position', bgpos );
- 
-    }); 
-});
 
+    $(window).scroll(function() {
+        var yPos = -($(window).scrollTop() / $obj.data('speed'));
+
+        var bgpos = '50% '+ yPos + 'px';
+
+        $obj.css('background-position', bgpos );
+
+    });
+});
