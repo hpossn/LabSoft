@@ -1,6 +1,7 @@
 from django import forms
 from . import models
 import GerenciadorEntregas
+import GerenciadorFuncionarios
 
 
 class CustomLoginForm(forms.ModelForm):
@@ -70,4 +71,4 @@ class EntregaEntregadorForm(forms.Form):
     def __init__(self, *args, **kwargs):
         super(EntregaEntregadorForm, self).__init__(*args, **kwargs)
         self.fields['entrega_select'].queryset = GerenciadorEntregas.listarPedidosPendentes()
-        self.fields['entregador_select'].queryset = GerenciadorEntregas.listarPedidosPendentes()
+        self.fields['entregador_select'].queryset = GerenciadorFuncionarios.listarEntregadoresDisponiveis()

@@ -56,7 +56,7 @@ class Gerente(Funcionario):
 
 
 class Entregador(Funcionario):
-    status = models.IntegerField(blank=True, null=True)
+    status = models.IntegerField(default=0)
     veiculos = models.ManyToManyField('Veiculo', verbose_name='Veiculos que esta autorizado a usar', related_name='entregadores')
     class Meta:
         verbose_name_plural = 'Entregadores'
@@ -103,6 +103,6 @@ class Veiculo(models.Model):
     marca = models.CharField(max_length=45, default='')
     modelo = models.CharField(max_length=45, default='')
     ano = models.CharField(max_length=4, default='0000')
-    placa = models.CharField(max_length=8, default='AAAA-000')
+    placa = models.CharField(max_length=8, default='AAA-0000')
     def __str__(self):
         return '{marca} {modelo} {placa}'.format(marca=self.marca, modelo=self.modelo, placa=self.placa)

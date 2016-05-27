@@ -19,6 +19,7 @@ from . models import *
 
 # experimental
 from GerenciadorEntregas  import *
+from GerenciadorFuncionarios  import *
 
 def index(request):
     if request.is_ajax():
@@ -273,4 +274,11 @@ def displayEntregas(request):
 
 
 def alocar(request):
+    if request.method == 'POST':
+        formEntregaEntregador = forms.EntregaEntregadorForm(data=request.POST)
+        if formEntregaEntregador.is_valid():
+            alocarEntregaParaEntregador(
+                entrega=formEntregaEntregador.cleaned_data['entrega_select'],
+                entregador=formEntregaEntregador.cleaned_data['entregador_select']
+                )
     return render(request, 'home/alocarEntregaParaEntregador.html', {'form': forms.EntregaEntregadorForm()})
