@@ -49,7 +49,7 @@ p {
 
 /* Links */
 a {
-    color: #f85c37;
+    color: #364b5F;
     word-wrap: break-word;
 
     -webkit-transition: color 0.1s ease-in, background 0.1s ease-in;
@@ -61,7 +61,7 @@ a {
 
 a:hover,
 a:focus {
-    color: #7b7b7b;
+    color: #996600;
     text-decoration: none;
     outline: 0;
 }
@@ -90,7 +90,6 @@ a:after {
 	font-size: 14px;
 	padding-top: 30px;
 	padding-bottom: 0px;
-}
 
 .navbar-inverse {
 	background: #ffffff;

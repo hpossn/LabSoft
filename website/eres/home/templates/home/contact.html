@@ -2,49 +2,65 @@
 {% load staticfiles %}
 {% block content %}
 
-    <!-- Custom styles for this template -->
-    <link href="{% static 'assets/css/index.css' %}" rel="stylesheet">
-    <link href="{% static 'assets/css/contact.css' %}" rel="stylesheet">
+<!-- Custom styles for this template -->
+<link href="{% static 'assets/css/index.css' %}" rel="stylesheet">
+<link href="{% static 'assets/css/contact.css' %}" rel="stylesheet">
+<div class="navbar navbar-inverse ">
+	<div class="container">
+		<div class="navbar-header" >
+			<img src="{% static 'assets/img/logo.png' %}">
+		</div>
+		<div class="navbar-collapse collapse">
+			<ul class="nav navbar-nav navbar-right" method>
+				<li><a href="index" class="active">HOME</a></li>
+				<li><a href="about">A EMPRESA</a></li>
+				<li><a href="works">SERVIÇOS</a></li>
+				<li><a href="customers">CLIENTES</a></li>
+				<li class="active"><a href="contact">CONTATO</a></li>
+			</ul>
+		</div><!--/.nav-collapse -->
+		<div id ="auth">
+			<a data-toggle="modal" data-target="#loginModal" href="#loginModal">LOGIN   </a>
+			<a data-toggle="modal" data-target="#signupModal" href="#signupModal">CADASTRE-SE</a>
+		</div>
+	</div>
+</div>
 
+<div id="blue">
+</div><!--  bluewrap -->
 
-	<div id="blue">
-	</div><!--  bluewrap -->
-
-	<div id="dg">
-
-		<div class="container">
-			<h4>Contato</h4>
-			<br>
-			<br>
-			<div class="row">
-				<div class="col-sm-4">
-					<h3>Nosso Endereço</h3>
-					<p>Av. Prof. Luciano Gualberto, 380 - Butantã, São Paulo - SP, 05508-010</p>
-					<h3>Nosso Telefone</h3>
-					<p> +55 11 935721892 </p>
-					<p> +55 11 954290182 </p>
-
-					<h3>Nosso Email</h3>
-					<p> contato@eres.com.br </p>
- 				</div>
-				<div class = "col-sm-6">
+<div id="dg">
+	<div class="container">
+		<h4>Contato</h4>
+		<br>
+		<br>
+		<div class="row">
+			<div class="col-sm-4">
+				<h3>Nosso Endereço</h3>
+				<p>Av. Prof. Luciano Gualberto, 380 - Butantã, São Paulo - SP, 05508-010</p>
+				<h3>Nosso Telefone</h3>
+				<p> +55 11 935721892 </p>
+				<p> +55 11 954290182 </p>
+				<h3>Nosso Email</h3>
+				<p> contato@eres.com.br </p>
+			</div>
+			<div class = "col-sm-6">
 				<div id = "about-content">
-				    <div class="col-md-4 col-md-offset-4">
-				        <form class ="form-group" id="form-contact" role="form" action="" method="POST">{% csrf_token %}
-                          {% load widget_tweaks %}
-                            {% for field in form %}
-                                 <div class="form-group">
-                                   <label> {{ field.label_tag }} </label>
-                                   {{ field | add_class:"form-control" }}
-                                 </div>
-                               {% endfor %}
-				            <button type="submit" class="submit">Submit</button>
-				        </form>
-				    </div>
-
+					<div class="col-md-4 col-md-offset-4">
+						<form class ="form-group" id="form-contact" role="form" action="" method="POST">{% csrf_token %}
+							{% load widget_tweaks %}
+							{% for field in form %}
+							<div class="form-group">
+								<label> {{ field.label_tag }} </label>
+								{{ field | add_class:"form-control" }}
+							</div>
+							{% endfor %}
+							<button type="submit" class="submit">Submit</button>
+						</form>
+					</div>
 				</div>
 			</div><!-- row -->
 		</div><!-- container -->
 	</div><!-- DG -->
 
-{% endblock content %}
+	{% endblock content %}
