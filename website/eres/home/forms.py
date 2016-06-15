@@ -33,7 +33,7 @@ class ContactForm(forms.Form):
 class ClienteForm(forms.ModelForm):
     class Meta:
         model = models.Cliente
-        fields = ('nome', 'email', 'endereco', 'telefone', 'CNPJ', )
+        fields = ('nome', 'email', 'endereco', 'telefone', 'CNPJ',)
 
 
 class VeiculoForm(forms.ModelForm):

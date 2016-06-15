@@ -68,6 +68,7 @@ class Cliente(models.Model):
     endereco = models.CharField(max_length=45, default='')
     telefone = models.CharField(max_length=20, default='')
     CNPJ = models.CharField(max_length=45, default='')
+    isNew = models.BooleanField(default=True)
 
     def __str__(self):
         return self.nome
