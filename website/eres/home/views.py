@@ -340,7 +340,7 @@ def regiao(request):
 
 
 def displayEntregas(request):
-    result = models.Entregas.objects.all()
+    result = models.Entrega.objects.all()
     return render(request, 'home/displayEntregas.html', {'result': result})
 
 
