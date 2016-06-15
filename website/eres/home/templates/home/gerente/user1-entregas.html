@@ -54,6 +54,36 @@
                         <a href="#menu-toggle" id="menu-toggle"><i class="fa fa-reorder" style="font-size:12px" ></i></a>
                         <h1>Gerenciamento de Entregas</h1>
                         <p>Gerenciamento de entregas e alocação a entregadores</p>
+                        <div class ="col-lg-6">
+                        <h3> ENTREGAS PENDENTES</h3>
+                        <table border="1" style="width:90%">
+                            <tr>
+                                <th>Destinatário</th>
+                                <th>Endereço</th>
+                                <th>Região</th>
+                                <th>Status</th>
+                                <th>Preço</th>
+                                <th>Data do Pedido</th>
+                                <th>Prioridade</th>
+                            </tr>
+                            {% for r in result %}
+                            <tr>
+                                <td>{{ r.destinatario.nome }}</td>
+                                <td>{{ r.destinatario.logradouro }}, n. {{ r.destinatario.numero }}</td>
+                                <td>{{ r.regiao }}</td>
+                                <td>{{ r.status }}</td>
+                                <td>{{ r.preco }}</td>
+                                <td>{{ r.dataPedido }}</td>
+                                <td>{{ r.prioridade }}</td>
+                            </tr>
+                            {% endfor %}
+                        </table>
+                        </div>
+                        <div class ="col-lg-6">
+                        <h3> ALOCAÇÃO A ENTREGADOR</h3>
+                        {% block content_alocacao%}
+                        {% endblock %}
+                        </div>
                     </div>
                 </div>
             </div>

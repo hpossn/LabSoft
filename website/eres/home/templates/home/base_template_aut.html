@@ -21,7 +21,7 @@
 
     <!-- Custom styles for this template -->
     <link href="{% static 'assets/css/main.css' %}" rel="stylesheet">
-
+    <link href="{% static 'assets/css/auth.css' %}" rel="stylesheet">
 	<script src="{% static 'assets/js/Chart.js' %}"></script>
 
 
@@ -36,7 +36,7 @@
   </head>
 
   <body>
-
+  <div id="wrapper_base">
     <!-- Fixed navbar -->
     <!-- <div class="navbar navbar-inverse navbar-fixed-top"> -->
     <div class="navbar navbar-inverse ">
@@ -48,11 +48,10 @@
         </div><!--/.nav-collapse -->
       </div>
     </div>
-
     {% block content %}
     {% endblock %}
-
-        <!-- FOOTER -->
+    </div>
+    <div class ="push">    </div>
     <footer >
         <div class="container">
           <h1>©ERES 2016</h1>

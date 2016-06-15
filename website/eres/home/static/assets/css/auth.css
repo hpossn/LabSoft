@@ -1,0 +1,24 @@
+@import url(http://fonts.googleapis.com/css?family=Lato:300,400,700,900);
+@import url(http://fonts.googleapis.com/css?family=Raleway:400,300,700,900);
+
+
+/*CSS DE TODAS AS PÁGINAS AUTENTICADAS COM NAVBAR A ESQUERDA*/
+
+
+#blue {
+    display: block;
+    height: 5px;
+
+}
+
+#wrapper{
+    float:left;
+    width:100%;
+
+    
+}
+#wrapper_base {
+    min-height: 100%;
+    margin: 0 auto -100px; /* the bottom margin is the negative value of the footer's height */
+    height: auto !important;
+}

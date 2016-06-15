@@ -41,6 +41,8 @@
     -moz-transition: all 0.5s ease;
     -o-transition: all 0.5s ease;
     transition: all 0.5s ease;
+    height:auto;
+    float:left;
 }
 
 #wrapper.toggled {
@@ -48,8 +50,9 @@
 }
 
 #sidebar-wrapper {
+    float:left;
     z-index: 1000;
-    position: fixed;
+    position: absolute;
     left: 170px;
     width: 0;
    height: 100%;
@@ -71,6 +74,7 @@
     width: 100%;
     position: absolute;
     padding: 15px;
+    float:left;
 }
 
 #wrapper.toggled #page-content-wrapper {

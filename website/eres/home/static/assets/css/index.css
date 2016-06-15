@@ -1,6 +1,12 @@
 @import url(http://fonts.googleapis.com/css?family=Lato:300,400,700,900);
 @import url(http://fonts.googleapis.com/css?family=Raleway:400,300,700,900);
 
+html, body {
+    height: 100%;
+}
+* {
+    margin: 0;
+}
 /*AUTHENTICATION DIV*/
 #auth{
     position: absolute;
@@ -99,48 +105,6 @@
 
 
 
-
-/*button.submit {
-    background-color: #C79B3C;
-    background: -webkit-gradient(linear, left top, left bottom, from(#C79B3C), to(#9E7419));
-    background: -webkit-linear-gradient(top, #C79B3C, #9E7419);
-    background: -moz-linear-gradient(top, #C79B3C, #9E7419);
-    background: -ms-linear-gradient(top, #C79B3C, #9E7419);
-    background: -o-linear-gradient(top, #C79B3C, #9E7419);
-    background: linear-gradient(top, #C79B3C, #9E7419);
-    border: 1px solid #509111;
-    border-bottom: 1px solid #5b992b;
-    border-radius: 3px;
-    -webkit-border-radius: 3px;
-    -moz-border-radius: 3px;
-    -ms-border-radius: 3px;
-    -o-border-radius: 3px;
-    box-shadow: inset 0 1px 0 0 #9fd574;
-    -webkit-box-shadow: 0 1px 0 0 #9fd574 inset ;
-    -moz-box-shadow: 0 1px 0 0 #9fd574 inset;
-    -ms-box-shadow: 0 1px 0 0 #9fd574 inset;
-    -o-box-shadow: 0 1px 0 0 #9fd574 inset;
-    color: white;
-    font-weight: bold;
-    padding: 6px 20px;
-    text-align: center;
-    text-shadow: 0 -1px 0 #396715;
-}
-button.submit:hover {
-    opacity:.85;
-    cursor: pointer; 
-}
-button.submit:active {
-    border: 1px solid #20911e;
-    box-shadow: 0 0 10px 5px #356b0b inset; 
-    -webkit-box-shadow:0 0 10px 5px #356b0b inset ;
-    -moz-box-shadow: 0 0 10px 5px #356b0b inset;
-    -ms-box-shadow: 0 0 10px 5px #356b0b inset;
-    -o-box-shadow: 0 0 10px 5px #356b0b inset;
-     
-}*/
-
-
 /*YELLOW BUTTON */
 button.submit {
    border: 1px solid #bd8c0f;
@@ -189,45 +153,6 @@ button.submit:active {
    background-image: -ms-linear-gradient(top, #a37b36 0%, #bfab5a 100%);
    color: #fff;
    }
-
-/*button.submit {
-    width: 100px;
-    height: 30px;
-  background: #FFBB1E;
-  background-image: -webkit-linear-gradient(top, #FFBB1E, #e0a21d);
-  background-image: -moz-linear-gradient(top, #FFBB1E, #e0a21d);
-  background-image: -ms-linear-gradient(top, #FFBB1E, #e0a21d);
-  background-image: -o-linear-gradient(top, #FFBB1E, #e0a21d);
-  background-image: linear-gradient(to bottom, #FFBB1E, #e0a21d);
-  -webkit-border-radius: 5;
-  -moz-border-radius: 5;
-  border-radius: 5px;
-  -webkit-box-shadow: 1px 1px 3px #666666;
-  -moz-box-shadow: 1px 1px 3px #666666;
-  box-shadow: 1px 1px 3px #666666;
-  font-family: Arial;
-  color: #ffffff;
-  font-size: 16px;
-  padding: 5px;
-  border: solid #cca222 1px;
-  text-decoration: none;
-}
-
-button.submit:hover {
-  background: #d49008;
-  text-decoration: none;
-}
-
-button.submit:active {
-    box-shadow: 0 0 10px 5px #69470c inset; 
-    -webkit-box-shadow:0 0 10px 5px #69470c inset ;
-    -moz-box-shadow: 0 0 10px 5px #69470c inset;
-    -ms-box-shadow: 0 0 10px 5px #69470c inset;
-    -o-box-shadow: 0 0 10px 5px #69470c inset;
-}*/
-
-
-
 
 /* ESTILOS DO POPUP*/
 dialog {  
@@ -308,4 +233,27 @@ dialog {
     background-position: 50%, 50px;
     background-repeat: repeat;
     background-attachment: fixed;
+}
+
+/*Sticky Footer */
+footer {
+    background-color: #070707;
+    height: 100px;
+    width: 100%;
+    z-index: 1000;
+      display:block;
+      position:absolute;
+}
+.push {
+  height:100px;
+  display:block;
+
+}
+
+footer h1 {
+    font-size: 12pt;
+    color: white;
+    font-style: bold;
+    text-align: center;
+    padding-top: 25px;
 }

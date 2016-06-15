@@ -415,22 +415,3 @@ float: left;
 .pricing-option .pricing-signup:hover {
     background: #ff7878;
 }
-
-footer {
-    border-top: 1pt;
-    background-color: #070707;
-    position: absolute;
-    left: 0;
-    bottom: 0;
-    height: 100px;
-    width: 100%;
-    z-index: 1000;
-}
-
-footer h1 {
-    font-size: 12pt;
-    color: white;
-    font-style: bold;
-    text-align: center;
-    padding-top: 25px;
-}

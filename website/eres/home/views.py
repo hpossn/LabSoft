@@ -139,7 +139,8 @@ def gerentregas(request):
         username = request.user.username
         tipo = getTipoUsuario(username)
         if tipo == 1:
-            return render(request, 'home/gerente/user1-entregas.html')
+            result = models.Entrega.objects.all()
+            return render(request, 'home/gerente/user1-entregas.html', {'result': result})
     return HttpResponseRedirect('index')
 
 
