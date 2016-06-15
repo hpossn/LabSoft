@@ -1,11 +1,11 @@
 @import url(http://fonts.googleapis.com/css?family=Lato:300,400,700,900);
 @import url(http://fonts.googleapis.com/css?family=Raleway:400,300,700,900);
-
-html, body {
-    height: 100%;
+html {
+    position: relative;
+    min-height: 100%;
 }
-* {
-    margin: 0;
+body {
+    margin: 0 0 100px; /* bottom = footer height */
 }
 /*AUTHENTICATION DIV*/
 #auth{
@@ -238,11 +238,12 @@ dialog {
 /*Sticky Footer */
 footer {
     background-color: #070707;
+    position: absolute;
+    left: 0;
+    bottom: 0;
     height: 100px;
     width: 100%;
-    z-index: 1000;
-      display:block;
-      position:absolute;
+    z-index: 10000;
 }
 .push {
   height:100px;

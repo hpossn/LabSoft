@@ -12,13 +12,18 @@
 }
 
 #wrapper{
-    float:left;
     width:100%;
+    display:block;
 
-    
+
 }
 #wrapper_base {
     min-height: 100%;
     margin: 0 auto -100px; /* the bottom margin is the negative value of the footer's height */
     height: auto !important;
+    display:block;
+}
+
+#push {
+    height: 200px;
 }
