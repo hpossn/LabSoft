@@ -4,7 +4,6 @@ import heapq as hp
 from datetime import datetime
 from xmltodict import parse
 import home.models as models
-__all__ = ['adicionarListaPedidos', 'listarPedidosPendentes', 'rastrearEntrega']
 
 codigoPrioridade = {
         'Alta': 0,
@@ -88,13 +87,6 @@ def adicionarListaPedidos(xml_input):
 
 def listarPedidosPendentes():
     raw_query = models.Entrega.objects.filter(status='pendente')
-    # lista_temp = []
-    # for entrega in raw_query:
-    #     hp.heappush(lista_temp, (entrega.dataPedido, codigoPrioridade[entrega.prioridade], entrega))
-    # lista_ret = []
-    # while len(lista_temp) > 0:
-    #     _, _, entrega = hp.heappop(lista_temp)
-    #     lista_ret.append(entrega)
     lista_ret = raw_query.order_by('dataPedido', 'prioridade')
     return lista_ret
 
@@ -102,5 +94,18 @@ def rastrearEntrega(cod):
     try:
         e = models.Entrega.objects.get(codigoRastreamento=cod)
         return e
+    except models.Entrega.DoesNotExist as ex:
+        raise ex
+
+def finalizarEntrega(cod, dataEntrega):
+    try:
+        # obtém a entrega
+        entrega = rastrearEntrega(cod)
+        # modifica o seu status para 'entregue'
+        entrega.status = 'entregue'
+        # acrescenta a data em que foi realizada a entrega
+        entrega.dataEntrega = dataEntrega
+        # libera o entregador
+        entrega.entregador.status = 0
     except models.Entrega.DoesNotExist as ex:
         raise ex
