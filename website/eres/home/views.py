@@ -24,23 +24,29 @@ from GerenciadorEntregas  import *
 from GerenciadorFuncionarios  import *
 
 def index(request):
+    print(request.POST)
     if request.is_ajax():
         if request.method == 'POST':
-            formRastr = forms.Rastreamento(data=request.POST)
-            if formRastr.is_valid():
-                try:
-                    cod = formRastr.cleaned_data['codRastr']
-                    entrega = rastrearEntrega(cod=cod)
-                    response_data = {}
-                    response_data['valido'] = 'true'
-                    response_data['endereco'] = str(entrega.destinatario.logradouro + ', ' + entrega.destinatario.numero + ' - ' + entrega.destinatario.municipio + '/' + entrega.destinatario.estado)
-                    response_data['status']  = entrega.status
-                    response_data['dataPedido'] = entrega.dataPedido.strftime('%d/%m/%Y')
-                except Exception as e:
-                    response_data = {}
-                    response_data['valido'] = 'false'
+            if 'show' in request.POST:
+                formRastr = forms.Rastreamento(data=request.POST)
+                if formRastr.is_valid():
+                    try:
+                        cod = formRastr.cleaned_data['codRastr']
+                        entrega = rastrearEntrega(cod=cod)
+                        response_data = {}
+                        response_data['valido'] = 'true'
+                        response_data['endereco'] = str(entrega.destinatario.logradouro + ', ' + entrega.destinatario.numero + ' - ' + entrega.destinatario.municipio + '/' + entrega.destinatario.estado)
+                        response_data['status']  = entrega.status
+                        response_data['dataPedido'] = entrega.dataPedido.strftime('%d/%m/%Y')
+                    except Exception as e:
+                        response_data = {}
+                        response_data['valido'] = 'false'
+                        return JsonResponse(response_data)
                     return JsonResponse(response_data)
-                return JsonResponse(response_data)
+    elif 'btn_enviar_cadastro' in request.POST:
+        formSignup = forms.ClienteForm(data=request.POST)
+        if formSignup.is_valid():
+            formSignup.save()
 
     c = {}
     c.update(csrf(request))
@@ -52,17 +58,9 @@ def index(request):
 
 def login(request):
     if request.method == "POST":
-        if 'btn_enviar_cadastro' in request.POST:
-            form = forms.ClienteForm(data=request.POST)
-            if form.is_valid():
-                form.save()
-        else:
             form = forms.CustomLoginForm(data=request.POST)
-            if form.is_valid():
-                # try:
+            if True:
                 username = request.POST['username']
-                # except MultiValueDictKeyError:
-                    # is_private = False
 
                 password = request.POST['password']
                 user = auth.authenticate(username=username, password=password)
