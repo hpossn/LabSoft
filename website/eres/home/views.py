@@ -5,6 +5,7 @@ from __future__ import print_function
 from django.shortcuts import render, redirect, render_to_response, get_object_or_404
 from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
 from django.template import loader, RequestContext
+from django.utils.datastructures import MultiValueDictKeyError
 
 # email imports
 from django.template.loader import get_template
@@ -51,26 +52,34 @@ def index(request):
 
 def login(request):
     if request.method == "POST":
-        form = forms.CustomLoginForm(data=request.POST)
-        if True:
-            username = request.POST['username']
-            password = request.POST['password']
-            user = auth.authenticate(username=username, password=password)
-            if user is not None:
-                if user.is_active:
-                    auth.login(request, user)
-                    tipo=getTipoUsuario(username)
-                    if tipo == 0:
-                        return HttpResponseRedirect('home0')
-                    if tipo == 1:
-                        return HttpResponseRedirect('home1')
-                    if tipo == 2:
-                        return HttpResponseRedirect('home2')
+        if 'btn_enviar_cadastro' in request.POST:
+            form = forms.ClienteForm(data=request.POST)
+            if form.is_valid():
+                form.save()
+        else:
+            form = forms.CustomLoginForm(data=request.POST)
+            if form.is_valid():
+                # try:
+                username = request.POST['username']
+                # except MultiValueDictKeyError:
+                    # is_private = False
+
+                password = request.POST['password']
+                user = auth.authenticate(username=username, password=password)
+                if user is not None:
+                    if user.is_active:
+                        auth.login(request, user)
+                        tipo=getTipoUsuario(username)
+                        if tipo == 0:
+                            return HttpResponseRedirect('home0')
+                        if tipo == 1:
+                            return HttpResponseRedirect('home1')
+                        if tipo == 2:
+                            return HttpResponseRedirect('home2')
 
 #                else:
 #                    print user, 'desabilitado'
-        else:
-            print('nao existe')
+
 
     # return HttpResponseRedirect("index", {'invalid_login': True})
     messages.error(request, 'Log Invalido')
@@ -341,7 +350,6 @@ def regiao(request):
 
 def displayEntregas(request):
     result = models.Entrega.objects.all()
-    print(len(result))
     return render(request, 'home/displayEntregas.html', {'result': result})
 
 

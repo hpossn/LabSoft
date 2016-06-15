@@ -68,7 +68,7 @@
                   <div class="form-group">
                     <input type="password" class="form-control" name="password" placeholder="Password">
                   </div>
-                  <button type="submit" class="submit">Log In</button>
+                  <button id="login" type="submit" class="submit">Log In</button>
                   {% if messages %}
                   {% for message in messages %}
                   <script>window.alert({{ message }})</script>
@@ -109,7 +109,7 @@
                   </div>
                   {% endfor %}
 
-                  <button type="submit" class="submit">Enviar</button>
+                  <button name="btn_enviar_cadastro" type="submit" class="submit">Enviar</button>
                 </form>
               </div>
             </div>
