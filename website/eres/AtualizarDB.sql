@@ -18,9 +18,9 @@ insert into home_destinatario (nome, logradouro, numero, complemento, municipio,
 insert into home_destinatario (nome, logradouro, numero, complemento, municipio, estado) values ('Casarin', 'Avenida Python', 32, 'Ap 47', 'Jundiaí', 'SP');
 insert into home_destinatario (nome, logradouro, numero, complemento, municipio, estado) values ('Rafael', 'Rua do lago', 4, 'Ap56', 'Goiânia', 'GO');
 
-insert into home_funcionario (nome, dataNascimento, CPF, salario) values ('João', '1980-12-21', '000', 2500);
-insert into home_funcionario (nome, dataNascimento, CPF, salario) values ('Luís', '1985-04-11', '000', 2800);
-insert into home_funcionario (nome, dataNascimento, CPF, salario) values ('Alberto', '1990-05-12', '000', 4500);
+insert into home_entregador (nome, dataNascimento, CPF, salario) values ('João', '1980-12-21', '000', 2500);
+insert into home_entregador (nome, dataNascimento, CPF, salario) values ('Luís', '1985-04-11', '000', 2800);
+insert into home_entregador (nome, dataNascimento, CPF, salario) values ('Alberto', '1990-05-12', '000', 4500);
 
 insert into home_regiao (nome, precoBase) values ('Lapa', 23);
 insert into home_regiao (nome, precoBase) values ('Pinheiros', 12);
