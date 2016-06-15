@@ -33,7 +33,7 @@ urlpatterns = [
     url(r'^displayEntregas$', views.displayEntregas, name='displayEntregas'),
 
     url(r'^veiculo$', views.veiculo, name='veiculo'),
-    url(r'^alocar$', views.alocar, name='alocar'),
+    # url(r'^alocar$', views.alocar, name='alocar'),
 
 
     #Homes Usuarios

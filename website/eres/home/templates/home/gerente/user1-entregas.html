@@ -1,5 +1,6 @@
 {% extends 'home/base_template_aut.html' %}
-    {% load staticfiles %}
+{% load staticfiles %}
+
 {% block content %}
 
     <!-- Custom styles for this template -->
@@ -79,9 +80,7 @@
                             {% endfor %}
                         </table>
                         </div>
-                        <div class ="col-lg-6">
-                        <h3> ALOCAÇÃO A ENTREGADOR</h3>
-                        {% block content_alocacao%}
+                        {% block alocacao %}
                         {% endblock %}
                         </div>
                     </div>

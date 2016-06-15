@@ -140,7 +140,14 @@ def gerentregas(request):
         tipo = getTipoUsuario(username)
         if tipo == 1:
             result = models.Entrega.objects.all()
-            return render(request, 'home/gerente/user1-entregas.html', {'result': result})
+            if request.method == 'POST':
+                formEntregaEntregador = forms.EntregaEntregadorForm(data=request.POST)
+                if formEntregaEntregador.is_valid():
+                    alocarEntregaParaEntregador(
+                        entrega=formEntregaEntregador.cleaned_data['entrega_select'],
+                        entregador=formEntregaEntregador.cleaned_data['entregador_select']
+                        )
+            return render(request, 'home/gerente/alocarEntregaParaEntregador.html', {'result': result, 'form': forms.EntregaEntregadorForm()})
     return HttpResponseRedirect('index')
 
 
@@ -351,12 +358,6 @@ def displayEntregas(request):
     return render(request, 'home/displayEntregas.html', {'result': result})
 
 
-def alocar(request):
-    if request.method == 'POST':
-        formEntregaEntregador = forms.EntregaEntregadorForm(data=request.POST)
-        if formEntregaEntregador.is_valid():
-            alocarEntregaParaEntregador(
-                entrega=formEntregaEntregador.cleaned_data['entrega_select'],
-                entregador=formEntregaEntregador.cleaned_data['entregador_select']
-                )
-    return render(request, 'home/alocarEntregaParaEntregador.html', {'form': forms.EntregaEntregadorForm()})
+# def alocar(request):
+#
+#     return render(request, 'home/alocarEntregaParaEntregador.html' )
