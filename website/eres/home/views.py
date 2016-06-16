@@ -128,7 +128,7 @@ def gerclientes(request):
         if tipo == 1:
             if request.method == 'POST':
                 print(request.POST.getlist('aprovado'))
-                Cliente.objects.filter(CNPJ=request.POST.getlist('aprovado')).update(isNew=False)
+                Cliente.objects.filter(CNPJ__in=request.POST.getlist('aprovado')).update(isNew=False)
 
 
             return render(request, 'home/gerente/clientes.html', {'clientes_pendentes': Cliente.objects.all().filter(isNew=True), 'clientes_aprovados': Cliente.objects.all().filter(isNew=False)})
