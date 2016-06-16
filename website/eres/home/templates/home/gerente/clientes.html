@@ -2,11 +2,22 @@
 {% block cliente_gerenciamento %}
 
   <h1>Gerenciamento de Clientes</h1>
-  <p>Gerenciamento de clientes pendentes</p>
-
+  <div class = "row">
+  <div class = "col-md-12">
+  <h3>Clientes Pendentes</h3>
+  <p>Tabela com clientes aguardando autorização. Selecione os desejados e clique em "Autorizar"</p>
   <form class="" action="gerclientes" method="post"> {% csrf_token %}
-    {% for cliente in clientes_pendentes %}
+    <table border="1px" style="width:90%">
     <tr>
+      <th>Selecionados</th>
+      <th>Nome</th>
+      <th>Email</th>
+      <th>Endereco</th>
+      <th>Telefone</th>
+      <th>CNPJ</th>
+    </tr>
+      <tr>
+        {% for cliente in clientes_pendentes %}
       <td><input name="aprovado" type="checkbox" value="{{ cliente.CNPJ }}" /></td>
       <td>{{ cliente.nome }}</td>
       <td>{{ cliente.email }}</td>
@@ -14,7 +25,39 @@
       <td>{{ cliente.telefone }}</td>
       <td>{{ cliente.CNPJ }}</td>
     </tr>
+
     {% endfor %}
-    <input type="submit" name="atualizar" value="Autorizar">
+    </table>
+        <input type="submit" name="atualizar" value="Autorizar">
   </form>
+  </div>
+
+
+  <div class ="col-md-12">
+  <h3>Todos os Clientes</h3>
+  <p> Todos os clientes aprovados no sistema</p>
+
+    <table border="1px" style="width:90%">
+    <tr>
+      <th>Nome</th>
+      <th>Email</th>
+      <th>Endereco</th>
+      <th>Telefone</th>
+      <th>CNPJ</th>
+    </tr>
+      <tr>
+        {% for cliente in clientes_aprovados %}
+      <td>{{ cliente.nome }}</td>
+      <td>{{ cliente.email }}</td>
+      <td>{{ cliente.endereco }}</td>
+      <td>{{ cliente.telefone }}</td>
+      <td>{{ cliente.CNPJ }}</td>
+    </tr>
+
+    {% endfor %}
+    </table>
+
+
+  </div>
+  </div>
 {% endblock %}
