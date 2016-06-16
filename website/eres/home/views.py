@@ -119,19 +119,12 @@ def gerclientes(request):
         username = request.user.username
         tipo = getTipoUsuario(username)
         if tipo == 1:
-            return render(request, 'home/gerente/user1-clientes.html')
+            if request.method == 'POST':
+                print(request.POST.getlist('aprovado'))
+            return render(request, 'home/gerente/clientes.html', {'clientes_pendentes': Cliente.objects.all()})
     return HttpResponseRedirect('index')
 
-
 def gerfuncionarios(request):
-    # username = None
-    # if request.user.is_authenticated():
-    #     username = request.user.username
-    #     tipo = getTipoUsuario(username)
-    #     if tipo == 1:
-    #         return render(request, 'home/gerente/user1-funcionarios.html')
-    # return HttpResponseRedirect('index')
-
     if request.is_ajax():
         if request.method == 'POST':
             formEntregador = forms.EntregadorForm(data=request.POST)

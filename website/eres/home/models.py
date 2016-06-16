@@ -66,7 +66,7 @@ class Cliente(models.Model):
     email = models.EmailField(max_length=45, default='')
     endereco = models.CharField(max_length=45, default='')
     telefone = models.CharField(max_length=20, default='')
-    CNPJ = models.CharField(max_length=45, default='')
+    CNPJ = models.CharField(max_length=45, default='', primary_key=True)
     isNew = models.BooleanField(default=True)
 
     def __str__(self):

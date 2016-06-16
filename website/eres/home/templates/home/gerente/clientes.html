@@ -1,0 +1,20 @@
+{% extends 'home/gerente/user1-clientes.html'%}
+{% block cliente_gerenciamento %}
+
+  <h1>Gerenciamento de Clientes</h1>
+  <p>Gerenciamento de clientes pendentes</p>
+
+  <form class="" action="gerclientes" method="post"> {% csrf_token %}
+    {% for cliente in clientes_pendentes %}
+    <tr>
+      <td><input name="aprovado" type="checkbox" value="{{ cliente.CNPJ }}" /></td>
+      <td>{{ cliente.nome }}</td>
+      <td>{{ cliente.email }}</td>
+      <td>{{ cliente.endereco }}</td>
+      <td>{{ cliente.telefone }}</td>
+      <td>{{ cliente.CNPJ }}</td>
+    </tr>
+    {% endfor %}
+    <input type="submit" name="atualizar" value="Autorizar">
+  </form>
+{% endblock %}
