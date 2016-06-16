@@ -99,6 +99,13 @@ function cadastraVeiculoPopup(marca, modelo, ano, placa) {
     });
 }
 
+function cadastraEntregadorPopup(nome, dataNasc, CPF, salario) {
+    $.post('gerfuncionarios', $('#formFunc').serialize(), function (result) {
+          $('#funcionarioDiv').html('<br>');
+          $('#funcionarioDiv').append(result.msg);
+    });
+}
+
 //PARALLAX
 $('div.bgParallax').each(function(){
     var $obj = $(this);

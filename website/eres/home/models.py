@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 import hashlib
 from django.db import models
-__all__ = ['Usuario', 'Regiao', 'Destinatario', 'Entrega', 'Funcionario', 'Cliente', 'Veiculo']
 
 class Usuario(models.Model):
     username = models.CharField(max_length=15, primary_key=True)
@@ -44,7 +43,7 @@ class Recibo(models.Model):
 class Funcionario(models.Model):
     nome = models.CharField(max_length=45)
     dataNascimento = models.DateField()
-    CPF = models.CharField(max_length=45)
+    CPF = models.CharField(max_length=45, primary_key=True)
     salario = models.FloatField()
     def __str__(self):
         return self.nome

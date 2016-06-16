@@ -124,13 +124,62 @@ def gerclientes(request):
 
 
 def gerfuncionarios(request):
+    # username = None
+    # if request.user.is_authenticated():
+    #     username = request.user.username
+    #     tipo = getTipoUsuario(username)
+    #     if tipo == 1:
+    #         return render(request, 'home/gerente/user1-funcionarios.html')
+    # return HttpResponseRedirect('index')
+
+    if request.is_ajax():
+        if request.method == 'POST':
+            formEntregador = forms.EntregadorForm(data=request.POST)
+            if formEntregador.is_valid():
+                try:
+                    nome = formEntregador.cleaned_data['nome']
+                    dataNasc = formEntregador.cleaned_data['dataNascimento']
+                    salario = formEntregador.cleaned_data['salario']
+                    cpf = formEntregador.cleaned_data['CPF']
+
+                    try:
+                        antigo = Entregador.objects.get(CPF=cpf)
+                    except Exception as e:
+                        antigo = None
+                        # print(type(e))
+                        # print(e.args)
+                        # print(e)
+
+                    if antigo != None:
+                        response_data = {'msg':"Funcionario com CPF " + cpf + ' já existe'}
+
+                    else:
+                        entregador = Entregador(nome=nome, dataNascimento=dataNasc, CPF=cpf, salario=salario)
+                        try:
+                            entregador.save()
+                        except Exception as e:
+                            print(e)
+                        print(Entregador.objects.all())
+                        response_data = {}
+                        response_data['msg'] = entregador + ' ' + nome + ' foi cadastrado com sucesso.'
+
+                except Exception as e:
+                    response_data = {}
+                    response_data['msg'] = 'Problema no cadastro do entregador'
+                    return JsonResponse(response_data)
+                return JsonResponse(response_data)
+
     username = None
     if request.user.is_authenticated():
         username = request.user.username
         tipo = getTipoUsuario(username)
         if tipo == 1:
-            return render(request, 'home/gerente/user1-funcionarios.html')
-    return HttpResponseRedirect('index')
+            form = forms.EntregadorForm()
+            if request.method == 'POST':
+                form = forms.RegiaoForm(data=request.POST)
+            return render(request, 'home/gerente/user1-funcionarios.html', {'form':form})
+        return HttpResponseRedirect('index')
+
 
 
 def gerentregas(request):
@@ -190,6 +239,8 @@ def gerregioes(request):
                 form = forms.RegiaoForm(data=request.POST)
             return render(request, 'home/gerente/user1-regiao.html', {'form':form})
         return HttpResponseRedirect('index')
+
+
 
 def gerveiculos(request):
     if request.is_ajax():
