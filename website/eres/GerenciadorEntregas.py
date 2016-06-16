@@ -42,8 +42,6 @@ def adicionarListaPedidos(xml_input):
         # a fim de que não tenha que deletar tal campo e passar nominalmente por meio de kwargs
         # o referido objeto para o construtor de pedido
         pedido_kwargs['destinatario'] = destinatario
-        print(destinatario.nome)
-
 
         ## Resolve CLIENTE
         nome_cliente = doc['root']['cliente']
