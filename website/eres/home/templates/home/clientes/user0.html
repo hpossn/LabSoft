@@ -1,5 +1,5 @@
 {% extends 'home/base_template_aut.html' %}
-    {% load staticfiles %}
+{% load staticfiles %}
 {% block content %}
 
     <!-- Custom styles for this template -->
@@ -30,19 +30,8 @@
         </div>
         <!-- /#sidebar-wrapper -->
 
-        <!-- Page Content -->
-        <div id="page-content-wrapper">
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-lg-12">
-                        <h1>Seja bem vindo, Cliente</h1>
-                        <p>Essa é sua página inicial. Use o formulário abaixo para cadastrar entregas novas enviando arquivo XLM.</p>
-                        <a href="#menu-toggle" class="btn btn-default" id="menu-toggle">Toggle Menu</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- /#page-content-wrapper -->
+        {% block upload%}
+        {% endblock %}
 
     </div>
 

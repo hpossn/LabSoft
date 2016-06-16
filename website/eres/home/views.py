@@ -89,7 +89,14 @@ def home0(request):
         username = request.user.username
         tipo = getTipoUsuario(username)
         if tipo == 0:
-            return render(request, 'home/clientes/user0.html')
+            if request.method == 'POST':
+                form = forms.ArquivoPedidosForm(request.POST, request.FILES)
+                if form.is_valid():
+                    adicionarListaPedidos(request.FILES['file'].read())
+            else:
+                form = forms.ArquivoPedidosForm()
+
+            return render(request, 'home/clientes/upload.html', {'form': form})
         else:
             return HttpResponseRedirect('index')
 
@@ -369,16 +376,6 @@ def funcionario(request):
 
     return render(request, 'home/cadastro/entregador.html', {'form':  forms.EntregadorForm()})
 
-def upload_pedidos(request):
-    if request.method == 'POST':
-        form = forms.ArquivoPedidosForm(request.POST, request.FILES)
-        if form.is_valid():
-            adicionarListaPedidos(request.FILES['file'].read())
-    else:
-        form = forms.ArquivoPedidosForm()
-
-    return render(request, 'home/upload.html', {'form': form})
-
 def veiculo(request):
     if request.method == 'POST':
         form = forms.VeiculoForm(data=request.POST)
@@ -403,8 +400,3 @@ def regiao(request):
 def displayEntregas(request):
     result = models.Entrega.objects.all()
     return render(request, 'home/displayEntregas.html', {'result': result})
-
-
-# def alocar(request):
-#
-#     return render(request, 'home/alocarEntregaParaEntregador.html' )

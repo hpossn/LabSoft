@@ -26,10 +26,6 @@ urlpatterns = [
     # Cadastro de funcionario
     url(r'^funcionario$', views.funcionario, name='funcionario'),
 
-    # Upload de XML com pedidos de entrega
-    url(r'^upload$', views.upload_pedidos, name='upload'),
-
-    #
     url(r'^displayEntregas$', views.displayEntregas, name='displayEntregas'),
 
     url(r'^veiculo$', views.veiculo, name='veiculo'),
