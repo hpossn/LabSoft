@@ -84,12 +84,8 @@ AUTHENTICATION_BACKENDS = ['home.backends.CustomUserAuth']
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'eres',
-        'USER': 'admin',
-        'PASSWORD': 'admin123456',
-        'HOST': 'localhost',
-        'PORT': '',
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
 

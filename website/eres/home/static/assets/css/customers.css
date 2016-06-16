@@ -14,7 +14,14 @@
 #dg{
 
     height: 450px;
+}
 
 
+#cust_1{
+      background: url(../img/elar.jpg) no-repeat center top;
+      height: 200px;
+      width: 200px;
+      padding-left: 500px;
+      margin-top: 50px;
 
 }
