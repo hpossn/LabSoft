@@ -55,7 +55,7 @@
     position: absolute;
     left: 170px;
     width: 0;
-   height: 550px;
+   height: 100%;
    overflow: auto;
     margin-left: -170px;
     overflow-y: auto;
