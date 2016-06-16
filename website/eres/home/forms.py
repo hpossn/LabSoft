@@ -73,3 +73,10 @@ class EntregaEntregadorForm(forms.Form):
         self.fields['entrega_select'].queryset = GerenciadorEntregas.listarPedidosPendentes()
         self.fields['entregador_select'].queryset = GerenciadorFuncionarios.listarEntregadoresDisponiveis()
         print(GerenciadorFuncionarios.listarEntregadoresDisponiveis())
+
+class EntregasAlocadas(forms.Form):
+    entrega_select = forms.ModelChoiceField(queryset=None)
+
+    def __init__(self, idEntregador, *args, **kwargs):
+        super(EntregasAlocadas, self).__init__(*args, **kwargs)
+        self.fields['entrega_select'].queryset = GerenciadorEntregas.listarPedidosAlocados(idEntregador)

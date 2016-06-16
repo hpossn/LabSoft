@@ -119,6 +119,26 @@ def home2(request):
             return render(request, 'home/funcionarios/user2.html')
     return HttpResponseRedirect('index')
 
+def entregasAlocadas(request):
+
+    username = None
+    if request.user.is_authenticated():
+        username = request.user.username
+        tipo = getTipoUsuario(username)
+        idEntregador = getIDEntregador(username)
+        if tipo == 2:
+            result = models.Entrega.objects.all()
+            if request.method == 'POST':
+                formEntregaAlocada = forms.EntregasAlocadas(data=request.POST, idEntregador=idEntregador)
+                if formEntregaAlocada.is_valid():
+                    entrega = formEntregaAlocada.cleaned_data['entrega_select']
+                    print(entrega.codigoRastreamento)
+                    finalizarEntrega(
+                        cod=entrega.codigoRastreamento, dataEntrega=datetime.now()
+                        )
+            return render(request, 'home/funcionarios/entregasAlocadas.html', {'result': result, 'form': forms.EntregasAlocadas(idEntregador=idEntregador)})
+    return HttpResponseRedirect('index')
+
 #GERENTE
 def gerclientes(request):
     username = None
@@ -303,6 +323,10 @@ def gerveiculos(request):
 def getTipoUsuario(username):
     usuario = Usuario.objects.get(username=username)
     return usuario.tipoUsuario
+
+def getIDEntregador(username):
+    usuario = Usuario.objects.get(username=username)
+    return usuario.cpf
 
 def logout(request):
     auth.logout(request)
