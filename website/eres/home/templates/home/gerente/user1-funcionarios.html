@@ -52,8 +52,27 @@
                 <div class="row">
                     <div class="col-lg-12">
                         <a href="#menu-toggle" id="menu-toggle"><i class="fa fa-reorder" style="font-size:12px" ></i></a>
-                        <h1>Gerenciamento de funcionários</h1>
-                        <p>Gerenciamento de funcionários do ERES</p>
+                            <h1>Cadastro de Funcionário</h1>
+                            <p>Cadastre um novo funcionário</p>
+                            <div class="row">
+                                <div class="col-md-4 col-md-offset-4">
+                                    <form id="formFunc" data-popup-open="popup-1" method="POST">{% csrf_token %}
+                                        {% load widget_tweaks %}
+                                        {% for field in form %}
+                                        <div class="form-group">
+                                            <label> {{ field.label_tag }} </label>
+                                            {{ field | add_class:"form-control" }}
+                                        </div>
+                                        {% endfor %}
+                                        <button type="submit" class="submit">Cadastrar</button>
+                                    </form>
+                                </div>
+                            </div>
+                            <br>
+                            <br>
+                            <br>
+                            <br>
+                            <br>
                     </div>
                 </div>
             </div>
@@ -61,22 +80,43 @@
         <!-- /#page-content-wrapper -->
     </div>
 
-    <!-- /#wrapper -->
-        <!-- jQuery -->
-    <script src="js/jquery.js"></script>
+    <div id=" push"></div>
+        <!-- /#wrapper -->
+            <!-- jQuery -->
+        <script src="js/jquery.js"></script>
 
-    <!-- Bootstrap Core JavaScript -->
-    <script src="js/bootstrap.min.js"></script>
+        <!-- Bootstrap Core JavaScript -->
+        <script src="js/bootstrap.min.js"></script>
 
-    <!-- Menu Toggle Script -->
-    <script>
-    $("#menu-toggle").click(function(e) {
-        e.preventDefault();
-        $("#wrapper").toggleClass("toggled");
-    });
-    </script>
+        <!-- Menu Toggle Script -->
+        <script>
+        $("#menu-toggle").click(function(e) {
+            e.preventDefault();
+            $("#wrapper").toggleClass("toggled");
+        });
+        </script>
 
+        <script src="{% static 'assets/js/popup.js' %}"></script>
 
+      <script type='text/javascript'>
+       $("#formFunc").submit(function(e) {
+           e.preventDefault();
+           cadastraEntregadorPopup($('#id_nome', '#id_dataNasc', '#id_CPF', '#id_salario').val());
+       });
+       </script>
+
+       <div class="popup" data-popup="popup-1">
+           <div class="popup-inner">
+               <h2>Cadastro de funcionário</h2>
+               <p id='funcionarioDiv'></p>
+               <p><a data-popup-close="popup-1" href="#">Close</a></p>
+               <a class="popup-close" data-popup-close="popup-1" href="#">x</a>
+           </div>
+       </div>
+
+       <script src="{% static 'assets/js/imagesloaded.js' %}"></script>
+       <script src="{% static 'assets/js/skrollr.js' %}"></script>
+       <script src="{% static 'assets/js/main.js' %}"></script>
 
 
 
