@@ -24,7 +24,6 @@ from GerenciadorEntregas  import *
 from GerenciadorFuncionarios  import *
 
 def index(request):
-    print(request.POST)
     if request.is_ajax():
         if request.method == 'POST':
             formRastr = forms.Rastreamento(data=request.POST)
@@ -125,7 +124,6 @@ def entregasAlocadas(request):
                 formEntregaAlocada = forms.EntregasAlocadas(data=request.POST, idEntregador=idEntregador)
                 if formEntregaAlocada.is_valid():
                     entrega = formEntregaAlocada.cleaned_data['entrega_select']
-                    print(entrega.codigoRastreamento)
                     finalizarEntrega(
                         cod=entrega.codigoRastreamento, dataEntrega=datetime.now()
                         )
@@ -138,7 +136,6 @@ def gerclientes(request):
         username = request.user.username
         tipo = getTipoUsuario(username)
         if tipo == tiposDeUsuario['gerente']:
-            print(request.method, 'porra')
             if request.method == 'POST':
                 Cliente.objects.filter(CNPJ__in=request.POST.getlist('aprovado')).update(isNew=False)
             return render(request, 'home/gerente/clientes.html', {'clientes_pendentes': Cliente.objects.filter(isNew=True), 'clientes_aprovados': Cliente.objects.filter(isNew=False)})
@@ -172,7 +169,6 @@ def gerfuncionarios(request):
                             entregador.save()
                         except Exception as e:
                             print(e)
-                        print('oi', Entregador.objects.all())
                         response_data = {}
                         response_data['msg'] = entregador + ' ' + nome + ' foi cadastrado com sucesso.'
 
@@ -267,8 +263,6 @@ def gerveiculos(request):
                     placaVeiculo = formVeiculo.cleaned_data['placa']
                     antigo = None
 
-                    #print('%s %s %s %s' %(marcaVeiculo, modeloVeiculo, anoVeiculo, placaVeiculo))
-
                     try:
                         antigo = Veiculo.objects.get(placa=placaVeiculo)
                     except Exception as e:
@@ -281,7 +275,6 @@ def gerveiculos(request):
                         response_data = {'msg':"Veículo com placa " + placaVeiculo + ' já existe'}
                     else:
                         veiculo = Veiculo(marca=marcaVeiculo, modelo=modeloVeiculo, ano=anoVeiculo, placa=placaVeiculo)
-                        # print(veiculo.marca)
                         veiculo.save()
                         response_data = {}
                         response_data['msg'] = marcaVeiculo + ' ' + modeloVeiculo + ' foi cadastrada com sucesso.'
@@ -395,7 +388,6 @@ def veiculo(request):
         form = forms.VeiculoForm(data=request.POST)
         if form.is_valid():
             vei = form.save(commit=False)
-            print(type(vei))
     else:
         form = forms.VeiculoForm()
 

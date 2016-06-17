@@ -1,11 +1,11 @@
 {% extends 'home/base_template_aut.html' %}
-    {% load staticfiles %}
+{% load staticfiles %}
 {% block content %}
 
-    <!-- Custom styles for this template -->
-    <link href="{% static 'assets/css/index.css' %}" rel="stylesheet">
-    <link href="{% static 'assets/css/user.css' %}" rel="stylesheet">
-    <link href="{% static 'assets/css/auth.css' %}" rel="stylesheet">
+  <!-- Custom styles for this template -->
+  <link href="{% static 'assets/css/index.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/css/user.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/css/auth.css' %}" rel="stylesheet">
 
 	<div id="blue">
 	</div><!--  bluewrap -->
@@ -63,11 +63,11 @@
 
 
 
-        <!-- jQuery -->
-    <script src="js/jquery.js"></script>
+    <!-- jQuery -->
+    <script src="{% static 'assets/js/jquery.js' %}"></script>
 
     <!-- Bootstrap Core JavaScript -->
-    <script src="js/bootstrap.min.js"></script>
+    <script src="{% static 'assets/js/bootstrap.min.js' %}"></script>
 
     <!-- Menu Toggle Script -->
     <script>

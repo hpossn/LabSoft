@@ -1,27 +1,113 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <root>
-    <cliente>LAR</cliente>
-    <cnpj>000</cnpj>
+    <cliente>LAR </cliente>
+    <cnpj>11111111</cnpj>
     <pedidos>
-        <entrega>
+
+        <entrega id="1">
         	<destinatario>
-                <nome>Jose Suen</nome>
-            	<logradouro>rua do Bubba</logradouro>
+              <nome>Virgilio</nome>
+            	<logradouro>rua do Virgilio</logradouro>
             	<numero>1</numero>
+            	<municipio>São Paulo</municipio>
+            	<estado>SP</estado>
+        	</destinatario>
+        	<regiao>norte</regiao>
+        	<dataPedido>
+                <day>01</day>
+                <month>04</month>
+                <year>2016</year>
+            </dataPedido>
+            <pacote>
+                <volume>1.0</volume>
+                <peso>0.1</peso>
+            </pacote>
+        	<prioridade>Normal</prioridade>
+        </entrega>
+
+        <entrega id="2">
+        	<destinatario>
+              <nome>Trajano</nome>
+            	<logradouro>rua do Trajano</logradouro>
+            	<numero>2</numero>
             	<municipio>São Paulo</municipio>
             	<estado>SP</estado>
         	</destinatario>
         	<regiao>oeste</regiao>
         	<dataPedido>
-                <day>31</day>
-                <month>01</month>
-                <year>1982</year>
+                <day>02</day>
+                <month>06</month>
+                <year>2016</year>
+            </dataPedido>
+            <pacote>
+                <volume>2.0</volume>
+                <peso>0.2</peso>
+            </pacote>
+        	<prioridade>Alta</prioridade>
+        </entrega>
+
+        <entrega id="3">
+        	<destinatario>
+              <nome>Antonino</nome>
+            	<logradouro>rua do Antonino</logradouro>
+            	<numero>3</numero>
+            	<municipio>São Paulo</municipio>
+            	<estado>SP</estado>
+        	</destinatario>
+        	<regiao>sul</regiao>
+        	<dataPedido>
+                <day>03</day>
+                <month>06</month>
+                <year>2016</year>
             </dataPedido>
             <pacote>
                 <volume>3.0</volume>
                 <peso>0.3</peso>
             </pacote>
-        	<prioridade>Alta</prioridade>
+        	<prioridade>Normal</prioridade>
         </entrega>
+
+        <entrega id="4">
+        	<destinatario>
+                <nome>Maximiliano</nome>
+            	<logradouro>rua do Maximiliano</logradouro>
+            	<numero>4</numero>
+            	<municipio>São Paulo</municipio>
+            	<estado>SP</estado>
+        	</destinatario>
+        	<regiao>leste</regiao>
+        	<dataPedido>
+                <day>04</day>
+                <month>06</month>
+                <year>2016</year>
+            </dataPedido>
+            <pacote>
+                <volume>4.0</volume>
+                <peso>0.4</peso>
+            </pacote>
+        	<prioridade>Normal</prioridade>
+        </entrega>
+
+        <entrega id="5">
+        	<destinatario>
+              <nome>Justiniano</nome>
+            	<logradouro>rua do Basileu</logradouro>
+            	<numero>5</numero>
+            	<municipio>São Paulo</municipio>
+            	<estado>SP</estado>
+        	</destinatario>
+        	<regiao>centro</regiao>
+        	<dataPedido>
+                <day>05</day>
+                <month>06</month>
+                <year>2016</year>
+            </dataPedido>
+            <pacote>
+                <volume>1.0</volume>
+                <peso>0.5</peso>
+            </pacote>
+        	<prioridade>Normal</prioridade>
+        </entrega>
+
     </pedidos>
 </root>

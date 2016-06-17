@@ -12,18 +12,20 @@ def adicionarListaPedidos(xml_input):
     """
     doc = parse(xml_input)
 
+    if not isinstance(doc['root']['pedidos']['entrega'], list):
+        listaEntregas = [doc['root']['pedidos']['entrega']]
+    else:
+        listaEntregas = doc['root']['pedidos']['entrega']
 
-    for entrega in doc['root']['pedidos']:
+    for entregaDict in listaEntregas:
         # O parser de XML retorna um dicionário de dicionários, de tipo OrderedDict
         # por isso, o primeiro passo é obter o(s) OrderedDict apropriado(s)
-        pedidoOrderedDict = doc['root']['pedidos'][entrega]
         # e depois convertê-lo(s) para um dicionário comum
-        pedido_kwargs = { key: pedidoOrderedDict[key] for key in pedidoOrderedDict if key != 'pacote'}
+        pedido_kwargs = {key: entregaDict[key] for key in entregaDict if key != 'pacote' and key[0] != '@'}
         pedidoValido = True
 
-
         ## Resolve DESTINATÁRIO
-        destinatarioOrderedDict = pedidoOrderedDict['destinatario']
+        destinatarioOrderedDict = entregaDict['destinatario']
         dest_kwargs = { key: destinatarioOrderedDict[key] for key in destinatarioOrderedDict.keys() }
         # faz-se um query para ver se o destinatário já se encontra no banco de dados
         query_destinatario = models.Destinatario.objects.filter(**dest_kwargs)
@@ -50,15 +52,15 @@ def adicionarListaPedidos(xml_input):
             pedidoValido = False
             raise Exception('Cliente %s (CNPJ %s) não cadastrado no banco de dados'%(nome_cliente, cnpj_cliente))
 
-        # REGIÃO
-        query_regiao = models.Regiao.objects.filter(nome=pedidoOrderedDict['regiao'])
+        # resolve REGIÃO
+        query_regiao = models.Regiao.objects.filter(nome=entregaDict['regiao'])
         if len(query_regiao) > 0:
             # pelo mesmo motivo resolvi sobrescrever o conteúdo do dicionário
             pedido_kwargs['regiao'] = query_regiao[0]
 
             # cálculo do frete
-            volume = float(pedidoOrderedDict['pacote']['volume'])
-            peso = float(pedidoOrderedDict['pacote']['peso'])
+            volume = float(entregaDict['pacote']['volume'])
+            peso = float(entregaDict['pacote']['peso'])
             preco = query_regiao[0].precoBase
             if 1 < volume <= 3:
                 preco *= 1.8
@@ -71,7 +73,7 @@ def adicionarListaPedidos(xml_input):
                 pedidoValido = False
                 raise Exception('entrega com peso maior do que 100 kg (%d)'%peso)
 
-            if pedidoOrderedDict['prioridade'] == 'Alta':
+            if entregaDict['prioridade'] == 'Alta':
                 preco *= 1.4
 
         else: # if query_regiao is None
@@ -79,8 +81,8 @@ def adicionarListaPedidos(xml_input):
             raise Exception('Regiao %s nao cadastrada'%regiao)
 
 
-        ## DATA DO PEDIDO
-        data = pedidoOrderedDict['dataPedido']
+        ## resolve DATA DO PEDIDO
+        data = entregaDict['dataPedido']
         # pelo mesmo motivo resolvi sobrescrever o conteúdo do dicionário
         pedido_kwargs['dataPedido'] = datetime(year=int(data['year']), month=int(data['month']), day=int(data['day']))
 

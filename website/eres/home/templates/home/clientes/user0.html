@@ -2,58 +2,52 @@
 {% load staticfiles %}
 {% block content %}
 
-    <!-- Custom styles for this template -->
-    <link href="{% static 'assets/css/index.css' %}" rel="stylesheet">
-    <link href="{% static 'assets/css/user.css' %}" rel="stylesheet">
+  <!-- Custom styles for this template -->
+  <link href="{% static 'assets/css/index.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/css/user.css' %}" rel="stylesheet">
 
 
-	<div id="blue">
-	</div><!--  bluewrap -->
+  <div id="blue">
+  </div><!--  bluewrap -->
 
-	 <div id="wrapper">
+  <div id="wrapper">
 
-        <!-- Sidebar -->
-        <div id="sidebar-wrapper">
-            <ul class="sidebar-nav">
-                <li class="sidebar-brand">
-                    <a href="home1">
-                        Menu Cliente
-                    </a>
-                <li>
-                {% if user.is_authenticated %}
-                    <form  role="form" class="navbar-form navbar-right" method="POST" action="logout">{% csrf_token %}
-                        <button type="submit">Log Out</button>
-                    </form>
-                 {% endif %}
-                </li>
-            </ul>
-        </div>
-        <!-- /#sidebar-wrapper -->
+    <!-- Sidebar -->
+    <div id="sidebar-wrapper">
+      <ul class="sidebar-nav">
+        <li class="sidebar-brand">
+          <a href="home1">
+            Menu Cliente
+          </a>
+          <li>
+            {% if user.is_authenticated %}
+            <form  role="form" class="navbar-form navbar-right" method="POST" action="logout">{% csrf_token %}
+              <button type="submit">Log Out</button>
+            </form>
+            {% endif %}
+          </li>
+        </ul>
+      </div>
+      <!-- /#sidebar-wrapper -->
 
-        {% block upload%}
-        {% endblock %}
+      {% block upload%}
+      {% endblock %}
 
-    </div>
+  </div>
 
+  <!-- /#wrapper -->
+  <!-- jQuery -->
+  <script src="{% static 'js/jquery.js' %}"></script>
 
-    <!-- /#wrapper -->
-        <!-- jQuery -->
-    <script src="js/jquery.js"></script>
+  <!-- Bootstrap Core JavaScript -->
+  <script src="{% static 'js/bootstrap.min.js' %}"></script>
 
-    <!-- Bootstrap Core JavaScript -->
-    <script src="js/bootstrap.min.js"></script>
-
-    <!-- Menu Toggle Script -->
-    <script>
-    $("#menu-toggle").click(function(e) {
-        e.preventDefault();
-        $("#wrapper").toggleClass("toggled");
-    });
-    </script>
-
-
-
-
-
+  <!-- Menu Toggle Script -->
+  <script>
+  $("#menu-toggle").click(function(e) {
+    e.preventDefault();
+    $("#wrapper").toggleClass("toggled");
+  });
+  </script>
 
 {% endblock content %}

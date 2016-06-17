@@ -1,3 +1,5 @@
+{% load staticfiles %}
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -6,7 +8,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
-    {% load staticfiles %}
 
     <!-- <link rel="shortcut icon" href="{% static 'assets/ico/favicon.png' %}"> -->
 
@@ -19,7 +20,7 @@
     <!-- Custom styles for this template -->
     <link href="{% static 'assets/css/main.css' %}" rel="stylesheet">
 
-	<script src="{% static 'assets/js/Chart.js' %}"></script>
+	  <script src="{% static 'assets/js/Chart.js' %}"></script>
 
 
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -48,7 +49,7 @@
             <li><a href="works">SERVIÇOS</a></li>
             <li><a href="costumers">CLIENTES</a></li>
             <li><a href="contact">CONTATO</a></li>
-            <li>TOLIGADASDOAOSDASDOSAD</li>
+            <!-- <li>TOLIGADASDOAOSDASDOSAD</li> -->
           </ul>
         </div><!--/.nav-collapse -->
       </div>
@@ -101,7 +102,8 @@
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
-    <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
-    <script src="{% static "assets/js/bootstrap.min.js" %}"></script>
-    </body>
-    </html>
+    <!-- <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script> -->
+    <script src="{% static 'assests/js/jquery-2.2.4.js' %}"></script>
+    <script src="{% static 'assets/js/bootstrap.min.js' %}"></script>
+  </body>
+</html>

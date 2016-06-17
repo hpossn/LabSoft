@@ -1,5 +1,7 @@
 from . models import Usuario
+from . models import tiposDeUsuario
 from django.contrib.auth.models import User
+
 
 class CustomUserAuth(object):
 
@@ -14,7 +16,7 @@ class CustomUserAuth(object):
                     return user
                 except User.DoesNotExist:
                     user = User(username=username, password=password)
-                    if usuario.tipoUsuario == 0:
+                    if usuario.tipoUsuario == tiposDeUsuario['gerente']:
                         user.is_staff = True
                         user.is_superuser = True
                     else:

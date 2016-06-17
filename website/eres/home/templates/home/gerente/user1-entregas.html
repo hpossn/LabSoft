@@ -66,6 +66,7 @@
                                 <th>Preço</th>
                                 <th>Data do Pedido</th>
                                 <th>Prioridade</th>
+                                <th>codigo</th>
                             </tr>
                             {% for r in result %}
                             <tr>
@@ -76,6 +77,7 @@
                                 <td>{{ r.preco }}</td>
                                 <td>{{ r.dataPedido }}</td>
                                 <td>{{ r.prioridade }}</td>
+                                <td>{{ r.codigoRastreamento }}</td>
                             </tr>
                             {% endfor %}
                         </table>
