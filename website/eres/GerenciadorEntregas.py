@@ -97,6 +97,11 @@ def listarPedidosPendentes():
     lista_ret = raw_query.order_by('dataPedido', 'prioridade')
     return lista_ret
 
+def listarPedidosAlocados(idEntregador):
+    raw_query = models.Entrega.objects.filter(entregador_id=idEntregador, status='em_transito')
+    lista_ret = raw_query.order_by('dataPedido', 'prioridade')
+    return lista_ret
+
 def rastrearEntrega(cod):
     try:
         e = models.Entrega.objects.get(codigoRastreamento=cod)
@@ -112,7 +117,9 @@ def finalizarEntrega(cod, dataEntrega):
         entrega.status = 'entregue'
         # acrescenta a data em que foi realizada a entrega
         entrega.dataEntrega = dataEntrega
+        entrega.save()
         # libera o entregador
         entrega.entregador.status = 0
+        entrega.entregador.save()
     except models.Entrega.DoesNotExist as ex:
         raise ex

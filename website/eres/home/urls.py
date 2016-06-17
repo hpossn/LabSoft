@@ -35,6 +35,9 @@ urlpatterns = [
     url(r'^home1$', views.home1, name='home1'),
     url(r'^home2$', views.home2, name='home2'),
 
+    #entregador
+    url(r'^entregasAlocadas$', views.entregasAlocadas, name='entregasAlocadas'),
+
     #Gerente
     url(r'^gerclientes$', views.gerclientes, name='gerclientes'),
     url(r'^gerfuncionarios$', views.gerfuncionarios, name='gerfuncionarios'),
