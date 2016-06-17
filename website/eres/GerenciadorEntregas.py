@@ -5,10 +5,6 @@ from datetime import datetime
 from xmltodict import parse
 import home.models as models
 
-codigoPrioridade = {
-        'Alta': 0,
-        'Normal': 1,
-}
 
 def adicionarListaPedidos(xml_input):
     """
@@ -45,13 +41,14 @@ def adicionarListaPedidos(xml_input):
 
         ## Resolve CLIENTE
         nome_cliente = doc['root']['cliente']
-        query_cliente = models.Cliente.objects.get(nome=nome_cliente)
-        if query_cliente is not None:
+        cnpj_cliente = doc['root']['cnpj']
+        try:
+            query_cliente = models.Cliente.objects.get(nome=nome_cliente, CNPJ=cnpj_cliente)
             # pelo mesmo motivo resolvi sobrescrever o conteúdo do dicionário
             pedido_kwargs['cliente'] = query_cliente
-        else:
+        except Exception as e:
             pedidoValido = False
-
+            raise Exception('Cliente %s (CNPJ %s) não cadastrado no banco de dados'%(nome_cliente, cnpj_cliente))
 
         # REGIÃO
         query_regiao = models.Regiao.objects.filter(nome=pedidoOrderedDict['regiao'])
@@ -62,12 +59,24 @@ def adicionarListaPedidos(xml_input):
             # cálculo do frete
             volume = float(pedidoOrderedDict['pacote']['volume'])
             peso = float(pedidoOrderedDict['pacote']['peso'])
-            precoBase = query_regiao[0].precoBase
-            #TODO: inserir fórmula de cálculo de frete
-            preco = 0.00
+            preco = query_regiao[0].precoBase
+            if 1 < volume <= 3:
+                preco *= 1.8
+            elif volume > 3:
+                preco = preco*2 + 10*volume
+
+            if 40 < peso <= 100:
+                preco *= 1.7
+            elif peso > 100:
+                pedidoValido = False
+                raise Exception('entrega com peso maior do que 100 kg (%d)'%peso)
+
+            if pedidoOrderedDict['prioridade'] == 'Alta':
+                preco *= 1.4
 
         else: # if query_regiao is None
             pedidoValido = False
+            raise Exception('Regiao %s nao cadastrada'%regiao)
 
 
         ## DATA DO PEDIDO

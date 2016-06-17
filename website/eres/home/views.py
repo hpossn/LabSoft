@@ -66,19 +66,14 @@ def login(request):
                 if user is not None:
                     if user.is_active:
                         auth.login(request, user)
-                        tipo=getTipoUsuario(username)
-                        if tipo == 0:
+                        tipo = getTipoUsuario(username)
+                        if tipo == tiposDeUsuario['cliente']:
                             return HttpResponseRedirect('home0')
-                        if tipo == 1:
+                        if tipo == tiposDeUsuario['gerente']:
                             return HttpResponseRedirect('home1')
-                        if tipo == 2:
+                        if tipo == tiposDeUsuario['funcionario']:
                             return HttpResponseRedirect('home2')
 
-#                else:
-#                    print user, 'desabilitado'
-
-
-    # return HttpResponseRedirect("index", {'invalid_login': True})
     messages.error(request, 'Log Invalido')
     return render(request, 'home/index.html', {'form': forms.CustomLoginForm,})
 
@@ -88,7 +83,7 @@ def home0(request):
     if request.user.is_authenticated():
         username = request.user.username
         tipo = getTipoUsuario(username)
-        if tipo == 0:
+        if tipo == tiposDeUsuario['cliente']:
             if request.method == 'POST':
                 form = forms.ArquivoPedidosForm(request.POST, request.FILES)
                 if form.is_valid():
@@ -101,37 +96,32 @@ def home0(request):
             return HttpResponseRedirect('index')
 
 def home1(request):
-    username = None
     if request.user.is_authenticated():
         username = request.user.username
         tipo = getTipoUsuario(username)
-        if tipo == 1:
+        if tipo == tiposDeUsuario['gerente']:
             return render(request, 'home/gerente/user1.html')
 
     return HttpResponseRedirect('index')
 
 def home2(request):
-    username = None
     if request.user.is_authenticated():
         username = request.user.username
         tipo = getTipoUsuario(username)
-        if tipo == 2:
+        if tipo == tiposDeUsuario['funcionario']:
             return render(request, 'home/funcionarios/user2.html')
     return HttpResponseRedirect('index')
 
 #GERENTE
 def gerclientes(request):
-    username = None
     if request.user.is_authenticated():
         username = request.user.username
         tipo = getTipoUsuario(username)
-        if tipo == 1:
+        if tipo == tiposDeUsuario['gerente']:
+            print(request.method, 'porra')
             if request.method == 'POST':
-                print(request.POST.getlist('aprovado'))
                 Cliente.objects.filter(CNPJ__in=request.POST.getlist('aprovado')).update(isNew=False)
-
-
-            return render(request, 'home/gerente/clientes.html', {'clientes_pendentes': Cliente.objects.all().filter(isNew=True), 'clientes_aprovados': Cliente.objects.all().filter(isNew=False)})
+            return render(request, 'home/gerente/clientes.html', {'clientes_pendentes': Cliente.objects.filter(isNew=True), 'clientes_aprovados': Cliente.objects.filter(isNew=False)})
     return HttpResponseRedirect('index')
 
 def gerfuncionarios(request):
@@ -162,7 +152,7 @@ def gerfuncionarios(request):
                             entregador.save()
                         except Exception as e:
                             print(e)
-                        print(Entregador.objects.all())
+                        print('oi', Entregador.objects.all())
                         response_data = {}
                         response_data['msg'] = entregador + ' ' + nome + ' foi cadastrado com sucesso.'
 
@@ -176,7 +166,7 @@ def gerfuncionarios(request):
     if request.user.is_authenticated():
         username = request.user.username
         tipo = getTipoUsuario(username)
-        if tipo == 1:
+        if tipo == tiposDeUsuario['gerente']:
             form = forms.EntregadorForm()
             if request.method == 'POST':
                 form = forms.RegiaoForm(data=request.POST)
@@ -190,8 +180,8 @@ def gerentregas(request):
     if request.user.is_authenticated():
         username = request.user.username
         tipo = getTipoUsuario(username)
-        if tipo == 1:
-            result = models.Entrega.objects.all()
+        if tipo == tiposDeUsuario['gerente']:
+            result = models.Entrega.objects.filter(status='pendente')
             if request.method == 'POST':
                 formEntregaEntregador = forms.EntregaEntregadorForm(data=request.POST)
                 if formEntregaEntregador.is_valid():
@@ -212,15 +202,16 @@ def gerregioes(request):
                 try:
                     nomeRegiao = formRegiao.cleaned_data['nome']
                     valorPrecoBase = formRegiao.cleaned_data['precoBase']
-                    antigo = None
 
                     try:
                         antigo = Regiao.objects.get(nome=nomeRegiao)
                     except Exception as e:
                         antigo = None
 
-                    if antigo != None:
-                        response_data = {'msg':"A região " + nomeRegiao + ' já existe'}
+                    if antigo is not None:
+                        antigo.precoBase = valorPrecoBase
+                        antigo.save()
+                        response_data = {'msg': "Preco base da região " + nomeRegiao + ' atualizado'}
                     else:
                         regiao = Regiao(nome=nomeRegiao, precoBase=valorPrecoBase)
                         regiao.save()
@@ -232,11 +223,10 @@ def gerregioes(request):
                     return JsonResponse(response_data)
                 return JsonResponse(response_data)
 
-    username = None
     if request.user.is_authenticated():
         username = request.user.username
         tipo = getTipoUsuario(username)
-        if tipo == 1:
+        if tipo == tiposDeUsuario['gerente']:
             form = forms.RegiaoForm()
             if request.method == 'POST':
                 form = forms.RegiaoForm(data=request.POST)
@@ -271,7 +261,7 @@ def gerveiculos(request):
                         response_data = {'msg':"Veículo com placa " + placaVeiculo + ' já existe'}
                     else:
                         veiculo = Veiculo(marca=marcaVeiculo, modelo=modeloVeiculo, ano=anoVeiculo, placa=placaVeiculo)
-                        print(veiculo.marca)
+                        # print(veiculo.marca)
                         veiculo.save()
                         response_data = {}
                         response_data['msg'] = marcaVeiculo + ' ' + modeloVeiculo + ' foi cadastrada com sucesso.'
@@ -285,7 +275,7 @@ def gerveiculos(request):
     if request.user.is_authenticated():
         username = request.user.username
         tipo = getTipoUsuario(username)
-        if tipo == 1:
+        if tipo == tiposDeUsuario['gerente']:
             form = forms.VeiculoForm()
             if request.method == 'POST':
                 form = forms.RegiaoForm(data=request.POST)

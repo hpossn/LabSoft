@@ -6,7 +6,7 @@
   <div class = "col-md-12">
   <h3>Clientes Pendentes</h3>
   <p>Tabela com clientes aguardando autorização. Selecione os desejados e clique em "Autorizar"</p>
-  <form class="" action="gerclientes" method="post"> {% csrf_token %}
+  <form class="" action="gerclientes" method="POST"> {% csrf_token %}
     <table border="1px" style="width:90%">
     <tr>
       <th>Selecionados</th>
@@ -47,12 +47,12 @@
     </tr>
       <tr>
         {% for cliente in clientes_aprovados %}
-      <td>{{ cliente.nome }}</td>
-      <td>{{ cliente.email }}</td>
-      <td>{{ cliente.endereco }}</td>
-      <td>{{ cliente.telefone }}</td>
-      <td>{{ cliente.CNPJ }}</td>
-    </tr>
+        <td>{{ cliente.nome }}</td>
+        <td>{{ cliente.email }}</td>
+        <td>{{ cliente.endereco }}</td>
+        <td>{{ cliente.telefone }}</td>
+        <td>{{ cliente.CNPJ }}</td>
+      </tr>
 
     {% endfor %}
     </table>

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <root>
     <cliente>LAR</cliente>
+    <cnpj>000</cnpj>
     <pedidos>
         <entrega>
         	<destinatario>
@@ -17,8 +18,8 @@
                 <year>1982</year>
             </dataPedido>
             <pacote>
-                <volume>33.0</volume>
-                <peso>3.3</peso>
+                <volume>3.0</volume>
+                <peso>0.3</peso>
             </pacote>
         	<prioridade>Alta</prioridade>
         </entrega>

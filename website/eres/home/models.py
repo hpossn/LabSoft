@@ -2,6 +2,14 @@
 import hashlib
 from django.db import models
 
+
+tiposDeUsuario = {
+    'cliente': 0,
+    'gerente': 1,
+    'funcionario': 2,
+}
+
+
 class Usuario(models.Model):
     username = models.CharField(max_length=15, primary_key=True)
     password = models.CharField(max_length=15)

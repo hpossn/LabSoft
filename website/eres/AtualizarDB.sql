@@ -26,7 +26,7 @@ insert into home_entregador (nome, dataNascimento, CPF, salario) values ('Albert
 
 insert into home_regiao (nome, precoBase) values ('Lapa', 23);
 insert into home_regiao (nome, precoBase) values ('Pinheiros', 12);
-insert into home_regiao (nome, precoBase) values ('oeste', 12);
+insert into home_regiao (nome, precoBase) values ('oeste', 2);
 
 insert into home_cliente (nome, email, endereco, telefone, cnpj, isNew) values ('LAR', 'lar@lar.com.br', 'Rua do Lar 1', '2123-8961', '000', 1);
 
