@@ -14,7 +14,7 @@ class Usuario(models.Model):
     username = models.CharField(max_length=15, primary_key=True)
     password = models.CharField(max_length=15)
     tipoUsuario = models.IntegerField()
-    cpf = models.CharField(max_length=45)
+    cpf = models.CharField(max_length=45, null=True)
 
 
 class Regiao(models.Model):
@@ -50,8 +50,8 @@ class Recibo(models.Model):
 
 
 class Funcionario(models.Model):
-    nome = models.CharField(max_length=45)
-    dataNascimento = models.DateField()
+    nome = models.CharField(max_length=45, null=False)
+    dataNascimento = models.DateField(null=False)
     CPF = models.CharField(max_length=45, primary_key=True)
     salario = models.FloatField()
     # Authentication

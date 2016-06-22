@@ -1,9 +1,8 @@
-# import django
-# django.setup()
+import django
+django.setup()
 import getpass
 from datetime import datetime
-from django.contrib.auth.models import User
-import models
+import home.models as models
 
 def cadastrarGerente():
     nome = input('nome: ')
@@ -11,5 +10,19 @@ def cadastrarGerente():
     CPF = input('CPF: ')
     salario = input('salario: ')
 
-    gerente = models.Gerente(nome=nome, dataNascimento=datetime(dataNascimento, '%d/%m/%Y'), CPF=CPF, salario=float(salario))
-    print(gerente.nome, gerente.dataNascimento)
+    gerente = models.Gerente(nome=nome, dataNascimento=datetime.strptime(dataNascimento, '%d/%m/%Y'), CPF=CPF, salario=float(salario))
+    try:
+        gerente.save()
+        username = input('username: ')
+        senha = getpass.getpass('senha: ')
+        senha_verificacao = getpass.getpass('digite a senha novamente: ')
+        while senha != senha_verificacao:
+            senha = getpass.getpass('senha: ')
+            senha_verificacao = getpass.getpass('digite a senha novamente: ')
+        user = models.Usuario(username=username, password=senha, tipoUsuario=models.tiposDeUsuario['gerente'])
+        user.save()
+    except Exception as e:
+        print('nao foi possivel cadastrar novo gerente:', e)
+        return
+
+    print('Gerente cadastrado com sucesso!')
