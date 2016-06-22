@@ -54,6 +54,8 @@ class Funcionario(models.Model):
     dataNascimento = models.DateField()
     CPF = models.CharField(max_length=45, primary_key=True)
     salario = models.FloatField()
+    # Authentication
+    usuario = models.ForeignKey(Usuario, on_delete=models.CASCADE, null=True)
     def __str__(self):
         return self.nome
     class Meta:
@@ -77,6 +79,9 @@ class Cliente(models.Model):
     telefone = models.CharField(max_length=20, default='')
     CNPJ = models.CharField(max_length=45, default='', primary_key=True)
     isNew = models.BooleanField(default=True)
+
+    # Authentication
+    usuario = models.ForeignKey(Usuario, on_delete=models.CASCADE, null=True)
 
     def __str__(self):
         return self.nome

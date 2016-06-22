@@ -24,7 +24,6 @@ from GerenciadorEntregas  import *
 from GerenciadorFuncionarios  import *
 
 def index(request):
-    print(request.POST)
     if request.is_ajax():
         if request.method == 'POST':
             formRastr = forms.Rastreamento(data=request.POST)
