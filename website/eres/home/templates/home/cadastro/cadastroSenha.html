@@ -1,0 +1,8 @@
+{% block confirma %}
+
+  <form id="formSenha" role="form" action="" method="POST">{% csrf_token %}
+    {{ formSenha.as_p }}
+    <input type="submit" value="Cadastrar">
+  </form>
+
+{% endblock %}

@@ -29,6 +29,14 @@ class ContactForm(forms.Form):
             self.fields['contact_email'].label = "Email:"
             self.fields['content'].label = "Escreva aqui sua mensagem:"
 
+class CadastroSenhaForm(forms.Form):
+    senha = forms.CharField(required=True, widget=forms.PasswordInput)
+    senha_verificacao = forms.CharField(required=True, widget=forms.PasswordInput)
+
+    def __init__(self, *args, **kwargs):
+        super(CadastroSenhaForm, self).__init__(*args, **kwargs)
+        self.fields['senha'].label = 'Nova senha:'
+        self.fields['senha_verificacao'].label = 'Insira a senha novamente:'
 
 class ClienteForm(forms.ModelForm):
     username = forms.CharField(required=True)

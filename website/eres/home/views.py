@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 from __future__ import print_function
+import hashlib
 
 # general imports
 from django.shortcuts import render, redirect, render_to_response, get_object_or_404
@@ -93,9 +94,34 @@ def login(request):
     return render(request, 'home/index.html', {'form': forms.CustomLoginForm,})
 
 # Cadastro de nova senha
-def cadastroSenha(request):
+def cadastroSenha(request, tipoUsuario, hashname):
+    if request.method == "POST":
+        formSenha = forms.CadastroSenhaForm(data=request.POST)
+        if formSenha.is_valid():
+            senha = formSenha.cleaned_data['senha']
+            senha_verificacao = formSenha.cleaned_data['senha_verificacao']
+
+            usuario = None
+            if int(tipoUsuario) == models.tiposDeUsuario['cliente']:
+                for cliente in models.Cliente.objects.all():
+                    if cliente.nome == hashname:
+                        usuario = cliente.usuario
+            elif int(tipoUsuario) == models.tiposDeUsuario['funcionario']:
+                for funcionario in models.Funcionario.objects.all():
+                    if funcionario.nome == hashname:
+                        usuario = funcionario.usuario
+
+            if usuario is not None:
+                if senha == senha_verificacao:
+                    print('opa, senhas BATERAM')
+                    usuario.password = senha
+                    usuario.save()
+                else:
+                    print('ERRO nas senhas')
+
     formSenha = forms.CadastroSenhaForm()
     return render(request, 'home/cadastro/cadastroSenha.html', {'formSenha': formSenha})
+
 
 #TODA A PARTE DO LOGIN
 def home0(request):
