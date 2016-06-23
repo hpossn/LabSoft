@@ -218,7 +218,7 @@ def gerfuncionarios(request):
                 try:
                     nome = formEntregador.cleaned_data['nome']
                     dataNasc = formEntregador.cleaned_data['dataNascimento']
-                    print(dataNasc, type(dataNasc))
+                    # print(dataNasc, type(dataNasc))
                     salario = formEntregador.cleaned_data['salario']
                     cpf = formEntregador.cleaned_data['CPF']
                     veiculos = formEntregador.cleaned_data['veiculos']
