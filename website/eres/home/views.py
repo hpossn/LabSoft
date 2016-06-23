@@ -11,6 +11,7 @@ from django.utils.datastructures import MultiValueDictKeyError
 from django.template.loader import get_template
 from django.core.mail import EmailMessage
 from django.template import Context
+from django.conf import settings
 from . import forms
 
 # Authentication
@@ -44,7 +45,22 @@ def index(request):
     elif 'btn_enviar_cadastro' in request.POST:
         formSignup = forms.ClienteForm(data=request.POST)
         if formSignup.is_valid():
-            formSignup.save()
+            # cria um novo usuario, ainda que ele nao venha a ser aceito pelo gerente
+            newuser = models.Usuario(formSignup.cleaned_data['username'], tipoUsuario=models.tiposDeUsuario['cliente'])
+            # pega um objeto cliente
+            novocliente = formSignup.save(commit=False)
+            # associa o novo usuario ao novo cliente
+            novocliente.usuario = newuser
+            # salva os dois no bd
+            newuser.save()
+            novocliente.save()
+            # envia email
+            email = EmailMessage(
+                subject='Novo cadastro em ERES',
+                body='Prezado novo cliente %s,\n\tAntes de poder usufruir de nossos serviços de logística, aguarde confirmação de cadastro e solicitação de nova senha de login.\nAtt,\nEquipe de SAC - ERES Ltda.'%formSignup.cleaned_data['nome'],
+                from_email='sac@eres.com.br', to=[formSignup.cleaned_data['email']],
+            )
+            email.send()
 
     c = {}
     c.update(csrf(request))
@@ -75,6 +91,11 @@ def login(request):
 
     messages.error(request, 'Log Invalido')
     return render(request, 'home/index.html', {'form': forms.CustomLoginForm,})
+
+# Cadastro de nova senha
+def cadastroSenha(request):
+    formSenha = forms.CadastroSenhaForm()
+    return render(request, 'home/cadastro/cadastroSenha.html', {'formSenha': formSenha})
 
 #TODA A PARTE DO LOGIN
 def home0(request):
@@ -137,6 +158,7 @@ def gerclientes(request):
         tipo = getTipoUsuario(username)
         if tipo == tiposDeUsuario['gerente']:
             if request.method == 'POST':
+                print('clientes: ', Cliente.objects.filter(CNPJ__in=request.POST.getlist('aprovado')))
                 Cliente.objects.filter(CNPJ__in=request.POST.getlist('aprovado')).update(isNew=False)
             return render(request, 'home/gerente/clientes.html', {'clientes_pendentes': Cliente.objects.filter(isNew=True), 'clientes_aprovados': Cliente.objects.filter(isNew=False)})
     return HttpResponseRedirect('index')
@@ -295,14 +317,6 @@ def gerveiculos(request):
             return render(request, 'home/gerente/user1-veiculos.html', {'form':form})
         return HttpResponseRedirect('index')
 
-
-
-
-
-
-
-
-
 def getTipoUsuario(username):
     usuario = Usuario.objects.get(username=username)
     return usuario.tipoUsuario
@@ -325,10 +339,8 @@ def customers (request):
     return render(request, 'home/customers.html', {'formSignup': forms.ClienteForm()})
 
 def contact(request):
-    form_class = forms.ContactForm
-
     if request.method == 'POST':
-        form = form_class(data=request.POST)
+        form = forms.ContactForm(data=request.POST)
 
         if form.is_valid():
             contact_name = request.POST.get(
@@ -354,18 +366,16 @@ def contact(request):
 
             content = template.render(context)
 
-            escreverArq(content)
-
             email = EmailMessage(
-                    "New contact form submission",
+                    "New contact submission",
                     content,
-                    "Your website" + ' ', ['sac@eres.com.br'],
+                    settings.DEFAULT_FROM_EMAIL, ['sac@eres.com.br'],
                     headers = {'Reply-To': contact_email}
             )
             email.send()
             return redirect('contact')
 
-    return render(request, 'home/contact.html', {'form': form_class, 'formSignup': forms.ClienteForm()})
+    return render(request, 'home/contact.html', {'form': forms.ContactForm, 'formSignup': forms.ClienteForm()})
 
 def signup(request):
     if request.method == 'POST':

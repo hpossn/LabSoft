@@ -134,9 +134,10 @@ STATIC_URL = '/static/'
 
 
 # EMAIL server
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
-DEFAULT_FROM_EMAIL = 'testing@example.com'
+EMAIL_BACKEND = 'django.core.mail.backends.filebased.EmailBackend'
+EMAIL_FILE_PATH = '/home/gabriel/Documents/GitHub/LabSoft/website/eres/home/mailbox/'
+DEFAULT_FROM_EMAIL = 'contato@eres.com.br'
 EMAIL_HOST_USER = ''
 EMAIL_HOST_PASSWORD = ''
 EMAIL_USE_TLS = False
-EMAIL_PORT = 1025
+EMAIL_PORT = 587
