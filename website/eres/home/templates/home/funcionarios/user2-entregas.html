@@ -30,7 +30,7 @@
                 </li>
                 <li>
                 {% if user.is_authenticated %}
-                    <form  role="form" class="navbar-form navbar-right" method="POST" action="logout">{% csrf_token %}
+                    <form  role="form" class="navbar-form navbar-right" method="POST" action="/logout">{% csrf_token %}
                         <button type="submit">Log Out</button>
                     </form>
                  {% endif %}
@@ -44,6 +44,30 @@
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-lg-12">
+                    <h1>Mostrar entregas cadastradas</h1>
+                      <table border="1" style="width:90%">
+
+                          <tr>
+                              <th>Destinatário</th>
+                              <th>Endereço</th>
+                              <th>Região</th>
+                              <th>Status</th>
+                              <th>Preço</th>
+                              <th>Data do Pedido</th>
+                              <th>Prioridade</th>
+                          </tr>
+                          {% for r in result %}
+                          <tr>
+                              <td>{{ r.destinatario.nome }}</td>
+                              <td>{{ r.destinatario.logradouro }}, n. {{ r.destinatario.numero }}</td>
+                              <td>{{ r.regiao }}</td>
+                              <td>{{ r.status }}</td>
+                              <td>{{ r.preco }}</td>
+                              <td>{{ r.dataPedido }}</td>
+                              <td>{{ r.prioridade }}</td>
+                          </tr>
+                          {% endfor %}
+                      </table>
                       {% block entregasAlocadas %}
                       {% endblock %}
                     </div>

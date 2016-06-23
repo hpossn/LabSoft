@@ -178,11 +178,13 @@ def entregasAlocadas(request):
             result = models.Entrega.objects.all()
             if request.method == 'POST':
                 formEntregaAlocada = forms.EntregasAlocadas(data=request.POST, idEntregador=idEntregador)
+
                 if formEntregaAlocada.is_valid():
                     entrega = formEntregaAlocada.cleaned_data['entrega_select']
                     finalizarEntrega(
                         cod=entrega.codigoRastreamento, dataEntrega=datetime.now()
                         )
+            result = listarPedidosAlocados(idEntregador)
             return render(request, 'home/funcionarios/entregasAlocadas.html', {'result': result, 'form': forms.EntregasAlocadas(idEntregador=idEntregador)})
     return HttpResponseRedirect('/index')
 
@@ -196,12 +198,12 @@ def trocarsenha(request):
                 if formSenha.is_valid():
                     senha = formSenha.cleaned_data['senha']
                     senha_verificacao = formSenha.cleaned_data['senha_verificacao']
-                    return HttpResponseRedirect('/home2')
 
                     usuario = models.Usuario.objects.get(username=username)
                     if senha == senha_verificacao:
                         usuario.password = senha
                         usuario.save()
+                        return HttpResponseRedirect('/home2')
 
 
     formSenha = forms.CadastroSenhaForm()
@@ -369,9 +371,12 @@ def gerveiculos(request):
                         print(type(e))
                         print(e.args)
                         print(e)
+                        response_data = {}
+                        response_data['msg'] = 'Veículo com placa ' + placaVeiculo + ' teve problema no cadastro'
 
                     if antigo != None:
-                        response_data = {'msg':"Veículo com placa " + placaVeiculo + ' já existe'}
+                        response_data = {}
+                        response_data['msg'] = 'Veículo com placa ' + placaVeiculo + ' já existe'
                     else:
                         veiculo = Veiculo(marca=marcaVeiculo, modelo=modeloVeiculo, ano=anoVeiculo, placa=placaVeiculo)
                         veiculo.save()

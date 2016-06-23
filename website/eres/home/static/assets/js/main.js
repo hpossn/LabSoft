@@ -103,6 +103,7 @@ function cadastraEntregadorPopup(nome, dataNasc, CPF, salario) {
     $.post('gerfuncionarios', $('#formFunc').serialize(), function (result) {
           $('#funcionarioDiv').html('<br>');
           $('#funcionarioDiv').append(result.msg);
+            msgbox(result.msg);
     });
 }
 

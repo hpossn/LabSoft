@@ -30,7 +30,7 @@
                 </li>
                 <li>
                 {% if user.is_authenticated %}
-                    <form  role="form" class="navbar-form navbar-right" method="POST" action="logout">{% csrf_token %}
+                    <form  role="form" class="navbar-form navbar-right" method="POST" action="/logout">{% csrf_token %}
                         <button type="submit">Log Out</button>
                     </form>
                  {% endif %}
