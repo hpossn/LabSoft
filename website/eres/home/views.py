@@ -138,12 +138,16 @@ def gerfuncionarios(request):
     if request.is_ajax():
         if request.method == 'POST':
             formEntregador = forms.EntregadorForm(data=request.POST)
+
             if formEntregador.is_valid():
+
                 try:
-                    nome = formEntregador.cleaned_data['nome']
-                    dataNasc = formEntregador.cleaned_data['dataNascimento']
-                    salario = formEntregador.cleaned_data['salario']
-                    cpf = formEntregador.cleaned_data['CPF']
+
+                    nome = formEntregador.cleaned_data['nome'],
+                    dataNasc = formEntregador.cleaned_data['dataNascimento'],
+                    salario = formEntregador.cleaned_data['salario'],
+                    cpf = formEntregador.cleaned_data['CPF'],
+                    veiculos = formEntregador.cleaned_data['veiculos']
 
                     try:
                         antigo = Entregador.objects.get(CPF=cpf)
@@ -157,8 +161,10 @@ def gerfuncionarios(request):
                         response_data = {'msg':"Funcionario com CPF " + cpf + ' já existe'}
 
                     else:
-                        entregador = Entregador(nome=nome, dataNascimento=dataNasc, CPF=cpf, salario=salario)
+                        entregador = Entregador(nome=nome, dataNascimento=dataNasc, CPF=cpf, salario=salario, veiculos=veiculos)
+
                         try:
+                            print ("oi")
                             entregador.save()
                         except Exception as e:
                             print(e)
@@ -179,7 +185,7 @@ def gerfuncionarios(request):
         if tipo == 1:
             form = forms.EntregadorForm()
             if request.method == 'POST':
-                form = forms.RegiaoForm(data=request.POST)
+                form = forms.EntregadorForm(data=request.POST)
             return render(request, 'home/gerente/user1-funcionarios.html', {'form':form})
         return HttpResponseRedirect('index')
 

@@ -42,13 +42,12 @@ class VeiculoForm(forms.ModelForm):
         fields = ('marca', 'modelo', 'ano', 'placa')
 
 
-class EntregadorForm(forms.ModelForm):
-    class Meta:
-        model = models.Entregador
-        fields = ('nome', 'dataNascimento', 'CPF', 'salario',)
-        widgets = {
-            'dataNascimento': forms.SelectDateWidget(years=range(1901,2016)),
-        }
+class EntregadorForm(forms.Form):
+    veiculos= forms.ModelChoiceField(queryset=GerenciadorFuncionarios.listarVeiculosDisponiveis())
+    dataNascimento = forms.CharField(required=False)
+    nome = forms.CharField(required=False)
+    CPF = forms.CharField(required=False)
+    salario = forms.CharField(required=False)
 
 
 class ArquivoPedidosForm(forms.Form):
