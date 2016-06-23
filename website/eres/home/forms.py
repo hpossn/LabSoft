@@ -1,3 +1,4 @@
+from datetime import datetime
 from django import forms
 from . import models
 import GerenciadorEntregas
@@ -51,13 +52,12 @@ class VeiculoForm(forms.ModelForm):
         fields = ('marca', 'modelo', 'ano', 'placa')
 
 
-class EntregadorForm(forms.ModelForm):
-    class Meta:
-        model = models.Entregador
-        fields = ('nome', 'dataNascimento', 'CPF', 'salario',)
-        widgets = {
-            'dataNascimento': forms.SelectDateWidget(years=range(1901,2016)),
-        }
+class EntregadorForm(forms.Form):
+    veiculos = forms.ModelChoiceField(queryset=GerenciadorFuncionarios.listarVeiculosDisponiveis())
+    dataNascimento = forms.DateField(required=False, initial=datetime.now)
+    nome = forms.CharField(required=False)
+    CPF = forms.CharField(required=False)
+    salario = forms.FloatField(required=False)
 
 
 class ArquivoPedidosForm(forms.Form):
@@ -81,6 +81,7 @@ class EntregaEntregadorForm(forms.Form):
         super(EntregaEntregadorForm, self).__init__(*args, **kwargs)
         self.fields['entrega_select'].queryset = GerenciadorEntregas.listarPedidosPendentes()
         self.fields['entregador_select'].queryset = GerenciadorFuncionarios.listarEntregadoresDisponiveis()
+<<<<<<< HEAD
 
 class EntregasAlocadas(forms.Form):
     entrega_select = forms.ModelChoiceField(queryset=None)
@@ -88,3 +89,6 @@ class EntregasAlocadas(forms.Form):
     def __init__(self, idEntregador, *args, **kwargs):
         super(EntregasAlocadas, self).__init__(*args, **kwargs)
         self.fields['entrega_select'].queryset = GerenciadorEntregas.listarPedidosAlocados(idEntregador)
+=======
+        # print(GerenciadorFuncionarios.listarEntregadoresDisponiveis())
+>>>>>>> entregadorlixo
