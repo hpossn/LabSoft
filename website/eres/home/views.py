@@ -142,11 +142,11 @@ def gerfuncionarios(request):
             if formEntregador.is_valid():
 
                 try:
-
-                    nome = formEntregador.cleaned_data['nome'],
-                    dataNasc = formEntregador.cleaned_data['dataNascimento'],
-                    salario = formEntregador.cleaned_data['salario'],
-                    cpf = formEntregador.cleaned_data['CPF'],
+                    nome = formEntregador.cleaned_data['nome']
+                    dataNasc = formEntregador.cleaned_data['dataNascimento']
+                    print(dataNasc, type(dataNasc))
+                    salario = formEntregador.cleaned_data['salario']
+                    cpf = formEntregador.cleaned_data['CPF']
                     veiculos = formEntregador.cleaned_data['veiculos']
 
                     try:
@@ -162,11 +162,10 @@ def gerfuncionarios(request):
 
                     else:
                         entregador = Entregador(nome=nome, dataNascimento=dataNasc, CPF=cpf, salario=salario, veiculos=veiculos)
-
                         try:
-                            print ("oi")
                             entregador.save()
                         except Exception as e:
+                            print('deu erro na hora de salvar')
                             print(e)
                         print(Entregador.objects.all())
                         response_data = {}
