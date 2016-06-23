@@ -53,11 +53,20 @@ class VeiculoForm(forms.ModelForm):
 
 
 class EntregadorForm(forms.Form):
-    veiculos = forms.ModelChoiceField(queryset=GerenciadorFuncionarios.listarVeiculosDisponiveis())
-    dataNascimento = forms.DateField(required=False, initial=datetime.now)
     nome = forms.CharField(required=False)
     CPF = forms.CharField(required=False)
+    dataNascimento = forms.DateField(required=False, initial=datetime.now)
     salario = forms.FloatField(required=False)
+    veiculos = forms.ModelChoiceField(queryset=GerenciadorFuncionarios.listarVeiculosDisponiveis())
+    nomedeusuario = forms.CharField(required=True)
+
+    def __init__(self, *args, **kwargs):
+        super(EntregadorForm, self).__init__(*args, **kwargs)
+
+        self.fields['nomedeusuario'].label = 'username'
+        self.fields['veiculos'].label = 'Veiculo'
+        self.fields['dataNascimento'].label = 'Data de nascimento'
+        self.fields['CPF'].label = 'CPF'
 
 
 class ArquivoPedidosForm(forms.Form):

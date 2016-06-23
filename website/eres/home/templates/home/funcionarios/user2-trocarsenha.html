@@ -40,16 +40,8 @@
         <!-- /#sidebar-wrapper -->
 
         <!-- Page Content -->
-        <div id="page-content-wrapper">
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-lg-12">
-                        <h1>Seja bem vindo, funcionário</h1>
-                        <p>Essa é a sua página inicial, navegue com o menu ao lado para acessar suas funcionalidades</p>
-                    </div>
-                </div>
-            </div>
-        </div>
+        {% block senha %}
+        {% endblock %}
         <!-- /#page-content-wrapper -->
 
     </div>
@@ -70,9 +62,4 @@
     });
     </script>
 
-
-
-
-
-
-{% endblock content %}
+{% endblock %}

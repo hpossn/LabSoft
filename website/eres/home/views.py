@@ -107,12 +107,12 @@ def cadastroSenha(request, tipoUsuario, hashname):
                     md5 = hashlib.md5(cliente.nome.encode('utf-8'))
                     if md5.hexdigest()[:5] == hashname:
                         usuario = cliente.usuario
-                        print(cliente)
-            elif int(tipoUsuario) == models.tiposDeUsuario['funcionario']:
-                for funcionario in models.Funcionario.objects.all():
-                    md5 = hashlib.md5(funcionario.nome.encode('utf-8'))
-                    if md5.hexdigest()[:5] == hashname:
-                        usuario = funcionario.usuario
+                        # print(cliente)
+            # elif int(tipoUsuario) == models.tiposDeUsuario['funcionario']:
+            #     for funcionario in models.Funcionario.objects.all():
+            #         md5 = hashlib.md5(funcionario.nome.encode('utf-8'))
+            #         if md5.hexdigest()[:5] == hashname:
+            #             usuario = funcionario.usuario
 
             if usuario is not None:
                 if senha == senha_verificacao:
@@ -164,6 +164,11 @@ def home2(request):
 
 def entregasAlocadas(request):
 
+    def getIDEntregador(username):
+        usuario = Usuario.objects.get(username=username)
+        entregador = models.Entregador.objects.get(usuario=usuario)
+        return entregador.CPF
+
     username = None
     if request.user.is_authenticated():
         username = request.user.username
@@ -180,6 +185,27 @@ def entregasAlocadas(request):
                         )
             return render(request, 'home/funcionarios/entregasAlocadas.html', {'result': result, 'form': forms.EntregasAlocadas(idEntregador=idEntregador)})
     return HttpResponseRedirect('/index')
+
+def trocarsenha(request):
+    if request.user.is_authenticated():
+        username = request.user.username
+        tipo = getTipoUsuario(username)
+        if tipo == models.tiposDeUsuario['funcionario']:
+            if request.method == "POST":
+                formSenha = forms.CadastroSenhaForm(data=request.POST)
+                if formSenha.is_valid():
+                    senha = formSenha.cleaned_data['senha']
+                    senha_verificacao = formSenha.cleaned_data['senha_verificacao']
+                    return HttpResponseRedirect('/home2')
+
+                    usuario = models.Usuario.objects.get(username=username)
+                    if senha == senha_verificacao:
+                        usuario.password = senha
+                        usuario.save()
+
+
+    formSenha = forms.CadastroSenhaForm()
+    return render(request, 'home/funcionarios/trocarsenha.html', {'formSenha': formSenha})
 
 #GERENTE
 def gerclientes(request):
@@ -218,31 +244,32 @@ def gerfuncionarios(request):
                 try:
                     nome = formEntregador.cleaned_data['nome']
                     dataNasc = formEntregador.cleaned_data['dataNascimento']
-                    # print(dataNasc, type(dataNasc))
                     salario = formEntregador.cleaned_data['salario']
                     cpf = formEntregador.cleaned_data['CPF']
                     veiculos = formEntregador.cleaned_data['veiculos']
+                    username = request.POST.get('nomedeusuario', '')
 
                     try:
                         antigo = Entregador.objects.get(CPF=cpf)
                     except Exception as e:
                         antigo = None
-                        # print(type(e))
-                        # print(e.args)
-                        # print(e)
 
-                    if antigo != None:
+                    if antigo is not None:
                         response_data = {'msg':"Funcionario com CPF " + cpf + ' já existe'}
 
                     else:
                         entregador = Entregador(nome=nome, dataNascimento=dataNasc, CPF=cpf, salario=salario, veiculos=veiculos)
                         try:
                             entregador.save()
+                            usuario = models.Usuario(username=username, password=cpf, tipoUsuario=models.tiposDeUsuario['funcionario'])
+                            usuario.save()
+                            entregador.usuario = usuario
+                            entregador.save()
                         except Exception as e:
                             print('deu erro na hora de salvar')
                             print(e)
                         response_data = {}
-                        response_data['msg'] = entregador + ' ' + nome + ' foi cadastrado com sucesso.'
+                        response_data['msg'] = 'entregador ' + nome + ' foi cadastrado com sucesso.'
 
                 except Exception as e:
                     response_data = {}
@@ -258,7 +285,7 @@ def gerfuncionarios(request):
             form = forms.EntregadorForm()
             if request.method == 'POST':
                 form = forms.EntregadorForm(data=request.POST)
-            return render(request, 'home/gerente/user1-funcionarios.html', {'form':form})
+            return render(request, 'home/gerente/user1-funcionarios.html', {'formFunc':form})
         return HttpResponseRedirect('/index')
 
 
@@ -370,10 +397,6 @@ def gerveiculos(request):
 def getTipoUsuario(username):
     usuario = Usuario.objects.get(username=username)
     return usuario.tipoUsuario
-
-def getIDEntregador(username):
-    usuario = Usuario.objects.get(username=username)
-    return usuario.cpf
 
 def logout(request):
     auth.logout(request)

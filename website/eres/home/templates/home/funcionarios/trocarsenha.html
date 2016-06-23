@@ -1,0 +1,9 @@
+{% extends  'home/funcionarios/user2-trocarsenha.html' %}
+{% block senha %}
+
+    <form id="formSenha" role="form" action="" method="POST">{% csrf_token %}
+      {{ formSenha.as_p }}
+      <input type="submit" value="Atualizar">
+    </form>
+
+{% endblock %}

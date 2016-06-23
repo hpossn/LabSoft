@@ -39,7 +39,8 @@ urlpatterns = [
     url(r'^home2$', views.home2, name='home2'),
 
     #entregador
-    url(r'^entregasAlocadas$', views.entregasAlocadas, name='entregasAlocadas'),
+    url(r'^home2/entregasAlocadas$', views.entregasAlocadas, name='entregasAlocadas'),
+    url(r'^home2/trocarsenha$', views.trocarsenha, name='trocarsenha'),
 
     #Gerente
     url(r'^gerclientes$', views.gerclientes, name='gerclientes'),
