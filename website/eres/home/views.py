@@ -104,11 +104,14 @@ def cadastroSenha(request, tipoUsuario, hashname):
             usuario = None
             if int(tipoUsuario) == models.tiposDeUsuario['cliente']:
                 for cliente in models.Cliente.objects.all():
-                    if cliente.nome == hashname:
+                    md5 = hashlib.md5(cliente.nome.encode('utf-8'))
+                    if md5.hexdigest()[:5] == hashname:
                         usuario = cliente.usuario
+                        print(cliente)
             elif int(tipoUsuario) == models.tiposDeUsuario['funcionario']:
                 for funcionario in models.Funcionario.objects.all():
-                    if funcionario.nome == hashname:
+                    md5 = hashlib.md5(funcionario.nome.encode('utf-8'))
+                    if md5.hexdigest()[:5] == hashname:
                         usuario = funcionario.usuario
 
             if usuario is not None:
@@ -116,6 +119,7 @@ def cadastroSenha(request, tipoUsuario, hashname):
                     print('opa, senhas BATERAM')
                     usuario.password = senha
                     usuario.save()
+                    return HttpResponseRedirect('/index')
                 else:
                     print('ERRO nas senhas')
 
@@ -139,7 +143,7 @@ def home0(request):
 
             return render(request, 'home/clientes/upload.html', {'form': form})
         else:
-            return HttpResponseRedirect('index')
+            return HttpResponseRedirect('/index')
 
 def home1(request):
     if request.user.is_authenticated():
@@ -148,7 +152,7 @@ def home1(request):
         if tipo == tiposDeUsuario['gerente']:
             return render(request, 'home/gerente/user1.html')
 
-    return HttpResponseRedirect('index')
+    return HttpResponseRedirect('/index')
 
 def home2(request):
     if request.user.is_authenticated():
@@ -156,7 +160,7 @@ def home2(request):
         tipo = getTipoUsuario(username)
         if tipo == tiposDeUsuario['funcionario']:
             return render(request, 'home/funcionarios/user2.html')
-    return HttpResponseRedirect('index')
+    return HttpResponseRedirect('/index')
 
 def entregasAlocadas(request):
 
@@ -175,19 +179,34 @@ def entregasAlocadas(request):
                         cod=entrega.codigoRastreamento, dataEntrega=datetime.now()
                         )
             return render(request, 'home/funcionarios/entregasAlocadas.html', {'result': result, 'form': forms.EntregasAlocadas(idEntregador=idEntregador)})
-    return HttpResponseRedirect('index')
+    return HttpResponseRedirect('/index')
 
 #GERENTE
 def gerclientes(request):
     if request.user.is_authenticated():
         username = request.user.username
+        gerente = models.Gerente.objects.filter(usuario__username=username)[0]
         tipo = getTipoUsuario(username)
         if tipo == tiposDeUsuario['gerente']:
             if request.method == 'POST':
-                print('clientes: ', Cliente.objects.filter(CNPJ__in=request.POST.getlist('aprovado')))
+                for cliente in Cliente.objects.filter(CNPJ__in=request.POST.getlist('aprovado')):
+                    md5 = hashlib.md5(cliente.nome.encode('utf-8'))
+                    template = get_template('email_para_cliente.txt')
+                    context = {
+                        'gerente_nome': gerente.nome,
+                        'url_link': 'localhost:8000/cadastroSenha/{tipoUsuario}/{hashname}'.format(tipoUsuario=int(models.tiposDeUsuario['cliente']), hashname=md5.hexdigest()[:5]),
+                    }
+                    content = template.render(context)
+                    EmailMessage(
+                        subject='Cadastro em ERES aprovado',
+                        body= content,
+                        from_email='gerente@lar.com.br',
+                        to=[cliente.email]
+                    ).send()
+
                 Cliente.objects.filter(CNPJ__in=request.POST.getlist('aprovado')).update(isNew=False)
             return render(request, 'home/gerente/clientes.html', {'clientes_pendentes': Cliente.objects.filter(isNew=True), 'clientes_aprovados': Cliente.objects.filter(isNew=False)})
-    return HttpResponseRedirect('index')
+    return HttpResponseRedirect('/index')
 
 def gerfuncionarios(request):
     if request.is_ajax():
@@ -235,7 +254,7 @@ def gerfuncionarios(request):
             if request.method == 'POST':
                 form = forms.RegiaoForm(data=request.POST)
             return render(request, 'home/gerente/user1-funcionarios.html', {'form':form})
-        return HttpResponseRedirect('index')
+        return HttpResponseRedirect('/index')
 
 
 
@@ -254,7 +273,7 @@ def gerentregas(request):
                         entregador=formEntregaEntregador.cleaned_data['entregador_select']
                         )
             return render(request, 'home/gerente/alocarEntregaParaEntregador.html', {'result': result, 'form': forms.EntregaEntregadorForm()})
-    return HttpResponseRedirect('index')
+    return HttpResponseRedirect('/index')
 
 
 
@@ -295,7 +314,7 @@ def gerregioes(request):
             if request.method == 'POST':
                 form = forms.RegiaoForm(data=request.POST)
             return render(request, 'home/gerente/user1-regiao.html', {'form':form})
-        return HttpResponseRedirect('index')
+        return HttpResponseRedirect('/index')
 
 
 
@@ -341,7 +360,7 @@ def gerveiculos(request):
             if request.method == 'POST':
                 form = forms.RegiaoForm(data=request.POST)
             return render(request, 'home/gerente/user1-veiculos.html', {'form':form})
-        return HttpResponseRedirect('index')
+        return HttpResponseRedirect('/index')
 
 def getTipoUsuario(username):
     usuario = Usuario.objects.get(username=username)
@@ -353,7 +372,7 @@ def getIDEntregador(username):
 
 def logout(request):
     auth.logout(request)
-    return HttpResponseRedirect('index')
+    return HttpResponseRedirect('/index')
 
 def about(request):
     return render(request, 'home/about.html', {'formSignup': forms.ClienteForm()})

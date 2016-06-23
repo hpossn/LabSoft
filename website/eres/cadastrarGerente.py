@@ -12,7 +12,7 @@ def cadastrarGerente():
 
     gerente = models.Gerente(nome=nome, dataNascimento=datetime.strptime(dataNascimento, '%d/%m/%Y'), CPF=CPF, salario=float(salario))
     try:
-        gerente.save(commit=False)
+        gerente.save()
         username = input('username: ')
         senha = getpass.getpass('senha: ')
         senha_verificacao = getpass.getpass('digite a senha novamente: ')

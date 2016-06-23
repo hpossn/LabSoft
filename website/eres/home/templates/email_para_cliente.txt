@@ -1,0 +1,7 @@
+Seu cadastro foi aceito com sucesso!
+
+Acesse o seguinte link para criar uma nova senha: {{ url_link }}
+
+Att,
+{{ gerente_nome }}
+Gerente - ERES Ltda.

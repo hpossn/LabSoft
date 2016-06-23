@@ -104,7 +104,7 @@ class Entrega(models.Model):
     preco = models.FloatField()
 
     def gerarCodigoRastreamento(self):
-        stringCode = self.cliente.nome + self.cliente.CNPJ  + str(self.preco) + str(self.dataPedido) + self.destinatario.nome
+        stringCode = self.cliente.nome + self.cliente.CNPJ + str(self.preco) + str(self.dataPedido) + self.destinatario.nome
         stringCode = stringCode.encode()
         md5 = hashlib.md5(stringCode)
         self.codigoRastreamento = md5.hexdigest()[:8]

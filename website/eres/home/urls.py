@@ -31,7 +31,7 @@ urlpatterns = [
     url(r'^veiculo$', views.veiculo, name='veiculo'),
 
     # Cadastro de senha
-    url(r'^cadastroSenha/(?P<tipoUsuario>[0-2])/(?P<hashname>[\w]{4})$', views.cadastroSenha),
+    url(r'^cadastroSenha/(?P<tipoUsuario>[0-2])/(?P<hashname>[\w]{5})$', views.cadastroSenha),
 
     #Homes Usuarios
     url(r'^home0$', views.home0, name='home0'),
