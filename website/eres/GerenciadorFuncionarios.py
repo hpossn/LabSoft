@@ -26,3 +26,6 @@ def liberarEntregadorDeEntrega(entregador):
 
 def listarEntregadoresDisponiveis():
     return models.Entregador.objects.filter(status=0)
+
+def listarVeiculosDisponiveis():
+    return models.Veiculo.objects.all()
